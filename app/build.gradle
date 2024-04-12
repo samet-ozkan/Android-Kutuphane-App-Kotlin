@@ -47,6 +47,9 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -71,8 +74,18 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
     //Hilt
-    implementation "com.google.dagger:hilt-android:2.44"
-    kapt "com.google.dagger:hilt-compiler:2.44"
+    implementation "com.google.dagger:hilt-android:2.47"
+    kapt "com.google.dagger:hilt-compiler:2.47"
+
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.0'
+
+    //OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0"'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
+
 }
 
 kapt {
