@@ -3,26 +3,26 @@ package com.sametozkan.kutuphane.domain.usecase.kutuphane
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.domain.repository.KutuphaneRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.Result
+import com.sametozkan.kutuphane.domain.usecase.MyResult
 
 
 class FindAllKutuphaneUseCase @Inject constructor(private val kutuphaneRepository: KutuphaneRepository) {
 
-    suspend operator fun invoke(): Result<List<KutuphaneRes>> {
+    suspend operator fun invoke(): MyResult<List<KutuphaneRes>> {
         return try {
             val response = kutuphaneRepository.findAll()
             if (response.isSuccessful) {
                 val kutuphaneList = response.body()
                 if (kutuphaneList != null) {
-                    Result.Success(kutuphaneList)
+                    MyResult.Success(kutuphaneList)
                 } else {
-                    Result.Error(Exception("Kutuphane list is null"))
+                    MyResult.Error(Exception("Kutuphane list is null"))
                 }
             } else {
-                Result.Error(Exception("Failed to find all kutuphane: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all kutuphane: ${response.message()}"))
             }
         } catch (e: Exception) {
-            Result.Error(e)
+            MyResult.Error(e)
         }
     }
 }

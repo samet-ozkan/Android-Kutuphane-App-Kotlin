@@ -3,21 +3,21 @@ package com.sametozkan.kutuphane.domain.usecase.yazar
 import com.sametozkan.kutuphane.data.dto.request.YazarReq
 import com.sametozkan.kutuphane.domain.repository.YazarRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.Result
+import com.sametozkan.kutuphane.domain.usecase.MyResult
 
 
 class SaveYazarUseCase @Inject constructor(private val yazarRepository: YazarRepository) {
 
-    suspend operator fun invoke(yazarReq: YazarReq): Result<Unit> {
+    suspend operator fun invoke(yazarReq: YazarReq): MyResult<Unit> {
         return try {
             val response = yazarRepository.save(yazarReq)
             if (response.isSuccessful) {
-                Result.Success(Unit)
+                MyResult.Success(Unit)
             } else {
-                Result.Error(Exception("Failed to save yazar: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save yazar: ${response.message()}"))
             }
         } catch (e: Exception) {
-            Result.Error(e)
+            MyResult.Error(e)
         }
     }
 }

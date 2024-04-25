@@ -3,21 +3,21 @@ package com.sametozkan.kutuphane.domain.usecase.tur
 import com.sametozkan.kutuphane.data.dto.request.TurReq
 import com.sametozkan.kutuphane.domain.repository.TurRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.Result
+import com.sametozkan.kutuphane.domain.usecase.MyResult
 
 
 class SaveTurUseCase @Inject constructor(private val turRepository: TurRepository) {
 
-    suspend operator fun invoke(turReq: TurReq): Result<Unit> {
+    suspend operator fun invoke(turReq: TurReq): MyResult<Unit> {
         return try {
             val response = turRepository.save(turReq)
             if (response.isSuccessful) {
-                Result.Success(Unit)
+                MyResult.Success(Unit)
             } else {
-                Result.Error(Exception("Failed to save tur: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save tur: ${response.message()}"))
             }
         } catch (e: Exception) {
-            Result.Error(e)
+            MyResult.Error(e)
         }
     }
 }

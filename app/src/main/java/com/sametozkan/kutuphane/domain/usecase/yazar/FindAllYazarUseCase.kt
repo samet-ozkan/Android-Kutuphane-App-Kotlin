@@ -3,25 +3,25 @@ package com.sametozkan.kutuphane.domain.usecase.yazar
 import com.sametozkan.kutuphane.data.dto.response.YazarRes
 import com.sametozkan.kutuphane.domain.repository.YazarRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.Result
+import com.sametozkan.kutuphane.domain.usecase.MyResult
 
 class FindAllYazarUseCase @Inject constructor(private val yazarRepository: YazarRepository) {
 
-    suspend operator fun invoke(): Result<List<YazarRes>> {
+    suspend operator fun invoke(): MyResult<List<YazarRes>> {
         return try {
             val response = yazarRepository.findAll()
             if (response.isSuccessful) {
                 val yazarList = response.body()
                 if (yazarList != null) {
-                    Result.Success(yazarList)
+                    MyResult.Success(yazarList)
                 } else {
-                    Result.Error(Exception("Yazar list is null"))
+                    MyResult.Error(Exception("Yazar list is null"))
                 }
             } else {
-                Result.Error(Exception("Failed to find all yazar: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all yazar: ${response.message()}"))
             }
         } catch (e: Exception) {
-            Result.Error(e)
+            MyResult.Error(e)
         }
     }
 }

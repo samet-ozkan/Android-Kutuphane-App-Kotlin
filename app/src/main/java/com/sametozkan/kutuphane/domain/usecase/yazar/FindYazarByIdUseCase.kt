@@ -3,25 +3,25 @@ package com.sametozkan.kutuphane.domain.usecase.yazar
 import com.sametozkan.kutuphane.data.dto.response.YazarRes
 import com.sametozkan.kutuphane.domain.repository.YazarRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.Result
+import com.sametozkan.kutuphane.domain.usecase.MyResult
 
 class FindYazarByIdUseCase @Inject constructor(private val yazarRepository: YazarRepository) {
 
-    suspend operator fun invoke(id: Long): Result<YazarRes> {
+    suspend operator fun invoke(id: Long): MyResult<YazarRes> {
         return try {
             val response = yazarRepository.findById(id)
             if (response.isSuccessful) {
                 val yazarRes = response.body()
                 if (yazarRes != null) {
-                    Result.Success(yazarRes)
+                    MyResult.Success(yazarRes)
                 } else {
-                    Result.Error(Exception("Yazar response body is null"))
+                    MyResult.Error(Exception("Yazar response body is null"))
                 }
             } else {
-                Result.Error(Exception("Failed to find yazar by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find yazar by id: ${response.message()}"))
             }
         } catch (e: Exception) {
-            Result.Error(e)
+            MyResult.Error(e)
         }
     }
 }

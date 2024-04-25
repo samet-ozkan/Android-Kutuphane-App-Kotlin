@@ -2,26 +2,26 @@ package com.sametozkan.kutuphane.domain.usecase.kitapkullanici
 
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.domain.repository.KitapKullaniciRepository
-import com.sametozkan.kutuphane.domain.usecase.Result
+import com.sametozkan.kutuphane.domain.usecase.MyResult
 import javax.inject.Inject
 
 class FindKitapKullaniciByIdUseCase @Inject constructor(private val kitapKullaniciRepository: KitapKullaniciRepository) {
 
-    suspend operator fun invoke(id: Long): Result<KitapKullaniciRes> {
+    suspend operator fun invoke(id: Long): MyResult<KitapKullaniciRes> {
         return try {
             val response = kitapKullaniciRepository.findById(id)
             if (response.isSuccessful) {
                 val kitapKullaniciRes = response.body()
                 if (kitapKullaniciRes != null) {
-                    Result.Success(kitapKullaniciRes)
+                    MyResult.Success(kitapKullaniciRes)
                 } else {
-                    Result.Error(Exception("Kitap kullanici response body is null"))
+                    MyResult.Error(Exception("Kitap kullanici response body is null"))
                 }
             } else {
-                Result.Error(Exception("Failed to find kitap kullanici by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kitap kullanici by id: ${response.message()}"))
             }
         } catch (e: Exception) {
-            Result.Error(e)
+            MyResult.Error(e)
         }
     }
 }

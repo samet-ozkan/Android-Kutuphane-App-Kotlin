@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityMainBinding
-import com.sametozkan.kutuphane.presentation.kutuphane.KutuphaneGirisActivity
+import com.sametozkan.kutuphane.presentation.kutuphane.giris.KutuphaneGirisActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
