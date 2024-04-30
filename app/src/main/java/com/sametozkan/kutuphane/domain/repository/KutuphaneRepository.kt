@@ -10,5 +10,7 @@ interface KutuphaneRepository {
 
     suspend fun findById(id: Long): Response<KutuphaneRes>
 
+    suspend fun findByAccountId(accountId: Long) : Response<KutuphaneRes>
+
     suspend fun findAll(): Response<List<KutuphaneRes>>
 }

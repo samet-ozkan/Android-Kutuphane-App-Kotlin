@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.kutuphane.giris.KutuphaneGirisActivity"/>
+        <activity android:name=".presentation.kutuphane.home.KutuphaneHomeActivity"/>
     </application>
 
 </manifest>

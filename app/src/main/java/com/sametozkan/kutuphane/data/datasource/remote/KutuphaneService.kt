@@ -18,4 +18,7 @@ interface KutuphaneService {
 
     @GET("/api/kutuphane/{id}")
     suspend fun findById(@Path("id") id: Long): Response<KutuphaneRes>
+
+    @GET("/api/kutuphane/account/{accountId}")
+    suspend fun findByAccountId(@Path("accountId") accountId: Long) : Response<KutuphaneRes>
 }

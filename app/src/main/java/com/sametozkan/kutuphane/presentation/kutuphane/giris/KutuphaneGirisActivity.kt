@@ -1,10 +1,12 @@
 package com.sametozkan.kutuphane.presentation.kutuphane.giris
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneGirisBinding
 import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,11 +26,12 @@ class KutuphaneGirisActivity : AppCompatActivity() {
 
     private fun setupGirisYapButton(){
         binding.girisYapButton.setOnClickListener {
-            viewModel.girisYap { result ->
+            viewModel.login { result ->
                 when (result) {
                     is MyResult.Success -> {
                         val jwtRes = result.data
-                        println("Jwt: " + jwtRes)
+                        viewModel.setSession(jwtRes)
+                        startActivity(Intent(this, KutuphaneHomeActivity::class.java))
                     }
                     is MyResult.Error -> {
                         val exception = result.exception

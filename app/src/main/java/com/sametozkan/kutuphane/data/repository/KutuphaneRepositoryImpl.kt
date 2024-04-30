@@ -17,6 +17,10 @@ class KutuphaneRepositoryImpl(private val kutuphaneService: KutuphaneService) :
         return kutuphaneService.findById(id)
     }
 
+    override suspend fun findByAccountId(accountId: Long): Response<KutuphaneRes> {
+        return kutuphaneService.findByAccountId(accountId);
+    }
+
     override suspend fun findAll(): Response<List<KutuphaneRes>> {
         return kutuphaneService.findAll()
     }
