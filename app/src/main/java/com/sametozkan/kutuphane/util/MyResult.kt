@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.domain.usecase
+package com.sametozkan.kutuphane.util
 
 sealed class MyResult<out T> {
     data class Success<out T>(val data: T) : MyResult<T>()

@@ -3,7 +3,7 @@ package com.sametozkan.kutuphane.domain.usecase.yazar
 import com.sametozkan.kutuphane.data.dto.response.YazarRes
 import com.sametozkan.kutuphane.domain.repository.YazarRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 
 class FindAllYazarUseCase @Inject constructor(private val yazarRepository: YazarRepository) {
 

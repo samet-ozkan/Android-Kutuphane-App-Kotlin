@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="kutuphaneRes"
-            type="com.sametozkan.kutuphane.data.dto.response.KutuphaneRes" />
+            name="viewModel"
+            type="com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -53,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:bindKutuphane="@{kutuphaneRes}"
+            app:bindKutuphane="@{viewModel.kutuphane}"
             app:headerLayout="@layout/nav_header_kutuphane"
             app:menu="@menu/nav_menu_kutuphane" />
 

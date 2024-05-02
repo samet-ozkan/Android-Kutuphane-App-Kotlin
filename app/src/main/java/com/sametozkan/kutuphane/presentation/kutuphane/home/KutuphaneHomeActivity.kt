@@ -1,13 +1,15 @@
 package com.sametozkan.kutuphane.presentation.kutuphane.home
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneHomeBinding
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.KutuphaneKitapYonetimiFragment
+import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.util.FragmentNameConstants
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,11 +23,21 @@ class KutuphaneHomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityKutuphaneHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.viewModel = viewModel
 
         setChangeFragmentObserver()
         setNavigationDrawer()
+        setNavigationHeader()
         setNavigationItemClickListener()
-        setNavigationViewHeader()
+    }
+
+    private fun setNavigationHeader() {
+        viewModel.kutuphane.observe(this, Observer { kutuphane ->
+            binding.navigationView.getHeaderView(0).apply {
+                findViewById<TextView>(R.id.fullName).text = kutuphane.adi
+                findViewById<TextView>(R.id.email).text = kutuphane.account.email
+            }
+        })
     }
 
     private fun setNavigationDrawer() {
@@ -38,8 +50,11 @@ class KutuphaneHomeActivity : AppCompatActivity() {
     private fun setNavigationItemClickListener() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.menuKitapYonetimi -> viewModel.changeFragment.value =
-                    FragmentNameConstants.KITAP_YONETIMI
+                R.id.menuKitapYonetimi -> {
+                    binding.drawerLayout.close()
+                    viewModel.changeFragment.value =
+                        FragmentNameConstants.KITAP_YONETIMI
+                }
 
                 else -> false
             }
@@ -47,28 +62,15 @@ class KutuphaneHomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun setNavigationViewHeader() {
-        viewModel.getKutuphane { myResult ->
-            when (myResult) {
-                is MyResult.Success -> {
-                    binding.kutuphaneRes = myResult.data
-                }
-
-                is MyResult.Error -> {
-                    val exception = myResult.exception
-                    println(exception)
-                }
-            }
-        }
-    }
-
     private fun setChangeFragmentObserver() {
         viewModel.changeFragment.observe(this, Observer { value ->
 
-            /*when (value) {
-                FragmentNameConstants.KITAP_EKLE -> replaceFragment()
+            when (value) {
+                FragmentNameConstants.KITAP_YONETIMI -> replaceFragment(
+                    KutuphaneKitapYonetimiFragment(),
+                    "Kitap Yönetimi"
+                )
             }
-             */
 
         })
     }

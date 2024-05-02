@@ -6,11 +6,14 @@ import retrofit2.Response
 
 interface KitapRepository {
 
-    suspend fun save(kitapReq: KitapReq): Response<Unit>
+    suspend fun save(kitapReq: KitapReq): Response<Long>
 
     suspend fun update(id: Long, kitapReq: KitapReq): Response<KitapRes>
 
     suspend fun findById(id: Long): Response<KitapRes>
 
     suspend fun findAll(): Response<List<KitapRes>>
+
+    suspend fun findByIsbn(isbn: Long): Response<KitapRes>
+    suspend fun fetchByIsbn(isbn: Long): Response<KitapReq>
 }

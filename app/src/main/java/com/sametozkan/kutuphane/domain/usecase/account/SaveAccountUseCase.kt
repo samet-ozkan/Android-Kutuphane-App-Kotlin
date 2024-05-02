@@ -2,7 +2,7 @@ package com.sametozkan.kutuphane.domain.usecase.account
 
 import com.sametozkan.kutuphane.data.dto.request.AccountReq
 import com.sametozkan.kutuphane.domain.repository.AccountRepository
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
 class SaveAccountUseCase @Inject constructor(private val accountRepository: AccountRepository) {

@@ -2,7 +2,7 @@ package com.sametozkan.kutuphane.domain.usecase.kitapkullanici
 
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.domain.repository.KitapKullaniciRepository
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
 class FindKitapKullaniciByIdUseCase @Inject constructor(private val kitapKullaniciRepository: KitapKullaniciRepository) {

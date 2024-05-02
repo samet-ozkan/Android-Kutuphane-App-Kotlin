@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="kitapRes"
+            type="com.sametozkan.kutuphane.data.dto.response.KitapRes" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/bookIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_book_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/isbnTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/isbnTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(kitapRes.isbn)}"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@id/kitapAdiTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="123123213" />
+
+        <TextView
+            android:id="@+id/kitapAdiTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{kitapRes.adi}"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/yazarTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintTop_toBottomOf="@id/isbnTextView"
+            tools:text="Kürk Mantolu Madonna" />
+
+        <TextView
+            android:id="@+id/yazarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{kitapRes.yazarlar.get(0).adi + ' ' + kitapRes.yazarlar.get(0).soyadi}"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/turTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintTop_toBottomOf="@id/kitapAdiTextView"
+            tools:text="Sabahattin Ali" />
+
+        <TextView
+            android:id="@+id/turTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{kitapRes.turler.get(0).tur}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintTop_toBottomOf="@id/yazarTextView"
+            tools:text="Roman" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

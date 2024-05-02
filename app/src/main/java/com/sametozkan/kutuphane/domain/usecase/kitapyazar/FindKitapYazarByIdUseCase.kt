@@ -3,7 +3,7 @@ package com.sametozkan.kutuphane.domain.usecase.kitapyazar
 import com.sametozkan.kutuphane.data.dto.response.KitapYazarRes
 import com.sametozkan.kutuphane.domain.repository.KitapYazarRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 
 
 class FindKitapYazarByIdUseCase @Inject constructor(private val kitapYazarRepository: KitapYazarRepository) {

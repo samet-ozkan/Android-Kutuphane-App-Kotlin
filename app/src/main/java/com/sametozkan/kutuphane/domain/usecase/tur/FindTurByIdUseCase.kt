@@ -3,7 +3,7 @@ package com.sametozkan.kutuphane.domain.usecase.tur
 import com.sametozkan.kutuphane.data.dto.response.TurRes
 import com.sametozkan.kutuphane.domain.repository.TurRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 
 class FindTurByIdUseCase @Inject constructor(private val turRepository: TurRepository) {
 

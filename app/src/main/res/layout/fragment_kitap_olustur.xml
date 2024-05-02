@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.kitapolustur.KitapOlusturViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/temizleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Temizle"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/googleBooksButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Google Books API" />
+
+        <EditText
+            android:id="@+id/isbnEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="ISBN"
+            android:inputType="number"
+            android:text="@={viewModel.isbn}" />
+
+        <EditText
+            android:id="@+id/kitapAdiEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Kitap Adı"
+            android:inputType="text"
+            android:text="@={viewModel.kitapAdi}" />
+
+        <EditText
+            android:id="@+id/yayinTarihiEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Yayın Tarihi"
+            android:inputType="text"
+            android:text="@={viewModel.yayinTarihi}" />
+
+        <EditText
+            android:id="@+id/dilEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Dil"
+            android:inputType="text"
+            android:text="@={viewModel.dil}" />
+
+        <EditText
+            android:id="@+id/sayfaSayisiEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Sayfa Sayısı"
+            android:inputType="number"
+            android:text="@={viewModel.sayfaSayisi}" />
+
+        <EditText
+            android:id="@+id/aciklamaEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Açıklama"
+            android:inputType="text"
+            android:text="@={viewModel.aciklama}" />
+
+        <Button
+            android:id="@+id/olusturButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Olustur" />
+    </LinearLayout>
+</layout>

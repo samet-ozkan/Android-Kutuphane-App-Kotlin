@@ -4,7 +4,7 @@ import com.sametozkan.kutuphane.data.dto.request.KutuphaneReq
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.domain.repository.KutuphaneRepository
 import javax.inject.Inject
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 
 class UpdateKutuphaneUseCase @Inject constructor(private val kutuphaneRepository: KutuphaneRepository) {
 

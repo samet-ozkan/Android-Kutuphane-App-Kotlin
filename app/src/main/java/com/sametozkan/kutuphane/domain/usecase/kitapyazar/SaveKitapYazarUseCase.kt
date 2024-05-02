@@ -2,7 +2,7 @@ package com.sametozkan.kutuphane.domain.usecase.kitapyazar
 
 import com.sametozkan.kutuphane.data.dto.request.KitapYazarReq
 import com.sametozkan.kutuphane.domain.repository.KitapYazarRepository
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
 class SaveKitapYazarUseCase @Inject constructor(private val kitapYazarRepository: KitapYazarRepository) {

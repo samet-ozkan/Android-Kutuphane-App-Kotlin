@@ -28,6 +28,7 @@
         </activity>
         <activity android:name=".presentation.kutuphane.giris.KutuphaneGirisActivity"/>
         <activity android:name=".presentation.kutuphane.home.KutuphaneHomeActivity"/>
+        <activity android:name=".presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleActivity"/>
     </application>
 
 </manifest>

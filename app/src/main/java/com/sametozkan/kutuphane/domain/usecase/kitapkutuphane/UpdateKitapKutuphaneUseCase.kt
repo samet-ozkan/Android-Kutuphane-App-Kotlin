@@ -3,7 +3,7 @@ package com.sametozkan.kutuphane.domain.usecase.kitapkutuphane
 import com.sametozkan.kutuphane.data.dto.request.KitapKutuphaneReq
 import com.sametozkan.kutuphane.data.dto.response.KitapKutuphaneRes
 import com.sametozkan.kutuphane.domain.repository.KitapKutuphaneRepository
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
 class UpdateKitapKutuphaneUseCase @Inject constructor(private val kitapKutuphaneRepository: KitapKutuphaneRepository) {

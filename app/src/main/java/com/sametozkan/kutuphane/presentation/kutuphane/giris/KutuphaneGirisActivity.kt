@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneGirisBinding
-import com.sametozkan.kutuphane.domain.usecase.MyResult
+import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 

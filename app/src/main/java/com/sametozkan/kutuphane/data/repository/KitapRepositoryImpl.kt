@@ -8,7 +8,7 @@ import retrofit2.Response
 
 class KitapRepositoryImpl(private val kitapService: KitapService) : KitapRepository {
 
-    override suspend fun save(kitapReq: KitapReq): Response<Unit> {
+    override suspend fun save(kitapReq: KitapReq): Response<Long> {
         return kitapService.save(kitapReq)
     }
 
@@ -22,5 +22,13 @@ class KitapRepositoryImpl(private val kitapService: KitapService) : KitapReposit
 
     override suspend fun findAll(): Response<List<KitapRes>> {
         return kitapService.findAll()
+    }
+
+    override suspend fun findByIsbn(isbn: Long): Response<KitapRes> {
+        return kitapService.findByIsbn(isbn)
+    }
+
+    override suspend fun fetchByIsbn(isbn: Long): Response<KitapReq>{
+        return kitapService.fetchByIsbn(isbn)
     }
 }

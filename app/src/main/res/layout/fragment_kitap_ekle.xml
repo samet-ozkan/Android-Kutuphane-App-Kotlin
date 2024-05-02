@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/isbnEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="ISBN girin"
+            android:inputType="number"
+            android:text="@={viewModel.isbn}" />
+
+        <EditText
+            android:id="@+id/stokEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:hint="Stok girin"
+            android:inputType="number"
+            android:text="@={viewModel.stok}" />
+
+        <Button
+            android:id="@+id/ekleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ekle" />
+    </LinearLayout>
+</layout>
