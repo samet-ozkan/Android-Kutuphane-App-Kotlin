@@ -6,6 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.data.dto.request.KitapKutuphaneReq
 import com.sametozkan.kutuphane.data.dto.request.KitapReq
+import com.sametozkan.kutuphane.data.dto.request.TurReq
+import com.sametozkan.kutuphane.data.dto.request.YazarReq
 import com.sametozkan.kutuphane.domain.usecase.kitap.FetchKitapByIsbnUseCase
 import com.sametozkan.kutuphane.domain.usecase.kitap.SaveKitapUseCase
 import com.sametozkan.kutuphane.domain.usecase.kitapkutuphane.SaveKitapKutuphaneUseCase
@@ -34,6 +36,8 @@ class KitapOlusturViewModel @Inject constructor(
     val sayfaSayisi = MutableLiveData<Long>()
     val aciklama = MutableLiveData<String>()
     var stok: Long? = null
+    val yazarlar = MutableLiveData<ArrayList<YazarReq>>(ArrayList())
+    val turler = MutableLiveData<ArrayList<TurReq>>(ArrayList())
 
     fun olustur(onResult: (MyResult<Unit>) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -43,54 +47,60 @@ class KitapOlusturViewModel @Inject constructor(
                         dil.value?.let { dil ->
                             sayfaSayisi.value?.let { sayfaSayisi ->
                                 aciklama.value?.let { aciklama ->
-                                    val saveKitapResult = async {
-                                        saveKitapUseCase(
-                                            KitapReq(
-                                                isbn,
-                                                kitapAdi,
-                                                yayinTarihi,
-                                                dil,
-                                                sayfaSayisi.toInt(),
-                                                aciklama
-                                            )
-                                        )
-                                    }.await()
-                                    when (saveKitapResult) {
-                                        is MyResult.Success -> {
-                                            val kitapId = saveKitapResult.data
-                                            sessionManager.getAccountID()?.let {
-                                                val kutuphaneResult = async {
-                                                    findKutuphaneByAccountIdUseCase(it)
-                                                }.await()
-                                                when (kutuphaneResult) {
-                                                    is MyResult.Success -> {
-                                                        stok?.let { stok ->
-                                                            val result = async {
-                                                                saveKitapKutuphaneUseCase(
-                                                                    KitapKutuphaneReq(
-                                                                        kitapId,
-                                                                        kutuphaneResult.data.id,
-                                                                        stok.toInt()
-                                                                    )
-                                                                )
-                                                            }.await()
-                                                            withContext(Dispatchers.Main) {
-                                                                onResult(result)
+                                    yazarlar.value?.let { yazarlar ->
+                                        turler.value?.let { turler ->
+                                            val saveKitapResult = async {
+                                                saveKitapUseCase(
+                                                    KitapReq(
+                                                        isbn,
+                                                        kitapAdi,
+                                                        yayinTarihi,
+                                                        dil,
+                                                        sayfaSayisi.toInt(),
+                                                        aciklama,
+                                                        yazarlar,
+                                                        turler
+                                                    )
+                                                )
+                                            }.await()
+                                            when (saveKitapResult) {
+                                                is MyResult.Success -> {
+                                                    val kitapId = saveKitapResult.data
+                                                    sessionManager.getAccountID()?.let {
+                                                        val kutuphaneResult = async {
+                                                            findKutuphaneByAccountIdUseCase(it)
+                                                        }.await()
+                                                        when (kutuphaneResult) {
+                                                            is MyResult.Success -> {
+                                                                stok?.let { stok ->
+                                                                    val result = async {
+                                                                        saveKitapKutuphaneUseCase(
+                                                                            KitapKutuphaneReq(
+                                                                                kitapId,
+                                                                                kutuphaneResult.data.id,
+                                                                                stok.toInt()
+                                                                            )
+                                                                        )
+                                                                    }.await()
+                                                                    withContext(Dispatchers.Main) {
+                                                                        onResult(result)
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            is MyResult.Error -> {
+                                                                kutuphaneResult.exception.printStackTrace()
                                                             }
                                                         }
                                                     }
+                                                }
 
-                                                    is MyResult.Error -> {
-                                                        kutuphaneResult.exception.printStackTrace()
-                                                    }
+                                                is MyResult.Error -> {
+                                                    saveKitapResult.exception.printStackTrace()
                                                 }
                                             }
-                                        }
-
-                                        is MyResult.Error -> {
-                                            saveKitapResult.exception.printStackTrace()
-                                        }
-                                    }
+                                        } ?: kotlin.run { println("Turler null") }
+                                    } ?: kotlin.run { println("Yazarlar null") }
                                 } ?: kotlin.run { println("Aciklama null") }
                             } ?: kotlin.run { println("Sayfa sayısı null") }
                         } ?: kotlin.run { println("Dil null") }
@@ -98,15 +108,6 @@ class KitapOlusturViewModel @Inject constructor(
                 } ?: kotlin.run { println("Kitap adı null") }
             } ?: kotlin.run { println("Isbn null") }
         }
-    }
-
-    fun temizle() {
-        println("View model temizle")
-        kitapAdi.value = ""
-        yayinTarihi.value = ""
-        dil.value = ""
-        sayfaSayisi.value = 0
-        aciklama.value = ""
     }
 
     fun fetchKitapByIsbn(onResult: (MyResult<KitapReq>) -> Unit) {

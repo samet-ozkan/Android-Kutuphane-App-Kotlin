@@ -10,7 +10,10 @@ import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindKutuphaneByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.Dispatcher
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,17 +25,13 @@ class KutuphaneHomeViewModel @Inject constructor(
     val changeFragment: MutableLiveData<String> = MutableLiveData<String>()
     val kutuphane: MutableLiveData<KutuphaneRes> = MutableLiveData<KutuphaneRes>()
 
-    init {
-        fetchKutuphane()
-    }
-
-    private fun fetchKutuphane() {
+    fun fetchKutuphane(onResult : (MyResult<KutuphaneRes>) -> Unit) {
         val accountId = sessionManager.getAccountID()
         accountId?.let {
             viewModelScope.launch(Dispatchers.IO) {
-                when (val result = findKutuphaneByAccountIdUseCase(accountId)) {
-                    is MyResult.Success -> this@KutuphaneHomeViewModel.kutuphane.postValue(result.data)
-                    is MyResult.Error -> println(result.exception.message)
+                val result = async { findKutuphaneByAccountIdUseCase(accountId) }.await()
+                withContext(Dispatchers.Main){
+                    onResult(result)
                 }
             }
         } ?: run { println("Account ID null!") }

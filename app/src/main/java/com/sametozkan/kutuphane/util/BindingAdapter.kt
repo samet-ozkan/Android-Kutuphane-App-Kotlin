@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
+import com.sametozkan.kutuphane.data.dto.response.TurRes
+import com.sametozkan.kutuphane.data.dto.response.YazarRes
 
 object BindingAdapter {
 
@@ -53,12 +55,35 @@ object BindingAdapter {
     fun setListener(view: EditText, listener: InverseBindingListener?) {
         if (listener != null) {
             view.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                 override fun afterTextChanged(s: Editable?) {
                     listener.onChange()
                 }
             })
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:yazarlar")
+    fun setYazarlar(view: TextView, list: List<YazarRes>) {
+        if (list != null && !list.isEmpty()) {
+            view.setText(list.get(0).adi + " " + list.get(0).soyadi)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:turler")
+    fun setTurler(view: TextView, list: List<TurRes>) {
+        if (list != null && !list.isEmpty()) {
+            view.setText(list.get(0).tur)
         }
     }
 }

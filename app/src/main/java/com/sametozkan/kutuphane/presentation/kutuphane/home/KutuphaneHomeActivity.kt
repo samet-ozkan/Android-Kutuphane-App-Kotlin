@@ -32,12 +32,20 @@ class KutuphaneHomeActivity : AppCompatActivity() {
     }
 
     private fun setNavigationHeader() {
-        viewModel.kutuphane.observe(this, Observer { kutuphane ->
-            binding.navigationView.getHeaderView(0).apply {
-                findViewById<TextView>(R.id.fullName).text = kutuphane.adi
-                findViewById<TextView>(R.id.email).text = kutuphane.account.email
+        viewModel.fetchKutuphane { myResult ->
+            when(myResult){
+                is MyResult.Success -> {
+                    val kutuphane = myResult.data
+                    binding.navigationView.getHeaderView(0).apply {
+                        findViewById<TextView>(R.id.fullName).text = kutuphane.adi
+                        findViewById<TextView>(R.id.email).text = kutuphane.account.email
+                    }
+                }
+                is MyResult.Error -> {
+                    myResult.exception.printStackTrace()
+                }
             }
-        })
+        }
     }
 
     private fun setNavigationDrawer() {

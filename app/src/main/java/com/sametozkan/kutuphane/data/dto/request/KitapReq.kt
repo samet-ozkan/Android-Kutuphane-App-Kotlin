@@ -7,5 +7,6 @@ data class KitapReq(
     val dil: String,
     val sayfaSayisi: Int,
     val aciklama: String,
-
+    val yazarlar: List<YazarReq>,
+    val turler: List<TurReq>
 )

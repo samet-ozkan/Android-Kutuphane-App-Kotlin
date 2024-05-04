@@ -14,71 +14,140 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/temizleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Temizle"
-            android:layout_marginBottom="20dp"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/googleBooksButton"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Google Books API" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/isbnEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="ISBN"
-            android:inputType="number"
-            android:text="@={viewModel.isbn}" />
+                <Button
+                    android:id="@+id/googleBooksButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Google Books API" />
 
-        <EditText
-            android:id="@+id/kitapAdiEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="Kitap Adı"
-            android:inputType="text"
-            android:text="@={viewModel.kitapAdi}" />
+                <EditText
+                    android:id="@+id/isbnEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="ISBN"
+                    android:inputType="number"
+                    android:text="@={viewModel.isbn}" />
 
-        <EditText
-            android:id="@+id/yayinTarihiEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="Yayın Tarihi"
-            android:inputType="text"
-            android:text="@={viewModel.yayinTarihi}" />
+                <EditText
+                    android:id="@+id/kitapAdiEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="Kitap Adı"
+                    android:inputType="text"
+                    android:text="@={viewModel.kitapAdi}" />
 
-        <EditText
-            android:id="@+id/dilEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="Dil"
-            android:inputType="text"
-            android:text="@={viewModel.dil}" />
+                <EditText
+                    android:id="@+id/yayinTarihiEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="Yayın Tarihi"
+                    android:inputType="text"
+                    android:text="@={viewModel.yayinTarihi}" />
 
-        <EditText
-            android:id="@+id/sayfaSayisiEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="Sayfa Sayısı"
-            android:inputType="number"
-            android:text="@={viewModel.sayfaSayisi}" />
+                <EditText
+                    android:id="@+id/dilEditText"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:hint="Dil"
+                    android:inputType="text"
+                    android:text="@={viewModel.dil}" />
 
-        <EditText
-            android:id="@+id/aciklamaEditText"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="Açıklama"
-            android:inputType="text"
-            android:text="@={viewModel.aciklama}" />
+                <EditText
+                    android:id="@+id/sayfaSayisiEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="Sayfa Sayısı"
+                    android:inputType="number"
+                    android:text="@={viewModel.sayfaSayisi}" />
 
-        <Button
-            android:id="@+id/olusturButton"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Olustur" />
+                <EditText
+                    android:id="@+id/aciklamaEditText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:hint="Açıklama"
+                    android:inputType="text"
+                    android:text="@={viewModel.aciklama}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/yazarlarTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Yazarlar"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/yazarEkleButton"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="Ekle" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/yazarlarRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/turlerTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Türler"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/turEkleButton"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="Ekle" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/turlerRv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:id="@+id/olusturButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="Olustur" />
+
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 </layout>
