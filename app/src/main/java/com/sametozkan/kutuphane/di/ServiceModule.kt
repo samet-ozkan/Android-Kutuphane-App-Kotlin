@@ -9,6 +9,7 @@ import com.sametozkan.kutuphane.data.datasource.remote.KitapTurService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapYazarService
 import com.sametozkan.kutuphane.data.datasource.remote.KullaniciService
 import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneService
+import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneYorumService
 import com.sametozkan.kutuphane.data.datasource.remote.TurService
 import com.sametozkan.kutuphane.data.datasource.remote.YazarService
 import dagger.Module
@@ -67,6 +68,11 @@ object ServiceModule {
     @Provides
     fun provideKutuphaneService(retrofit: Retrofit): KutuphaneService =
         retrofit.create(KutuphaneService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideKutuphaneYorumService(retrofit: Retrofit): KutuphaneYorumService =
+        retrofit.create(KutuphaneYorumService::class.java)
 
     @Singleton
     @Provides

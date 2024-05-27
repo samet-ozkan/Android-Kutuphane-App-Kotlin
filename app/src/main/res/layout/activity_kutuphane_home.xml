@@ -52,7 +52,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:bindKutuphane="@{viewModel.kutuphane}"
             app:headerLayout="@layout/nav_header_kutuphane"
             app:menu="@menu/nav_menu_kutuphane" />
 

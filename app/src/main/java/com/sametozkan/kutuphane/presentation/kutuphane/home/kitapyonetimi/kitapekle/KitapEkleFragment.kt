@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sametozkan.kutuphane.databinding.FragmentKitapEkleBinding
-import com.sametozkan.kutuphane.util.FragmentNameConstants
+import com.sametozkan.kutuphane.util.KutuphaneFragments
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,7 +55,7 @@ class KitapEkleFragment : Fragment() {
                     }
                     is MyResult.Error -> {
                         if(result.exception is NotFoundException){
-                            sharedViewModel.changeFragment.postValue(FragmentNameConstants.KITAP_OLUSTUR)
+                            sharedViewModel.changeFragment.postValue(KutuphaneFragments.KITAP_OLUSTUR)
                         }
                     }
                 }

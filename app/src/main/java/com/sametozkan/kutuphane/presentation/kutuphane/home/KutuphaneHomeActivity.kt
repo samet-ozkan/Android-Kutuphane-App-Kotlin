@@ -1,16 +1,20 @@
 package com.sametozkan.kutuphane.presentation.kutuphane.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.sametozkan.kutuphane.MainActivity
 import com.sametozkan.kutuphane.R
+import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneHomeBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.KutuphaneKitapYonetimiFragment
+import com.sametozkan.kutuphane.presentation.kutuphane.home.profil.KutuphaneProfilFragment
 import com.sametozkan.kutuphane.util.MyResult
-import com.sametozkan.kutuphane.util.FragmentNameConstants
+import com.sametozkan.kutuphane.util.KutuphaneFragments
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +37,7 @@ class KutuphaneHomeActivity : AppCompatActivity() {
 
     private fun setNavigationHeader() {
         viewModel.fetchKutuphane { myResult ->
-            when(myResult){
+            when (myResult) {
                 is MyResult.Success -> {
                     val kutuphane = myResult.data
                     binding.navigationView.getHeaderView(0).apply {
@@ -41,6 +45,7 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                         findViewById<TextView>(R.id.email).text = kutuphane.account.email
                     }
                 }
+
                 is MyResult.Error -> {
                     myResult.exception.printStackTrace()
                 }
@@ -58,10 +63,22 @@ class KutuphaneHomeActivity : AppCompatActivity() {
     private fun setNavigationItemClickListener() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
+                R.id.menuProfil -> {
+                    binding.drawerLayout.close()
+                    viewModel.changeFragment.value =
+                        KutuphaneFragments.KUTUPHANE_PROFIL
+                }
+
                 R.id.menuKitapYonetimi -> {
                     binding.drawerLayout.close()
                     viewModel.changeFragment.value =
-                        FragmentNameConstants.KITAP_YONETIMI
+                        KutuphaneFragments.KITAP_YONETIMI
+                }
+
+                R.id.logout -> {
+                    SessionManager(applicationContext).clear()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                 }
 
                 else -> false
@@ -74,7 +91,12 @@ class KutuphaneHomeActivity : AppCompatActivity() {
         viewModel.changeFragment.observe(this, Observer { value ->
 
             when (value) {
-                FragmentNameConstants.KITAP_YONETIMI -> replaceFragment(
+                KutuphaneFragments.KUTUPHANE_PROFIL -> replaceFragment(
+                    KutuphaneProfilFragment(),
+                    "Profil"
+                )
+
+                KutuphaneFragments.KITAP_YONETIMI -> replaceFragment(
                     KutuphaneKitapYonetimiFragment(),
                     "Kitap Yönetimi"
                 )

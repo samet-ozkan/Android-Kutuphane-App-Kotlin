@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.databinding.ActivityMainBinding
+import com.sametozkan.kutuphane.presentation.kullanici.giris.KullaniciGirisActivity
+import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeActivity
 import com.sametozkan.kutuphane.presentation.kutuphane.giris.KutuphaneGirisActivity
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupKutuphaneButton()
+        setupKullaniciButton()
         loginAutomatically()
     }
 
@@ -35,6 +38,12 @@ class MainActivity : AppCompatActivity() {
                                 Intent(this@MainActivity, KutuphaneHomeActivity::class.java)
                             startActivity(intent)
                         }
+
+                        "kullanici" -> {
+                            val intent =
+                                Intent(this@MainActivity, KullaniciHomeActivity::class.java)
+                            startActivity(intent)
+                        }
                     }
                 }
             }
@@ -44,6 +53,13 @@ class MainActivity : AppCompatActivity() {
     private fun setupKutuphaneButton() {
         binding.kutuphaneButton.setOnClickListener {
             val intent = Intent(this, KutuphaneGirisActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun setupKullaniciButton() {
+        binding.kullaniciButton.setOnClickListener {
+            val intent = Intent(this, KullaniciGirisActivity::class.java)
             startActivity(intent)
         }
     }

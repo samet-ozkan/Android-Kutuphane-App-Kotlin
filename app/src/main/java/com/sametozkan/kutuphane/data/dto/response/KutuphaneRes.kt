@@ -6,6 +6,7 @@ data class KutuphaneRes(
     val id: Long,
     val adi: String,
     val adresi: String,
+    val sehir: String,
     val account: AccountRes,
     val kitaplar: List<KitapRes>,
     val teslimSuresi: Int

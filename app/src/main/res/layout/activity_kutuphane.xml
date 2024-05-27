@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="kutuphane"
+            type="com.sametozkan.kutuphane.data.dto.response.KutuphaneRes" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Toolbar">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Kutuphane" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/kutuphaneImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_home_24" />
+
+            <TextView
+                android:id="@+id/kutuphaneAdi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{kutuphane.adi}"
+                android:textSize="17sp"
+                tools:text="Kütüphane Adı" />
+
+            <TextView
+                android:id="@+id/kutuphaneAdresi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{kutuphane.adresi}"
+                android:textSize="17sp"
+                tools:text="Kütüphane Adresi" />
+
+            <TextView
+                android:id="@+id/kutuphaneSehir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{kutuphane.sehir}"
+                android:textSize="17sp"
+                tools:text="Şehir" />
+
+            <TextView
+                android:id="@+id/kutuphaneTeslimSuresi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`Teslim süresi: ` + String.valueOf(kutuphane.teslimSuresi) + ` gün`}"
+                android:textSize="17sp"
+                tools:text="Teslim Süresi: 10 gün" />
+
+            <Button
+                android:id="@+id/kitaplarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kitaplar" />
+
+            <Button
+                android:id="@+id/yorumlarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yorumlar" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

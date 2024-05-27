@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.sametozkan.kutuphane.databinding.ActivityKitapEkleBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.kitapolustur.KitapOlusturFragment
-import com.sametozkan.kutuphane.util.FragmentNameConstants
+import com.sametozkan.kutuphane.util.KutuphaneFragments
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,18 +22,18 @@ class KitapEkleActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         observeChangeFragment()
-        viewModel.changeFragment.value = FragmentNameConstants.KITAP_EKLE
+        viewModel.changeFragment.value = KutuphaneFragments.KITAP_EKLE
     }
 
     private fun observeChangeFragment() {
         viewModel.changeFragment.observe(this, Observer { fragment ->
             when (fragment) {
-                FragmentNameConstants.KITAP_EKLE -> replaceFragment(
+                KutuphaneFragments.KITAP_EKLE -> replaceFragment(
                     KitapEkleFragment(),
                     "Kitap Ekle"
                 )
 
-                FragmentNameConstants.KITAP_OLUSTUR -> replaceFragment(
+                KutuphaneFragments.KITAP_OLUSTUR -> replaceFragment(
                     KitapOlusturFragment(),
                     "Kitap Oluştur"
                 )

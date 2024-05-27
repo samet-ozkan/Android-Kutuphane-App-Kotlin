@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuKutuphaneler"
+        android:icon="@drawable/baseline_book_24"
+        android:title="Kütüphaneler"/>
+
+    <item
+        android:id="@+id/menuKitapIsteklerim"
+        android:icon="@drawable/baseline_book_24"
+        android:title="Kitap İsteklerim"/>
+
+    <item android:id="@+id/menuKitapOnerileri"
+        android:icon="@drawable/baseline_book_24"
+        android:title="Kitap Önerileri"/>
+
+    <item android:id="@+id/menuProfil"
+        android:icon="@drawable/baseline_book_24"
+        android:title="Profilim"/>
+
+
+</menu>

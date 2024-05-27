@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="kutuphane"
+            type="com.sametozkan.kutuphane.data.dto.response.KutuphaneRes" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearLayout"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/kutuphaneIcon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_home_24" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/kutuphaneSehir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{kutuphane.sehir}"
+                android:textSize="15sp"
+                tools:text="Bursa" />
+
+            <TextView
+                android:id="@+id/kutuphaneAdi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{kutuphane.adi}"
+                android:textSize="17sp"
+                tools:text="Halk Kütüphanesi" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

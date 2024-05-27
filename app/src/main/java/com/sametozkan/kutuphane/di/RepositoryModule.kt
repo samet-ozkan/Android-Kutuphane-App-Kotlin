@@ -9,6 +9,7 @@ import com.sametozkan.kutuphane.data.datasource.remote.KitapTurService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapYazarService
 import com.sametozkan.kutuphane.data.datasource.remote.KullaniciService
 import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneService
+import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneYorumService
 import com.sametozkan.kutuphane.data.datasource.remote.TurService
 import com.sametozkan.kutuphane.data.datasource.remote.YazarService
 import com.sametozkan.kutuphane.data.repository.AccountRepositoryImpl
@@ -20,6 +21,7 @@ import com.sametozkan.kutuphane.data.repository.KitapTurRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KitapYazarRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KullaniciRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KutuphaneRepositoryImpl
+import com.sametozkan.kutuphane.data.repository.KutuphaneYorumRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.TurRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.YazarRepositoryImpl
 import com.sametozkan.kutuphane.domain.repository.AccountRepository
@@ -31,6 +33,7 @@ import com.sametozkan.kutuphane.domain.repository.KitapTurRepository
 import com.sametozkan.kutuphane.domain.repository.KitapYazarRepository
 import com.sametozkan.kutuphane.domain.repository.KullaniciRepository
 import com.sametozkan.kutuphane.domain.repository.KutuphaneRepository
+import com.sametozkan.kutuphane.domain.repository.KutuphaneYorumRepository
 import com.sametozkan.kutuphane.domain.repository.TurRepository
 import com.sametozkan.kutuphane.domain.repository.YazarRepository
 import dagger.Module
@@ -88,6 +91,11 @@ object RepositoryModule {
     @Provides
     fun provideKutuphaneRepository(kutuphaneService: KutuphaneService): KutuphaneRepository =
         KutuphaneRepositoryImpl(kutuphaneService)
+
+    @Singleton
+    @Provides
+    fun provideKutuphaneYorumRepository(kutuphaneYorum: KutuphaneYorumService): KutuphaneYorumRepository =
+        KutuphaneYorumRepositoryImpl(kutuphaneYorum)
 
     @Singleton
     @Provides

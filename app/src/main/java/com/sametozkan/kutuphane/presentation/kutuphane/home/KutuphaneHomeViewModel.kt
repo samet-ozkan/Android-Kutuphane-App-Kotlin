@@ -23,7 +23,6 @@ class KutuphaneHomeViewModel @Inject constructor(
 ) : ViewModel() {
 
     val changeFragment: MutableLiveData<String> = MutableLiveData<String>()
-    val kutuphane: MutableLiveData<KutuphaneRes> = MutableLiveData<KutuphaneRes>()
 
     fun fetchKutuphane(onResult : (MyResult<KutuphaneRes>) -> Unit) {
         val accountId = sessionManager.getAccountID()
