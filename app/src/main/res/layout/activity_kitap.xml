@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sametozkan.kutuphane.presentation.kullanici.home.kitap.KitapViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Toolbar">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{viewModel.kutuphane.adi}"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    tools:text="Kütüphane Adı" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.kitap.adi}"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:text="Kitap Adı" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(viewModel.kitap.isbn)}"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:text="ISBN" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.kitap.aciklama}"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            tools:text="Kitap açıklaması" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yazarlar"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/yazarlarList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:yazarItems="@{viewModel.kitap.yazarlar}"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Turler"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ListView
+            android:id="@+id/turlerList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:turItems="@{viewModel.kitap.turler}" />
+
+        <Button
+            android:id="@+id/oduncAlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ödünç Al"
+            android:textSize="16sp" />
+    </LinearLayout>
+</layout>

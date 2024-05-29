@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar
+package com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.yorumlar
 
 import android.opengl.Visibility
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.BottomSheetKutuphaneYorumlarBinding
-import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneViewModel
+import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.KutuphaneViewModel
 import com.sametozkan.kutuphane.util.MyResult
 
 class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {

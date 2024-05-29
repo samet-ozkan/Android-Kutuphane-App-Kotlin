@@ -31,7 +31,9 @@
         <activity android:name=".presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleActivity"/>
         <activity android:name=".presentation.kullanici.giris.KullaniciGirisActivity"/>
         <activity android:name=".presentation.kullanici.home.KullaniciHomeActivity"/>
-        <activity android:name=".presentation.kullanici.kutuphane.KutuphaneActivity"/>
+        <activity android:name=".presentation.kullanici.home.kutuphane.KutuphaneActivity"/>
+        <activity android:name=".presentation.kullanici.home.kutuphane.kitaplar.KitaplarActivity"/>
+        <activity android:name=".presentation.kullanici.home.kitap.KitapActivity"/>
     </application>
 
 </manifest>

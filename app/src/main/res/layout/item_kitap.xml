@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="kitapRes"
             type="com.sametozkan.kutuphane.data.dto.response.KitapRes" />
@@ -13,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/constraintLayout"
         android:padding="10dp"
         >
 

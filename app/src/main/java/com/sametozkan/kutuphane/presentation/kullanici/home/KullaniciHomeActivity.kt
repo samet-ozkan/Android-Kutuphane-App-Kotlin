@@ -10,7 +10,7 @@ import com.sametozkan.kutuphane.MainActivity
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.databinding.ActivityKullaniciHomeBinding
-import com.sametozkan.kutuphane.presentation.kullanici.kutuphaneler.KutuphanelerFragment
+import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphaneler.KutuphanelerFragment
 import com.sametozkan.kutuphane.util.KullaniciFragments
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +28,12 @@ class KullaniciHomeActivity : AppCompatActivity() {
         setChangeFragmentObserver()
         setupBottomNavigationView()
         setupLogoutButton()
+
+        initFrameLayout()
+    }
+
+    private fun initFrameLayout(){
+        viewModel.changeFragment.value = KullaniciFragments.KUTUPHANELER;
     }
 
     private fun setupLogoutButton() {

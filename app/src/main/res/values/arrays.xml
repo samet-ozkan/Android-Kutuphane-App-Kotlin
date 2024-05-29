@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sample_yazarlar">
+        <item>Samet</item>
+        <item>Ali</item>
+        <item>Ayşe</item>
+        <item>Mehmet</item>
+    </string-array>
+
+    <string-array name="sample_turler">
+        <item>Roman</item>
+        <item>Bilim Kurgu</item>
+        <item>Fantastik</item>
+        <item>Polisiye</item>
+    </string-array>
+</resources>

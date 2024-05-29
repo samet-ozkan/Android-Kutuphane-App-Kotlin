@@ -9,5 +9,5 @@ data class KitapKullaniciRes(
     val kullanici: KullaniciRes,
     val alimTarihi: LocalDateTime,
     val teslimTarihi: LocalDateTime,
-    val iadeDurumu: Boolean
+    val iadeDurumu: Boolean?
 )

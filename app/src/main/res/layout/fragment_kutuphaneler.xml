@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.sametozkan.kutuphane.presentation.kullanici.kutuphaneler.KutuphanelerViewModel" />
+            type="com.sametozkan.kutuphane.presentation.kullanici.home.kutuphaneler.KutuphanelerViewModel" />
     </data>
 
     <LinearLayout

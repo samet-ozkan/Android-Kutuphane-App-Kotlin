@@ -4,5 +4,5 @@ data class KitapKullaniciReq(
     val kitapId: Long,
     val kullaniciId: Long,
     val kutuphaneId: Long,
-    val iadeDurumu: Boolean
+    val iadeDurumu: Boolean?
 )
