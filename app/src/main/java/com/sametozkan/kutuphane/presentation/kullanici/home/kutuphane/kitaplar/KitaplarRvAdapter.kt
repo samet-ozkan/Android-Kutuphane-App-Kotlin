@@ -32,7 +32,7 @@ class KitaplarRvAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(list.get(holder.adapterPosition))
+        holder.bindItem(list[holder.adapterPosition])
     }
 
     class ViewHolder(

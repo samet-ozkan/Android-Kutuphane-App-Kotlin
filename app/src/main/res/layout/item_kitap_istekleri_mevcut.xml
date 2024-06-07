@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.time.format.DateTimeFormatter"/>
+        <variable
+            name="kitapKullaniciRes"
+            type="com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/item_kitap"
+            bind:kitapRes="@{kitapKullaniciRes.kitap}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:text="Alım tarihi:"
+                android:id="@+id/alimTarihiTv"/>
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:text="17/02/2024 12:48"
+                android:text="@{kitapKullaniciRes.alimTarihi.format(DateTimeFormatter.ofPattern(`dd/MM/yyyy HH:mm`))}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

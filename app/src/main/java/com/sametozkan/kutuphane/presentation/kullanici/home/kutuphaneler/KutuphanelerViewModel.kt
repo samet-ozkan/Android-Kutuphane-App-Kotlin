@@ -7,6 +7,7 @@ import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindAllKutuphaneUseCase
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class KutuphanelerViewModel @Inject constructor(private val findAllKutuphaneUseC
 
     fun fetchKutuphaneler(onResult : (MyResult<List<KutuphaneRes>>) -> Unit){
         viewModelScope.launch(Dispatchers.IO) {
-            val result = findAllKutuphaneUseCase()
+            val result = async { findAllKutuphaneUseCase() }.await()
             withContext(Dispatchers.Main){
                 onResult(result)
             }

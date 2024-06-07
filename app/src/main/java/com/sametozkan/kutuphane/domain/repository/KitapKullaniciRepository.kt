@@ -13,4 +13,8 @@ interface KitapKullaniciRepository {
     suspend fun findAll(): Response<List<KitapKullaniciRes>>
 
     suspend fun findById(id: Long): Response<KitapKullaniciRes>
+    suspend fun findByKullaniciIdAndIadeDurumuIsNull(accountId: Long): Response<List<KitapKullaniciRes>>
+    suspend fun deleteById(id: Long): Response<Unit>
+    suspend fun findByKullaniciIdAndIadeDurumuIsFalse(accountId: Long): Response<List<KitapKullaniciRes>>
+    suspend fun findByKullaniciIdAndIadeDurumuIsTrue(accountId: Long): Response<List<KitapKullaniciRes>>
 }

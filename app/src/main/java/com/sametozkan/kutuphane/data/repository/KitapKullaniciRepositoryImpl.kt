@@ -24,4 +24,20 @@ class KitapKullaniciRepositoryImpl(private val kitapKullaniciService: KitapKulla
     override suspend fun findById(id: Long): Response<KitapKullaniciRes> {
         return kitapKullaniciService.findById(id)
     }
+
+    override suspend fun findByKullaniciIdAndIadeDurumuIsNull(accountId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.findByKullaniciIdAndIadeDurumuIsNull(accountId)
+    }
+
+    override suspend fun findByKullaniciIdAndIadeDurumuIsFalse(accountId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.findByKullaniciIdAndIadeDurumuIsFalse(accountId)
+    }
+
+    override suspend fun findByKullaniciIdAndIadeDurumuIsTrue(accountId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.findByKullaniciIdAndIadeDurumuIsTrue(accountId)
+    }
+
+    override suspend fun deleteById(id: Long) : Response<Unit>{
+        return kitapKullaniciService.deleteById(id);
+    }
 }

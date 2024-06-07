@@ -4,6 +4,7 @@ import com.sametozkan.kutuphane.data.dto.request.KitapKullaniciReq
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -22,4 +23,16 @@ interface KitapKullaniciService {
 
     @GET("/api/kitap-kullanici/{id}")
     suspend fun findById(@Path("id") id: Long): Response<KitapKullaniciRes>
+
+    @GET("/api/kitap-kullanici/onay-bekleyenler/{accountId}")
+    suspend fun findByKullaniciIdAndIadeDurumuIsNull(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+
+    @GET("/api/kitap-kullanici/mevcut/{accountId}")
+    suspend fun findByKullaniciIdAndIadeDurumuIsFalse(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+
+    @GET("/api/kitap-kullanici/gecmis/{accountId}")
+    suspend fun findByKullaniciIdAndIadeDurumuIsTrue(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+
+    @DELETE("/api/kitap-kullanici/delete/{id}")
+    suspend fun deleteById(@Path("id") id: Long) : Response<Unit>
 }

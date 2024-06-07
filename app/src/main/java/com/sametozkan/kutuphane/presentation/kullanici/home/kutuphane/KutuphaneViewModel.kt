@@ -13,6 +13,7 @@ import com.sametozkan.kutuphane.domain.usecase.kutuphaneyorum.SaveKutuphaneYorum
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -31,7 +32,7 @@ class KutuphaneViewModel @Inject constructor(
     fun fetchKutuphane(onResult: (MyResult<KutuphaneRes>) -> Unit) {
         kutuphaneId?.let {
             viewModelScope.launch(Dispatchers.IO) {
-                val result = findKutuphaneByIdUseCase(it)
+                val result = async { findKutuphaneByIdUseCase(it) }.await()
                 withContext(Dispatchers.Main) {
                     onResult(result)
                 }
@@ -44,7 +45,7 @@ class KutuphaneViewModel @Inject constructor(
     fun fetchYorumlar(onResult: (MyResult<List<KutuphaneYorumRes>>) -> Unit) {
         kutuphaneId?.let {
             viewModelScope.launch(Dispatchers.IO) {
-                val result = findYorumlarByKutuphaneIdUseCase(it)
+                val result = async { findYorumlarByKutuphaneIdUseCase(it) }.await()
                 withContext(Dispatchers.Main) {
                     onResult(result)
                 }
@@ -59,13 +60,13 @@ class KutuphaneViewModel @Inject constructor(
             sessionManager.getAccountID()?.let { kullanici_id ->
                 yorum.value?.let { yorum ->
                     viewModelScope.launch(Dispatchers.IO) {
-                        val result = saveKutuphaneYorumUseCase(
+                        val result = async { saveKutuphaneYorumUseCase(
                             KutuphaneYorumReq(
                                 yorum,
                                 kullanici_id,
                                 kutuphane_id
                             )
-                        )
+                        ) }.await()
                         withContext(Dispatchers.Main){
                             onResult(result)
                         }

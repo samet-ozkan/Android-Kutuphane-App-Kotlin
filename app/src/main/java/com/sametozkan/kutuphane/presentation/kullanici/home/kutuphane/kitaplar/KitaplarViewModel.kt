@@ -9,6 +9,7 @@ import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindKutuphaneByIdUseCas
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -23,7 +24,7 @@ class KitaplarViewModel @Inject constructor(private val findKutuphaneByIdUseCase
     fun fetchKutuphane(onResult: (MyResult<KutuphaneRes>) -> Unit) {
         kutuphaneId?.let {
             viewModelScope.launch(Dispatchers.IO) {
-                val result = findKutuphaneByIdUseCase(it)
+                val result = async { findKutuphaneByIdUseCase(it) }.await()
                 withContext(Dispatchers.Main) {
                     onResult(result)
                 }

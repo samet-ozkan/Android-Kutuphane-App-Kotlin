@@ -13,6 +13,7 @@ import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindKutuphaneByIdUseCas
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -33,7 +34,7 @@ class KitapViewModel @Inject constructor(
     fun fetchKutuphane(onResult: (MyResult<KutuphaneRes>) -> Unit) {
         kutuphaneId?.let {
             viewModelScope.launch(Dispatchers.IO) {
-                val result = findKutuphaneByIdUseCase(it)
+                val result = async { findKutuphaneByIdUseCase(it) }.await()
                 withContext(Dispatchers.Main) {
                     onResult(result)
                 }
@@ -46,7 +47,7 @@ class KitapViewModel @Inject constructor(
     fun fetchKitap(onResult: (MyResult<KitapRes>) -> Unit) {
         kitapId?.let {
             viewModelScope.launch(Dispatchers.IO) {
-                val result = findKitapByIdUseCase(it)
+                val result = async { findKitapByIdUseCase(it) }.await()
                 withContext(Dispatchers.Main) {
                     onResult(result)
                 }
@@ -62,7 +63,7 @@ class KitapViewModel @Inject constructor(
                 kitap_id ->
                 sessionManager.getAccountID()?.let { account_id ->
                     viewModelScope.launch(Dispatchers.IO) {
-                        val result = saveKitapKullaniciUseCase(KitapKullaniciReq(kitap_id, account_id, kutuphane_id, null))
+                        val result = async { saveKitapKullaniciUseCase(KitapKullaniciReq(kitap_id, account_id, kutuphane_id, null)) }.await()
                         withContext(Dispatchers.Main) {
                             onResult(result)
                         }
