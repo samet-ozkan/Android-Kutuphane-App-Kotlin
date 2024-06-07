@@ -25,13 +25,22 @@ interface KitapKullaniciService {
     suspend fun findById(@Path("id") id: Long): Response<KitapKullaniciRes>
 
     @GET("/api/kitap-kullanici/onay-bekleyenler/{accountId}")
-    suspend fun findByKullaniciIdAndIadeDurumuIsNull(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+    suspend fun findByKullaniciIdAndOnaylandiIsNull(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
 
-    @GET("/api/kitap-kullanici/mevcut/{accountId}")
-    suspend fun findByKullaniciIdAndIadeDurumuIsFalse(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+    @GET("/api/kitap-kullanici/onaylandi/{accountId}")
+    suspend fun findByKullaniciIdAndOnaylandiIsFalse(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
 
-    @GET("/api/kitap-kullanici/gecmis/{accountId}")
-    suspend fun findByKullaniciIdAndIadeDurumuIsTrue(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+    @GET("/api/kitap-kullanici/reddedildi/{accountId}")
+    suspend fun findByKullaniciIdAndOnaylandiIsTrue(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+
+    @GET("/api/kitap-kullanici/kutuphane/{accountId}")
+    suspend fun findByKutuphaneId(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
+
+    @POST("/api/kitap-kullanici/onayla/{kitapKullaniciId}")
+    suspend fun kitapIstegiOnayla(@Path("kitapKullaniciId") kitapKullaniciId : Long): Response<Unit>
+
+    @POST("/api/kitap-kullanici/reddet/{kitapKullaniciId}")
+    suspend fun kitapIstegiReddet(@Path("kitapKullaniciId") kitapKullaniciId: Long): Response<Unit>
 
     @DELETE("/api/kitap-kullanici/delete/{id}")
     suspend fun deleteById(@Path("id") id: Long) : Response<Unit>

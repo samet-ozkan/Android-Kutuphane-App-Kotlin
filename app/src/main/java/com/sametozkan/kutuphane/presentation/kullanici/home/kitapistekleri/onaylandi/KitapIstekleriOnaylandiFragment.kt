@@ -1,30 +1,29 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.mevcut
+package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.onaylandi
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriMevcutBinding
+import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriOnaylandiBinding
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class KitapIstekleriMevcutFragment : Fragment() {
+class KitapIstekleriOnaylandiFragment : Fragment() {
 
-    private lateinit var binding: FragmentKitapIstekleriMevcutBinding
-    private lateinit var rvAdapter: MevcutRvAdapter
-    val viewModel: MevcutViewModel by viewModels()
+    private lateinit var binding: FragmentKitapIstekleriOnaylandiBinding
+    private lateinit var rvAdapter: KitapIstekleriOnaylandiRvAdapter
+    val viewModel: KitapIstekleriOnaylandiViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentKitapIstekleriMevcutBinding.inflate(inflater, container, false)
+        binding = FragmentKitapIstekleriOnaylandiBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,7 +38,7 @@ class KitapIstekleriMevcutFragment : Fragment() {
     }
 
     private fun refreshList() {
-        viewModel.fetchMevcut { myResult ->
+        viewModel.fetchOnaylananlar { myResult ->
             when (myResult) {
                 is MyResult.Success -> {
                     rvAdapter.list = myResult.data
@@ -53,7 +52,7 @@ class KitapIstekleriMevcutFragment : Fragment() {
     }
 
     private fun setupRv() {
-        rvAdapter = MevcutRvAdapter(ArrayList()) { kitapKullaniciRes ->
+        rvAdapter = KitapIstekleriOnaylandiRvAdapter(ArrayList()) { kitapKullaniciRes ->
             // TODO: Click listener ekle
         }
         binding.recyclerView.apply {

@@ -13,7 +13,10 @@ class KitapKullaniciRepositoryImpl(private val kitapKullaniciService: KitapKulla
         return kitapKullaniciService.save(kitapKullaniciReq)
     }
 
-    override suspend fun update(id: Long, kitapKullaniciReq: KitapKullaniciReq): Response<KitapKullaniciRes> {
+    override suspend fun update(
+        id: Long,
+        kitapKullaniciReq: KitapKullaniciReq
+    ): Response<KitapKullaniciRes> {
         return kitapKullaniciService.update(id, kitapKullaniciReq)
     }
 
@@ -25,19 +28,31 @@ class KitapKullaniciRepositoryImpl(private val kitapKullaniciService: KitapKulla
         return kitapKullaniciService.findById(id)
     }
 
-    override suspend fun findByKullaniciIdAndIadeDurumuIsNull(accountId: Long): Response<List<KitapKullaniciRes>> {
-        return kitapKullaniciService.findByKullaniciIdAndIadeDurumuIsNull(accountId)
+    override suspend fun findByKullaniciIdAndOnaylandiIsNull(accountId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.findByKullaniciIdAndOnaylandiIsNull(accountId)
     }
 
-    override suspend fun findByKullaniciIdAndIadeDurumuIsFalse(accountId: Long): Response<List<KitapKullaniciRes>> {
-        return kitapKullaniciService.findByKullaniciIdAndIadeDurumuIsFalse(accountId)
+    override suspend fun findByKullaniciIdAndOnaylandiIsFalse(accountId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.findByKullaniciIdAndOnaylandiIsFalse(accountId)
     }
 
-    override suspend fun findByKullaniciIdAndIadeDurumuIsTrue(accountId: Long): Response<List<KitapKullaniciRes>> {
-        return kitapKullaniciService.findByKullaniciIdAndIadeDurumuIsTrue(accountId)
+    override suspend fun findByKullaniciIdAndOnaylandiIsTrue(accountId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.findByKullaniciIdAndOnaylandiIsTrue(accountId)
     }
 
-    override suspend fun deleteById(id: Long) : Response<Unit>{
+    override suspend fun findByKutuphaneId(accountId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.findByKutuphaneId(accountId)
+    }
+
+    override suspend fun kitapIstegiOnayla(kitapKullaniciId:Long): Response<Unit>{
+        return kitapKullaniciService.kitapIstegiOnayla(kitapKullaniciId)
+    }
+
+    override suspend fun kitapIstegiReddet(kitapKullaniciId: Long): Response<Unit>{
+        return kitapKullaniciService.kitapIstegiReddet(kitapKullaniciId)
+    }
+
+    override suspend fun deleteById(id: Long): Response<Unit> {
         return kitapKullaniciService.deleteById(id);
     }
 }

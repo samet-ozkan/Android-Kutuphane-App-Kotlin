@@ -5,11 +5,11 @@ import com.sametozkan.kutuphane.domain.repository.KitapKullaniciRepository
 import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
-class FindByKullaniciIdAndIadeDurumuIsFalseUseCase @Inject constructor(private val kitapKullaniciRepository: KitapKullaniciRepository) {
+class FindByKullaniciIdAndOnaylandiIsNullUseCase @Inject constructor(private val kitapKullaniciRepository: KitapKullaniciRepository) {
 
     suspend operator fun invoke(accountId: Long): MyResult<List<KitapKullaniciRes>> {
         return try {
-            val response = kitapKullaniciRepository.findByKullaniciIdAndIadeDurumuIsFalse(accountId)
+            val response = kitapKullaniciRepository.findByKullaniciIdAndOnaylandiIsNull(accountId)
             if (response.isSuccessful) {
                 val kitapKullaniciList = response.body()
                 if (kitapKullaniciList != null) {

@@ -21,6 +21,13 @@ class KitaplarActivity : AppCompatActivity() {
 
     val viewModel: KitaplarViewModel by viewModels()
 
+    val kitapClickListener: (KitapRes) -> Unit = { kitapRes ->
+        val intent = Intent(this, KitapActivity::class.java)
+        intent.putExtra("Kütüphane ID", viewModel.kutuphaneId)
+        intent.putExtra("Kitap ID", kitapRes.id)
+        startActivity(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityKitaplarBinding.inflate(layoutInflater)
@@ -83,13 +90,6 @@ class KitaplarActivity : AppCompatActivity() {
                 return true
             }
         })
-    }
-
-    val kitapClickListener: (KitapRes) -> Unit = { kitapRes ->
-        val intent = Intent(this, KitapActivity::class.java)
-        intent.putExtra("Kütüphane ID", viewModel.kutuphaneId)
-        intent.putExtra("Kitap ID", kitapRes.id)
-        startActivity(intent)
     }
 
     private fun setupRv() {

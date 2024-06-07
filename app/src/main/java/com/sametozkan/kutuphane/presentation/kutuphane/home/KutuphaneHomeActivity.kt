@@ -11,6 +11,7 @@ import com.sametozkan.kutuphane.MainActivity
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneHomeBinding
+import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapistekleri.KutuphaneKitapIstekleriFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.KutuphaneKitapYonetimiFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.profil.KutuphaneProfilFragment
 import com.sametozkan.kutuphane.util.MyResult
@@ -75,6 +76,11 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                         KutuphaneFragments.KITAP_YONETIMI
                 }
 
+                R.id.menuKitapIstekleri -> {
+                    binding.drawerLayout.close()
+                    viewModel.changeFragment.value = KutuphaneFragments.KITAP_ISTEKLERI
+                }
+
                 R.id.logout -> {
                     SessionManager(applicationContext).clear()
                     val intent = Intent(this, MainActivity::class.java)
@@ -99,6 +105,11 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                 KutuphaneFragments.KITAP_YONETIMI -> replaceFragment(
                     KutuphaneKitapYonetimiFragment(),
                     "Kitap Yönetimi"
+                )
+
+                KutuphaneFragments.KITAP_ISTEKLERI -> replaceFragment(
+                    KutuphaneKitapIstekleriFragment(),
+                    "Kitap İstekleri"
                 )
             }
 

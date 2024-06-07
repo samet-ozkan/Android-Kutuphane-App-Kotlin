@@ -12,6 +12,9 @@ import androidx.databinding.InverseBindingListener
 import androidx.lifecycle.MutableLiveData
 import com.sametozkan.kutuphane.data.dto.response.TurRes
 import com.sametozkan.kutuphane.data.dto.response.YazarRes
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 object BindingAdapter {
 
@@ -23,6 +26,31 @@ object BindingAdapter {
             if (view.text.toString() != currentValue) {
                 view.setText(currentValue)
             }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:tarih")
+    fun setTextFromTime(textView: TextView, time: List<Int>?) {
+        if (time != null && time.size >= 7) {
+            val year = time[0]
+            val month = time[1]
+            val dayOfMonth = time[2]
+            val hour = time[3]
+            val minute = time[4]
+            val second = time[5]
+            val millisecond = time[6]
+
+            val calendar = Calendar.getInstance()
+            calendar.set(year, month - 1, dayOfMonth, hour, minute, second)
+            calendar.set(Calendar.MILLISECOND, millisecond)
+
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            val formattedDateTime = sdf.format(calendar.time)
+
+            textView.text = formattedDateTime
+        } else {
+            textView.text = "Mevcut değil"
         }
     }
 

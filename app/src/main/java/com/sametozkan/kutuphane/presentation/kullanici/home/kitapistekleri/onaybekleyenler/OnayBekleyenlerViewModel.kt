@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.DeleteKitapKullaniciByIdUseCase
-import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.FindByKullaniciIdAndIadeDurumuIsNullUseCase
+import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.FindByKullaniciIdAndOnaylandiIsNullUseCase
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OnayBekleyenlerViewModel @Inject constructor(
-    private val findByKullaniciIdAndIadeDurumuIsNullUseCase: FindByKullaniciIdAndIadeDurumuIsNullUseCase,
+    private val findByKullaniciIdAndOnaylandiIsNullUseCase: FindByKullaniciIdAndOnaylandiIsNullUseCase,
     private val sessionManager: SessionManager,
     private val deleteKitapKullaniciByIdUseCase: DeleteKitapKullaniciByIdUseCase
 ) : ViewModel() {
@@ -25,7 +25,7 @@ class OnayBekleyenlerViewModel @Inject constructor(
         sessionManager.getAccountID()?.let { account_id ->
             viewModelScope.launch(Dispatchers.IO) {
                 val result =
-                    async { findByKullaniciIdAndIadeDurumuIsNullUseCase(account_id) }.await()
+                    async { findByKullaniciIdAndOnaylandiIsNullUseCase(account_id) }.await()
                 withContext(Dispatchers.Main) {
                     onResult(result)
                 }

@@ -1,30 +1,30 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.mevcut
+package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.onaylandi
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriGecmisBinding
+import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriReddedildiBinding
+import com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.reddedildi.KitapIstekleriReddedildiViewModel
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class KitapIstekleriGecmisFragment : Fragment() {
+class KitapIstekleriReddedildiFragment : Fragment() {
 
-    private lateinit var binding: FragmentKitapIstekleriGecmisBinding
-    private lateinit var rvAdapter: MevcutRvAdapter
-    val viewModel: MevcutViewModel by viewModels()
+    private lateinit var binding: FragmentKitapIstekleriReddedildiBinding
+    private lateinit var rvAdapter: KitapIstekleriOnaylandiRvAdapter
+    val viewModel: KitapIstekleriReddedildiViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentKitapIstekleriGecmisBinding.inflate(inflater, container, false)
+        binding = FragmentKitapIstekleriReddedildiBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -39,7 +39,7 @@ class KitapIstekleriGecmisFragment : Fragment() {
     }
 
     private fun refreshList() {
-        viewModel.fetchMevcut { myResult ->
+        viewModel.fetchReddedilenler { myResult ->
             when (myResult) {
                 is MyResult.Success -> {
                     rvAdapter.list = myResult.data
@@ -53,7 +53,7 @@ class KitapIstekleriGecmisFragment : Fragment() {
     }
 
     private fun setupRv() {
-        rvAdapter = MevcutRvAdapter(ArrayList()) { kitapKullaniciRes ->
+        rvAdapter = KitapIstekleriOnaylandiRvAdapter(ArrayList()) { kitapKullaniciRes ->
             // TODO: Click listener ekle
         }
         binding.recyclerView.apply {

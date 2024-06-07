@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.mevcut
+package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.onaylandi
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.databinding.ItemKitapIstekleriMevcutBinding
 
-class MevcutRvAdapter : RecyclerView.Adapter<MevcutRvAdapter.ViewHolder> {
+class KitapIstekleriOnaylandiRvAdapter : RecyclerView.Adapter<KitapIstekleriOnaylandiRvAdapter.ViewHolder> {
 
     var list: List<KitapKullaniciRes>
         set(value) {

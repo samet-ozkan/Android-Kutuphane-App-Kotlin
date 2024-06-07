@@ -39,10 +39,10 @@ class KitapIstekleriFragment: Fragment() {
                     tab.text = "Onay Bekleyenler"
                 }
                 1 -> {
-                    tab.text = "Mevcut"
+                    tab.text = "Onaylandı"
                 }
                 2 -> {
-                    tab.text = "Geçmiş"
+                    tab.text = "Reddedildi"
                 }
             }
         }.attach()

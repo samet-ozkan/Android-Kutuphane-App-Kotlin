@@ -3,9 +3,15 @@
     <item
         android:id="@+id/menuProfil"
         android:title="Profil" />
+
     <item
         android:id="@+id/menuKitapYonetimi"
         android:title="Kitap Yönetimi" />
+
+    <item
+        android:id="@+id/menuKitapIstekleri"
+        android:title="Kitap İstekleri" />
+
     <item
         android:id="@+id/logout"
         android:title="Çıkış Yap"

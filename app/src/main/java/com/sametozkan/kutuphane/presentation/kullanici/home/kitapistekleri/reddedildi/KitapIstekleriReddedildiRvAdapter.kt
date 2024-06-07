@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.gecmis
+package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.reddedildi
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.databinding.ItemKitapIstekleriGecmisBinding
 
-class GecmisRvAdapter : RecyclerView.Adapter<GecmisRvAdapter.ViewHolder> {
+class KitapIstekleriReddedildiRvAdapter : RecyclerView.Adapter<KitapIstekleriReddedildiRvAdapter.ViewHolder> {
 
     var list: List<KitapKullaniciRes>
         set(value) {
