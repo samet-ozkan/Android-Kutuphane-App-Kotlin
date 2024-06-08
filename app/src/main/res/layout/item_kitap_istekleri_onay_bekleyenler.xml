@@ -12,7 +12,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <include
@@ -20,17 +23,18 @@
             bind:kitapRes="@{kitapKullaniciRes.kitap}" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:padding="5dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                style="@style/CaptionText"
+                android:gravity="center"
                 android:text="İstek tarihi:"
                 android:id="@+id/istekTarihiTv"/>
 
@@ -38,16 +42,20 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                android:gravity="center"
+                style="@style/CaptionText"
                 tools:text="17/02/2024 12:48"
-                app:tarih="@{kitapKullaniciRes.createdTime}"/>
+                tarih="@{kitapKullaniciRes.createdTime}"/>
 
             <Button
-                android:layout_width="0dp"
+                android:layout_width="100dp"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="İptal Et"
+                style="@style/KullaniciButton"
+                android:textSize="14sp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:textColor="@color/white"
                 android:id="@+id/iptalEtButton"/>
 
         </LinearLayout>

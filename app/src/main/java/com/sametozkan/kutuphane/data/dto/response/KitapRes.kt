@@ -5,6 +5,8 @@ data class KitapRes(
     val isbn: Long,
     val adi: String,
     val yayinYili: Int,
+    val dil: String,
+    val sayfaSayisi: Int,
     val aciklama: String,
     val yazarlar: List<YazarRes>,
     val turler: List<TurRes>,

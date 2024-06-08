@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -8,45 +9,72 @@
             type="com.sametozkan.kutuphane.data.dto.response.KutuphaneRes" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/linearLayout"
         android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:id="@+id/constraintLayout"
+        android:padding="10dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2"
+            android:id="@+id/guideline1"/>
 
         <ImageView
-            android:id="@+id/kutuphaneIcon"
+            android:id="@+id/bookIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/library_svgrepo_com"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/kutuphaneIdTextView"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="@{`#` + String.valueOf(kutuphane.id)}"
+            style="@style/SubtitleText"
+            app:layout_constraintBottom_toTopOf="@id/kutuphaneAdi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginVertical="2dp"
+            tools:text="#123123213" />
+
+        <TextView
+            android:id="@+id/kutuphaneAdi"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
+            android:text="@{kutuphane.adi}"
+            style="@style/SubtitleText"
+            app:layout_constraintBottom_toTopOf="@id/kutuphaneSehir"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/kutuphaneIdTextView"
+            tools:text="Bursa Halk Kütüphanesi" />
+
+        <TextView
+            android:id="@+id/kutuphaneSehir"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/baseline_home_24" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
+            style="@style/CaptionText"
             android:gravity="center"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginVertical="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/kutuphaneAdi"
+            android:text="@{kutuphane.sehir}"
+            tools:text="Bursa" />
 
-            <TextView
-                android:id="@+id/kutuphaneSehir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{kutuphane.sehir}"
-                android:textSize="15sp"
-                tools:text="Bursa" />
-
-            <TextView
-                android:id="@+id/kutuphaneAdi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{kutuphane.adi}"
-                android:textSize="17sp"
-                tools:text="Halk Kütüphanesi" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -30,7 +30,7 @@ object BindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter("app:tarih")
+    @BindingAdapter("tarih")
     fun setTextFromTime(textView: TextView, time: List<Int>?) {
         if (time != null && time.size >= 7) {
             val year = time[0]
@@ -86,15 +86,17 @@ object BindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter("app:yazarlar")
+    @BindingAdapter("yazarlar")
     fun setYazarlar(view: TextView, list: List<YazarRes>) {
         if (list != null && !list.isEmpty()) {
             view.setText(list.get(0).adi + " " + list.get(0).soyadi)
         }
     }
 
+    //Burda kaldim. Tasarima gec, kod sonra halledilir
+
     @JvmStatic
-    @BindingAdapter("app:turler")
+    @BindingAdapter("turler")
     fun setTurler(view: TextView, list: List<TurRes>) {
         if (list != null && !list.isEmpty()) {
             view.setText(list.get(0).tur)
@@ -102,7 +104,7 @@ object BindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter("app:yazarItems")
+    @BindingAdapter("yazarItems")
     fun setYazarItems(listView: ListView, items: List<YazarRes>?) {
         items?.let {
             val fullNames = it.map { yazar -> "${yazar.adi} ${yazar.soyadi}" }
@@ -112,7 +114,7 @@ object BindingAdapter {
     }
 
     @JvmStatic
-    @BindingAdapter("app:turItems")
+    @BindingAdapter("turItems")
     fun setTurItems(listView: ListView, items: List<TurRes>?) {
         items?.let {
             val turNames = it.map { tur -> "${tur.tur}" }

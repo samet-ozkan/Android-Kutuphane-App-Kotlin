@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:background="@color/colorSecondary"
         android:orientation="vertical">
 
-        <Button
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/logo_kitapevi"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Kitap Evi"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            style="@style/HeadlineText"
+            android:textColor="@color/white"
+            android:textSize="50sp"/>
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:id="@+id/kutuphaneButton"
+            style="@style/KutuphaneButton"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/colorPrimaryDarkKutuphane"
             android:layout_marginVertical="10dp"
             android:text="Kutuphane" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:id="@+id/kullaniciButton"
+            style="@style/KullaniciButton"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_marginVertical="10dp"
             android:text="Kullanıcı" />
 

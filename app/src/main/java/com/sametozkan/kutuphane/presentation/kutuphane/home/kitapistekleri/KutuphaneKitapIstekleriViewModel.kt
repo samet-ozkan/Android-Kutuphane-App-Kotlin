@@ -69,7 +69,7 @@ class KutuphaneKitapIstekleriViewModel @Inject constructor(
         this.query.value?.let { query ->
             if (query != null && !query.isEmpty()) {
                 list = list.filter {
-                    it.kullanici.id.equals(query) || "${it.kullanici.adi} ${it.kullanici.soyadi}".contains(
+                    it.kullanici.id.toString() == query || "${it.kullanici.adi} ${it.kullanici.soyadi}".contains(
                         query,
                         ignoreCase = true
                     )

@@ -43,7 +43,7 @@ class KutuphanelerRvAdapter : RecyclerView.Adapter<KutuphanelerRvAdapter.ViewHol
 
         fun bindItem(kutuphaneRes: KutuphaneRes) {
             binding.kutuphane = kutuphaneRes
-            binding.linearLayout.setOnClickListener {
+            binding.constraintLayout.setOnClickListener {
                 itemClickListener(kutuphaneRes.id)
             }
         }

@@ -12,7 +12,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_corners"
         android:orientation="vertical">
 
         <include
@@ -20,17 +23,16 @@
             bind:kitapRes="@{kitapKullaniciRes.kitap}" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:padding="5dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                style="@style/CaptionText"
                 android:text="Alım tarihi:"
                 android:id="@+id/alimTarihiTv"/>
 
@@ -39,10 +41,33 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                style="@style/CaptionText"
                 tools:text="17/02/2024 12:48"
-                app:tarih="@{kitapKullaniciRes.alimTarihi}"/>
+                tarih="@{kitapKullaniciRes.alimTarihi}"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                style="@style/CaptionText"
+                android:text="Teslim tarihi:"
+                android:id="@+id/teslimTarihiTv"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                style="@style/CaptionText"
+                tools:text="Mevcut değil"
+                tarih="@{kitapKullaniciRes.teslimTarihi}"/>
 
         </LinearLayout>
 

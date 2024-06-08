@@ -2,23 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/turAdi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Tür Adı" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="220dp"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/ekle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ekle" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:id="@+id/turAdi"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/white"
+            android:layout_height="match_parent"
+            android:hint="Tür adı girin"/>
 
-    <Button
-        android:id="@+id/vazgec"
-        android:layout_width="wrap_content"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Vazgeç" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_margin="10dp">
+
+        <Button
+            android:id="@+id/ekle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/KullaniciButton"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+            android:layout_marginHorizontal="5dp"
+            android:text="Ekle" />
+
+        <Button
+            android:id="@+id/vazgec"
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+            style="@style/KullaniciButton"
+            android:layout_height="wrap_content"
+            android:text="Vazgeç" />
+
+    </LinearLayout>
+
 </LinearLayout>

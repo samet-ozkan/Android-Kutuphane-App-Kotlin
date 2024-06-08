@@ -19,7 +19,7 @@ class KitapIstekleriFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentKitapIstekleriBinding.inflate(layoutInflater)
+        binding = FragmentKitapIstekleriBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

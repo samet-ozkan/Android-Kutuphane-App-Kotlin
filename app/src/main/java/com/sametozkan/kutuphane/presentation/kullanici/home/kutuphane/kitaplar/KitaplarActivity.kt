@@ -106,7 +106,7 @@ class KitaplarActivity : AppCompatActivity() {
         }
         binding.kitaplarRv.apply {
             adapter = rvAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
     }

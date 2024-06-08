@@ -35,7 +35,6 @@ class KitapOlusturViewModel @Inject constructor(
     val dil = MutableLiveData<String>()
     val sayfaSayisi = MutableLiveData<Long>()
     val aciklama = MutableLiveData<String>()
-    var stok: Long? = null
     val yazarlar = MutableLiveData<ArrayList<YazarReq>>(ArrayList())
     val turler = MutableLiveData<ArrayList<TurReq>>(ArrayList())
 
@@ -72,20 +71,18 @@ class KitapOlusturViewModel @Inject constructor(
                                                         }.await()
                                                         when (kutuphaneResult) {
                                                             is MyResult.Success -> {
-                                                                stok?.let { stok ->
-                                                                    val result = async {
-                                                                        saveKitapKutuphaneUseCase(
-                                                                            KitapKutuphaneReq(
-                                                                                kitapId,
-                                                                                kutuphaneResult.data.id,
-                                                                                stok.toInt()
-                                                                            )
+                                                                val result = async {
+                                                                    saveKitapKutuphaneUseCase(
+                                                                        KitapKutuphaneReq(
+                                                                            kitapId,
+                                                                            kutuphaneResult.data.id,
                                                                         )
-                                                                    }.await()
-                                                                    withContext(Dispatchers.Main) {
-                                                                        onResult(result)
-                                                                    }
+                                                                    )
+                                                                }.await()
+                                                                withContext(Dispatchers.Main) {
+                                                                    onResult(result)
                                                                 }
+
                                                             }
 
                                                             is MyResult.Error -> {

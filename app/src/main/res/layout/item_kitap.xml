@@ -11,66 +11,83 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_margin="10dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
         android:id="@+id/constraintLayout"
-        android:padding="10dp"
-        >
+        android:padding="10dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2"
+            android:id="@+id/guideline1"/>
 
         <ImageView
             android:id="@+id/bookIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/baseline_book_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/isbnTextView"
+            app:layout_constraintEnd_toStartOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/isbnTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(kitapRes.isbn)}"
-            android:textSize="17sp"
+            android:text="@{`#` + String.valueOf(kitapRes.isbn)}"
+            style="@style/SubtitleText"
+            android:layout_marginVertical="2dp"
             app:layout_constraintBottom_toTopOf="@id/kitapAdiTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="123123213" />
+            tools:text="#123123213" />
 
         <TextView
             android:id="@+id/kitapAdiTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_marginVertical="2dp"
             android:layout_height="wrap_content"
             android:text="@{kitapRes.adi}"
-            android:textSize="15sp"
+            style="@style/SubtitleText"
             app:layout_constraintBottom_toTopOf="@id/yazarTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/isbnTextView"
             tools:text="Kürk Mantolu Madonna" />
 
         <TextView
             android:id="@+id/yazarTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_marginVertical="2dp"
             android:layout_height="wrap_content"
-            app:yazarlar="@{kitapRes.yazarlar}"
-            android:textSize="14sp"
+            yazarlar="@{kitapRes.yazarlar}"
+            style="@style/CaptionText"
             app:layout_constraintBottom_toTopOf="@id/turTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/kitapAdiTextView"
             tools:text="Sabahattin Ali" />
 
         <TextView
             android:id="@+id/turTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:layout_marginVertical="2dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            app:turler="@{kitapRes.turler}"
+            turler="@{kitapRes.turler}"
+            style="@style/CaptionText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/bookIcon"
+            app:layout_constraintStart_toEndOf="@id/guideline1"
             app:layout_constraintTop_toBottomOf="@id/yazarTextView"
             tools:text="Roman" />
 

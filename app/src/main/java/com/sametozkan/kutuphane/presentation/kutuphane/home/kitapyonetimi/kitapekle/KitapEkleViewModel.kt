@@ -27,7 +27,6 @@ class KitapEkleViewModel @Inject constructor(
 
     val changeFragment = MutableLiveData<String>()
     val isbn = MutableLiveData<Long>()
-    val stok = MutableLiveData<Long>()
     var kitapId: Long? = null
 
     fun findByIsbn(onResult: (MyResult<KitapRes>) -> Unit) {
@@ -43,7 +42,6 @@ class KitapEkleViewModel @Inject constructor(
 
     fun saveKitapKutuphane(onResult: (MyResult<Unit>) -> Unit) {
         kitapId?.let { kitap_id ->
-            stok.value?.let { stok_sayisi ->
                 viewModelScope.launch(Dispatchers.IO) {
                     sessionManager.getAccountID()?.let { account_id ->
                         val kutuphaneResult =
@@ -56,7 +54,6 @@ class KitapEkleViewModel @Inject constructor(
                                         KitapKutuphaneReq(
                                             kitap_id,
                                             kutuphane_id,
-                                            stok_sayisi.toInt()
                                         )
                                     )
                                 }.await()
@@ -71,7 +68,6 @@ class KitapEkleViewModel @Inject constructor(
                         }
                     }
                 }
-            }
 
         }
     }

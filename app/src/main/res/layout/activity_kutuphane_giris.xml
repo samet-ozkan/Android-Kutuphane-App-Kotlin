@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,44 +9,108 @@
             type="com.sametozkan.kutuphane.presentation.kutuphane.giris.KutuphaneGirisViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:background="@color/colorPrimaryDarkKutuphane">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/back_square_svgrepo_com"
+            app:tint="@color/white"
+            android:layout_margin="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/backButton"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            android:text="Kutuphane Giris"
-            android:textSize="40sp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            style="@style/HeadlineText"
+            android:text="Kütüphane"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:id="@+id/kullaniciText"
+            app:layout_constraintStart_toStartOf="@id/backButton"
+            app:layout_constraintTop_toBottomOf="@id/backButton"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/rounded_top_corners"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kullaniciText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout">
 
-        <EditText
-            android:id="@+id/emailEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginVertical="5dp"
-            android:hint="Email"
-            android:text="@={viewModel.email}" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                style="@style/SubtitleText"
+                android:textSize="30sp"
+                android:text="Giriş Yap" />
 
-        <EditText
-            android:id="@+id/passwordEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginVertical="5dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:text="@={viewModel.password}" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="350dp"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/girisYapButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:text="Giris Yap" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/emailEdit"
+                    android:background="@color/white"
+                    android:hint="Email"
+                    android:text="@={viewModel.email}"/>
 
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="350dp"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/passwordEdit"
+                    android:inputType="textPassword"
+                    android:hint="Şifre"
+                    android:background="@color/white"
+                    android:text="@={viewModel.password}"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CaptionText"
+                android:text="Doğrulama kodunuz var mı? Hemen kaydolun."
+                android:textColor="@color/colorPrimaryDarkKutuphane"
+                android:layout_margin="10dp"
+                android:id="@+id/hemenKaydolun"/>
+
+            <Button
+                android:id="@+id/girisYapButton"
+                android:layout_width="200dp"
+                android:layout_margin="10dp"
+                style="@style/KullaniciButton"
+                android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+                android:textColor="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="Giriş Yap" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

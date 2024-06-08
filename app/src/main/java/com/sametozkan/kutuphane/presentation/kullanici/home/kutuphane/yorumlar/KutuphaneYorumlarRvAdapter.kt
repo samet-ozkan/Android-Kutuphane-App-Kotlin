@@ -20,7 +20,7 @@ class KutuphaneYorumlarRvAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemKutuphaneYorumBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = ItemKutuphaneYorumBinding.inflate(LayoutInflater.from(parent.context), parent,false)
         return ViewHolder(binding)
     }
 

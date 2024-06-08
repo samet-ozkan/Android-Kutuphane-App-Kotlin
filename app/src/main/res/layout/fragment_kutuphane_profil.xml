@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -9,49 +10,88 @@
             type="com.sametozkan.kutuphane.data.dto.response.KutuphaneRes" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:background="@color/colorLightGray">
 
-        <TextView
-            android:id="@+id/kutuphaneAdiTv"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="150dp"
+            android:id="@+id/kutuphaneIcon"
+            android:layout_margin="20dp"
+            app:layout_constraintBottom_toTopOf="@id/bilgiler"
+            android:src="@drawable/library_svgrepo_com" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{kutuphaneRes.adi}"
-            android:textSize="17sp"
-            tools:text="Kütüphane Adı" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
+            android:id="@+id/bilgiler"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kutuphaneIcon"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/kutuphaneAdresiTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{kutuphaneRes.adresi}"
-            android:textSize="17sp"
-            tools:text="Kütüphane Adresi" />
+            <TextView
+                style="@style/HeadlineText"
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_corners"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="Bilgiler" />
 
-        <TextView
-            android:id="@+id/kutuphaneEmailTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{kutuphaneRes.account.email}"
-            android:textSize="17sp"
-            tools:text="kutuphane@example.com" />
+            <TextView
+                android:id="@+id/kutuphaneAdiTv"
+                style="@style/BodyText"
+                android:layout_width="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_height="wrap_content"
+                android:text="@{kutuphaneRes.adi}"
+                tools:text="Kütüphane Adı" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{`Teslim süresi: ` + String.valueOf(kutuphaneRes.teslimSuresi)}"
-            android:textSize="17sp"
-            tools:text="Teslim Süresi: 7 gün" />
+            <TextView
+                android:id="@+id/kutuphaneAdresiTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="@{kutuphaneRes.adresi}"
+                style="@style/BodyText"
+                tools:text="Kütüphane Adresi" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{`Kitap sayısı: ` + String.valueOf(kutuphaneRes.kitaplar.size())}"
-            android:textSize="17sp"
-            tools:text="Kitap Sayısı: 50" />
+            <TextView
+                android:id="@+id/kutuphaneEmailTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="@{kutuphaneRes.account.email}"
+                style="@style/BodyText"
+                tools:text="kutuphane@example.com" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="@{`Teslim süresi: ` + String.valueOf(kutuphaneRes.teslimSuresi)}"
+                style="@style/BodyText"
+                tools:text="Teslim Süresi: 7 gün" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layout_height="wrap_content"
+                android:text="@{`Kitap sayısı: ` + String.valueOf(kutuphaneRes.kitaplar.size())}"
+                style="@style/BodyText"
+                tools:text="Kitap Sayısı: 50" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

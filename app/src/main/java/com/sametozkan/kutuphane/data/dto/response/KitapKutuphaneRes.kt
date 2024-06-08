@@ -4,5 +4,4 @@ data class KitapKutuphaneRes(
     val id: Long,
     val kitap: KitapRes,
     val kutuphane: KutuphaneRes,
-    val stok: Int
 )

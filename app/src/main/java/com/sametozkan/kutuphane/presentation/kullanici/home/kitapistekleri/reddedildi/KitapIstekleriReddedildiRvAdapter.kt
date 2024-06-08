@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
-import com.sametozkan.kutuphane.databinding.ItemKitapIstekleriGecmisBinding
+import com.sametozkan.kutuphane.databinding.ItemKitapIstekleriReddedildiBinding
 
 class KitapIstekleriReddedildiRvAdapter : RecyclerView.Adapter<KitapIstekleriReddedildiRvAdapter.ViewHolder> {
 
@@ -21,7 +21,7 @@ class KitapIstekleriReddedildiRvAdapter : RecyclerView.Adapter<KitapIstekleriRed
         this.itemClickListener = itemClickListener
     }
 
-    class ViewHolder(private val binding : ItemKitapIstekleriGecmisBinding, private val itemClickListener: (KitapKullaniciRes) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding : ItemKitapIstekleriReddedildiBinding, private val itemClickListener: (KitapKullaniciRes) -> Unit) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(kitapKullaniciRes: KitapKullaniciRes){
             binding.kitapKullaniciRes = kitapKullaniciRes
@@ -30,7 +30,7 @@ class KitapIstekleriReddedildiRvAdapter : RecyclerView.Adapter<KitapIstekleriRed
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemKitapIstekleriGecmisBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemKitapIstekleriReddedildiBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding, itemClickListener)
     }
 

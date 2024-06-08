@@ -45,7 +45,6 @@ class KitapOlusturFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupIsbn()
-        setupStok()
         setupGoogleBooksApiButton()
         setupOlusturButton()
         setupYazarEkleButton()
@@ -169,12 +168,6 @@ class KitapOlusturFragment : Fragment() {
     private fun setupIsbn() {
         sharedViewModel.isbn.value?.let {
             viewModel.isbn.value = it
-        }
-    }
-
-    private fun setupStok() {
-        sharedViewModel.stok.value?.let {
-            viewModel.stok = it
         }
     }
 
