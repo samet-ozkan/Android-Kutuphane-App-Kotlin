@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="kutuphaneRes"
-            type="com.sametozkan.kutuphane.data.dto.response.KutuphaneRes" />
+            name="kullaniciRes"
+            type="com.sametozkan.kutuphane.data.dto.response.KullaniciRes" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,10 +21,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="150dp"
-            android:id="@+id/kutuphaneIcon"
+            android:id="@+id/personIcon"
             android:layout_margin="20dp"
             app:layout_constraintBottom_toTopOf="@id/bilgiler"
-            android:src="@drawable/library_svgrepo_com" />
+            android:src="@drawable/baseline_person_24" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:id="@+id/bilgiler"
             android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kutuphaneIcon"
+            app:layout_constraintTop_toBottomOf="@id/personIcon"
             android:orientation="vertical">
 
             <TextView
@@ -49,48 +49,22 @@
                 android:text="Bilgiler" />
 
             <TextView
-                android:id="@+id/kutuphaneAdiTv"
+                android:id="@+id/adiTv"
                 style="@style/BodyText"
                 android:layout_width="wrap_content"
                 android:layout_marginVertical="5dp"
                 android:layout_height="wrap_content"
-                android:text="@{kutuphaneRes.adi}"
-                tools:text="Kütüphane Adı" />
+                android:text="@{kullaniciRes.adi + ` ` + kullaniciRes.soyadi}"
+                tools:text="Samet Özkan" />
 
             <TextView
-                android:id="@+id/kutuphaneAdresiTv"
+                android:id="@+id/emailTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
-                android:text="@{kutuphaneRes.adresi}"
+                android:text="@{kullaniciRes.email}"
                 style="@style/BodyText"
-                tools:text="Kütüphane Adresi" />
-
-            <TextView
-                android:id="@+id/kutuphaneEmailTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:text="@{kutuphaneRes.account.email}"
-                style="@style/BodyText"
-                tools:text="kutuphane@example.com" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:text="@{`Teslim süresi: ` + String.valueOf(kutuphaneRes.teslimSuresi)}"
-                style="@style/BodyText"
-                tools:text="Teslim Süresi: 7 gün" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:layout_height="wrap_content"
-                android:text="@{`Kitap sayısı: ` + String.valueOf(kutuphaneRes.kitaplar.size())}"
-                style="@style/BodyText"
-                tools:text="Kitap Sayısı: 50" />
-
+                tools:text="samet-ozkan@outlook.com" />
         </LinearLayout>
 
         <Button
@@ -103,7 +77,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+            android:backgroundTint="@color/colorPrimaryDark"
             android:textColor="@color/white"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

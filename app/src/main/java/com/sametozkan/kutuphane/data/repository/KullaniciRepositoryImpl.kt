@@ -17,6 +17,10 @@ class KullaniciRepositoryImpl(private val kullaniciService: KullaniciService) :
         return kullaniciService.findById(id)
     }
 
+    override suspend fun findByAccountId(accountId: Long): Response<KullaniciRes>{
+        return kullaniciService.findByAccountId(accountId)
+    }
+
     override suspend fun findAll(): Response<List<KullaniciRes>> {
         return kullaniciService.findAll()
     }

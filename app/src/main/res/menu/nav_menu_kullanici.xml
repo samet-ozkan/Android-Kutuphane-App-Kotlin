@@ -8,15 +8,15 @@
 
     <item
         android:id="@+id/menuKitapIsteklerim"
-        android:icon="@drawable/baseline_book_24"
+        android:icon="@drawable/baseline_menu_book_24"
         android:title="Kitap İsteklerim"/>
 
     <item android:id="@+id/menuKitapOnerileri"
-        android:icon="@drawable/baseline_book_24"
-        android:title="Kitap Önerileri"/>
+        android:icon="@drawable/baseline_recommend_24"
+        android:title="Kitap Önerileri" />
 
     <item android:id="@+id/menuProfil"
-        android:icon="@drawable/baseline_book_24"
+        android:icon="@drawable/baseline_person_24"
         android:title="Profilim"/>
 
 

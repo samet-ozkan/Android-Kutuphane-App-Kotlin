@@ -11,4 +11,5 @@ interface KullaniciRepository {
     suspend fun findById(id: Long): Response<KullaniciRes>
 
     suspend fun findAll(): Response<List<KullaniciRes>>
+    suspend fun findByAccountId(accountId: Long): Response<KullaniciRes>
 }

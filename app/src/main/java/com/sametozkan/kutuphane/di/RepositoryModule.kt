@@ -7,6 +7,7 @@ import com.sametozkan.kutuphane.data.datasource.remote.KitapKutuphaneService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapTurService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapYazarService
+import com.sametozkan.kutuphane.data.datasource.remote.KitapYorumService
 import com.sametozkan.kutuphane.data.datasource.remote.KullaniciService
 import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneService
 import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneYorumService
@@ -19,6 +20,7 @@ import com.sametozkan.kutuphane.data.repository.KitapKutuphaneRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KitapRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KitapTurRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KitapYazarRepositoryImpl
+import com.sametozkan.kutuphane.data.repository.KitapYorumRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KullaniciRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KutuphaneRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KutuphaneYorumRepositoryImpl
@@ -31,6 +33,7 @@ import com.sametozkan.kutuphane.domain.repository.KitapKutuphaneRepository
 import com.sametozkan.kutuphane.domain.repository.KitapRepository
 import com.sametozkan.kutuphane.domain.repository.KitapTurRepository
 import com.sametozkan.kutuphane.domain.repository.KitapYazarRepository
+import com.sametozkan.kutuphane.domain.repository.KitapYorumRepository
 import com.sametozkan.kutuphane.domain.repository.KullaniciRepository
 import com.sametozkan.kutuphane.domain.repository.KutuphaneRepository
 import com.sametozkan.kutuphane.domain.repository.KutuphaneYorumRepository
@@ -96,6 +99,11 @@ object RepositoryModule {
     @Provides
     fun provideKutuphaneYorumRepository(kutuphaneYorum: KutuphaneYorumService): KutuphaneYorumRepository =
         KutuphaneYorumRepositoryImpl(kutuphaneYorum)
+
+    @Singleton
+    @Provides
+    fun provideKitapYorumRepository(kitapYorum: KitapYorumService): KitapYorumRepository =
+        KitapYorumRepositoryImpl(kitapYorum)
 
     @Singleton
     @Provides

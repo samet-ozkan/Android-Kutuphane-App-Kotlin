@@ -1,6 +1,7 @@
 package com.sametozkan.kutuphane.domain.repository
 
 import com.sametozkan.kutuphane.data.dto.request.KutuphaneReq
+import com.sametozkan.kutuphane.data.dto.response.KullaniciRes
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import retrofit2.Response
 
