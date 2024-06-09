@@ -11,6 +11,7 @@ import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.databinding.ActivityKullaniciHomeBinding
 import com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.KitapIstekleriFragment
+import com.sametozkan.kutuphane.presentation.kullanici.home.kitaponerileri.KitapOnerileriFragment
 import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphaneler.KutuphanelerFragment
 import com.sametozkan.kutuphane.util.KullaniciFragments
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,7 +60,9 @@ class KullaniciHomeActivity : AppCompatActivity() {
                 KullaniciFragments.KITAP_ISTEKLERI -> {
                     replaceFragment(KitapIstekleriFragment(), "Kitap İstekleri")
                 }
-
+                KullaniciFragments.KITAP_ONERILERI -> {
+                    replaceFragment(KitapOnerileriFragment(), "Kitap Önerileri")
+                }
             }
         })
     }
@@ -72,6 +75,9 @@ class KullaniciHomeActivity : AppCompatActivity() {
                 }
                 R.id.menuKitapIsteklerim -> {
                     viewModel.changeFragment.value = KullaniciFragments.KITAP_ISTEKLERI
+                }
+                R.id.menuKitapOnerileri -> {
+                    viewModel.changeFragment.value = KullaniciFragments.KITAP_ONERILERI
                 }
                 else -> false
             }

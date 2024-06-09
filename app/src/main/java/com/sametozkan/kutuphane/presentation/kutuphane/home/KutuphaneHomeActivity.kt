@@ -14,6 +14,7 @@ import com.sametozkan.kutuphane.databinding.ActivityKutuphaneHomeBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapistekleri.KutuphaneKitapIstekleriFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.KutuphaneKitapYonetimiFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.profil.KutuphaneProfilFragment
+import com.sametozkan.kutuphane.util.KullaniciFragments
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.util.KutuphaneFragments
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,12 @@ class KutuphaneHomeActivity : AppCompatActivity() {
         setNavigationDrawer()
         setNavigationHeader()
         setNavigationItemClickListener()
+
+        initFrameLayout()
+    }
+
+    private fun initFrameLayout() {
+        viewModel.changeFragment.value = KutuphaneFragments.KUTUPHANE_PROFIL
     }
 
     private fun setNavigationHeader() {

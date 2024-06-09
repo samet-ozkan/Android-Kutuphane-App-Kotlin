@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.util.List"/>
+        <import type="com.sametozkan.kutuphane.data.dto.response.KitapOnerisiRes"/>
+
+        <variable
+            name="kitapOnerileri"
+            type="List&lt;KitapOnerisiRes&gt;"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/colorLightGray"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            style="@style/KullaniciButton"
+            android:text="Önerileri Güncelle"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/onerileriGuncelleButton"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/onerileriGuncelleButton"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/oneri1"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:src="@drawable/baseline_recommend_24"
+                    android:id="@+id/recommendIcon1"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/SubtitleText"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/oneri1"
+                    app:layout_constraintBottom_toTopOf="@id/oneriText1"
+                    app:layout_constraintStart_toEndOf="@id/recommendIcon1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Öneri 1"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:id="@+id/oneriText1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/oneri1"
+                    android:background="@drawable/rounded_corners"
+                    style="@style/BodyText"
+                    tools:text="Kitap önerisi 1"
+                    android:text="@{kitapOnerileri.size == 5 ? kitapOnerileri.get(0).baslik + `: ` +  kitapOnerileri.get(0).onerilmeSebebi : ` `}"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/oneri2"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:src="@drawable/baseline_recommend_24"
+                    android:id="@+id/recommendIcon2"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/SubtitleText"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/oneri2"
+                    app:layout_constraintBottom_toTopOf="@id/oneriText2"
+                    app:layout_constraintStart_toEndOf="@id/recommendIcon2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Öneri 2"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:id="@+id/oneriText2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/oneri2"
+                    android:background="@drawable/rounded_corners"
+                    style="@style/BodyText"
+                    tools:text="Kitap önerisi 2"
+                    android:text="@{kitapOnerileri.size == 5 ? kitapOnerileri.get(1).baslik + `: ` +  kitapOnerileri.get(1).onerilmeSebebi : ` `}"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/oneri3"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:src="@drawable/baseline_recommend_24"
+                    android:id="@+id/recommendIcon3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/SubtitleText"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/oneri3"
+                    app:layout_constraintBottom_toTopOf="@id/oneriText3"
+                    app:layout_constraintStart_toEndOf="@id/recommendIcon3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Öneri 3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:id="@+id/oneriText3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/oneri3"
+                    android:background="@drawable/rounded_corners"
+                    style="@style/BodyText"
+                    tools:text="Kitap önerisi 3"
+                    android:text="@{kitapOnerileri.size == 5 ? kitapOnerileri.get(2).baslik + `: ` +  kitapOnerileri.get(2).onerilmeSebebi : ` `}"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/oneri4"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:src="@drawable/baseline_recommend_24"
+                    android:id="@+id/recommendIcon4"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/SubtitleText"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/oneri4"
+                    app:layout_constraintBottom_toTopOf="@id/oneriText4"
+                    app:layout_constraintStart_toEndOf="@id/recommendIcon4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Öneri 4"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:id="@+id/oneriText4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/oneri4"
+                    android:background="@drawable/rounded_corners"
+                    style="@style/BodyText"
+                    tools:text="Kitap önerisi 4"
+                    android:text="@{kitapOnerileri.size == 5 ? kitapOnerileri.get(3).baslik + `: ` +  kitapOnerileri.get(3).onerilmeSebebi : ` `}"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_marginVertical="10dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/oneri5"
+                    android:layout_marginLeft="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:src="@drawable/baseline_recommend_24"
+                    android:id="@+id/recommendIcon5"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/SubtitleText"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/oneri5"
+                    app:layout_constraintBottom_toTopOf="@id/oneriText5"
+                    app:layout_constraintStart_toEndOf="@id/recommendIcon5"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Öneri 5"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:id="@+id/oneriText5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/oneri5"
+                    android:background="@drawable/rounded_corners"
+                    style="@style/BodyText"
+                    tools:text="Kitap önerisi 5"
+                    android:text="@{kitapOnerileri.size == 5 ? kitapOnerileri.get(4).baslik + `: ` +  kitapOnerileri.get(4).onerilmeSebebi : ` `}"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
