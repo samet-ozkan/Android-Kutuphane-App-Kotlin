@@ -22,4 +22,6 @@ interface KitapKullaniciRepository {
     suspend fun kitapIstegiReddet(kitapKullaniciId: Long): Response<Unit>
     suspend fun kitapIstegiOnayla(kitapKullaniciId: Long): Response<Unit>
     suspend fun fetchKitapOnerileri(accountId: Long): Response<List<KitapOnerisiRes>>
+    suspend fun teslimEdilmeyenler(kutuphaneId: Long): Response<List<KitapKullaniciRes>>
+    suspend fun teslimEdildi(kitapKullaniciId: Long): Response<Unit>
 }

@@ -45,6 +45,7 @@ class KutuphanelerFragment : Fragment() {
 
                 is MyResult.Error -> {
                     Toast.makeText(context, "Kütüphane listesi alınamadı!", Toast.LENGTH_SHORT).show()
+                    println("Hata: " + myResult.exception.message)
                 }
             }
         }

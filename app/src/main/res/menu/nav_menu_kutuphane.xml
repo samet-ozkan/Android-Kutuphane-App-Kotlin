@@ -16,6 +16,11 @@
         android:title="Kitap İstekleri" />
 
     <item
+        android:id="@+id/menuTeslimDurumu"
+        android:icon="@drawable/baseline_keyboard_return_24"
+        android:title="Teslim Durumu" />
+
+    <item
         android:id="@+id/logout"
         android:title="Çıkış Yap"
         android:icon="@drawable/baseline_logout_24"/>

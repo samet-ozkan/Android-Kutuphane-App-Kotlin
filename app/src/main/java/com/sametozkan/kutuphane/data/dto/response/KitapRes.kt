@@ -4,7 +4,7 @@ data class KitapRes(
     val id: Long,
     val isbn: Long,
     val adi: String,
-    val yayinYili: Int,
+    val yayinTarihi: String,
     val dil: String,
     val sayfaSayisi: Int,
     val chatGptYorumu: String,

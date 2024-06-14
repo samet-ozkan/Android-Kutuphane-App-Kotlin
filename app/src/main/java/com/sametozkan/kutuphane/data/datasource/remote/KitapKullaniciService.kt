@@ -46,6 +46,12 @@ interface KitapKullaniciService {
     @POST("/api/kitap-kullanici/reddet/{kitapKullaniciId}")
     suspend fun kitapIstegiReddet(@Path("kitapKullaniciId") kitapKullaniciId: Long): Response<Unit>
 
+    @GET("/api/kitap-kullanici/teslim-edilmeyenler/{kutuphaneId}")
+    suspend fun teslimEdilmeyenler(@Path("kutuphaneId") kutuphaneId: Long): Response<List<KitapKullaniciRes>>
+
+    @POST("/api/kitap-kullanici/teslim-edildi/{kitapKullaniciId}")
+    suspend fun teslimEdildi(@Path("kitapKullaniciId") kitapKullaniciId: Long): Response<Unit>
+
     @DELETE("/api/kitap-kullanici/delete/{id}")
     suspend fun deleteById(@Path("id") id: Long) : Response<Unit>
 }

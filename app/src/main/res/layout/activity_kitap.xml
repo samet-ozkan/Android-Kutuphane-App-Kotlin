@@ -227,7 +227,7 @@
                             android:layout_weight="5"
                             android:gravity="center|left"
                             android:layout_height="match_parent"
-                            android:text="@{String.valueOf(viewModel.kitap.yayinYili)}"
+                            android:text="@{String.valueOf(viewModel.kitap.yayinTarihi)}"
                             android:padding="10dp"
                             style="@style/BodyText"
                             tools:text="2024" />

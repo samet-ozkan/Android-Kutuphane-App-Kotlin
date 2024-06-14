@@ -49,12 +49,20 @@ class KitapKullaniciRepositoryImpl(private val kitapKullaniciService: KitapKulla
         return kitapKullaniciService.fetchKitapOnerileri(accountId)
     }
 
-    override suspend fun kitapIstegiOnayla(kitapKullaniciId:Long): Response<Unit>{
+    override suspend fun kitapIstegiOnayla(kitapKullaniciId: Long): Response<Unit> {
         return kitapKullaniciService.kitapIstegiOnayla(kitapKullaniciId)
     }
 
-    override suspend fun kitapIstegiReddet(kitapKullaniciId: Long): Response<Unit>{
+    override suspend fun kitapIstegiReddet(kitapKullaniciId: Long): Response<Unit> {
         return kitapKullaniciService.kitapIstegiReddet(kitapKullaniciId)
+    }
+
+    override suspend fun teslimEdilmeyenler(kutuphaneId: Long): Response<List<KitapKullaniciRes>> {
+        return kitapKullaniciService.teslimEdilmeyenler(kutuphaneId)
+    }
+
+    override suspend fun teslimEdildi(kitapKullaniciId: Long): Response<Unit> {
+        return kitapKullaniciService.teslimEdildi(kitapKullaniciId)
     }
 
     override suspend fun deleteById(id: Long): Response<Unit> {

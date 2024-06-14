@@ -14,6 +14,7 @@ import com.sametozkan.kutuphane.databinding.ActivityKutuphaneHomeBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapistekleri.KutuphaneKitapIstekleriFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.KutuphaneKitapYonetimiFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.profil.KutuphaneProfilFragment
+import com.sametozkan.kutuphane.presentation.kutuphane.home.teslimdurumu.KutuphaneTeslimDurumuFragment
 import com.sametozkan.kutuphane.util.KullaniciFragments
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.util.KutuphaneFragments
@@ -87,6 +88,10 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                     binding.drawerLayout.close()
                     viewModel.changeFragment.value = KutuphaneFragments.KITAP_ISTEKLERI
                 }
+                R.id.menuTeslimDurumu -> {
+                    binding.drawerLayout.close()
+                    viewModel.changeFragment.value = KutuphaneFragments.TESLIM_DURUMU
+                }
 
                 R.id.logout -> {
                     SessionManager(applicationContext).clear()
@@ -117,6 +122,11 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                 KutuphaneFragments.KITAP_ISTEKLERI -> replaceFragment(
                     KutuphaneKitapIstekleriFragment(),
                     "Kitap İstekleri"
+                )
+
+                KutuphaneFragments.TESLIM_DURUMU -> replaceFragment(
+                    KutuphaneTeslimDurumuFragment(),
+                    "Teslim Durumu"
                 )
             }
 

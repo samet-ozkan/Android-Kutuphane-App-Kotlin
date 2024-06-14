@@ -59,6 +59,7 @@ class KitapIstekleriOnayBekleyenlerFragment : Fragment() {
             when(myResult) {
                 is MyResult.Success -> {
                     Toast.makeText(context, "Kitap isteği başarıyla iptal edildi.", Toast.LENGTH_SHORT).show()
+                    refreshList()
                 }
                 is MyResult.Error -> {
                     println(myResult.exception.message)

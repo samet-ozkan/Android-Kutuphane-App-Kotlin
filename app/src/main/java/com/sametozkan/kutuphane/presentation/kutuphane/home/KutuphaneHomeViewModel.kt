@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.data.dto.response.KitapRes
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
+import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindKutuphaneByAccountIdUseCase
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindKutuphaneByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class KutuphaneHomeViewModel @Inject constructor(
-    private val findKutuphaneByAccountIdUseCase: FindKutuphaneByIdUseCase,
+    private val findKutuphaneByAccountIdUseCase: FindKutuphaneByAccountIdUseCase,
     private val sessionManager: SessionManager
 ) : ViewModel() {
 

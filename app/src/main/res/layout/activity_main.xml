@@ -6,42 +6,50 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:background="@color/colorSecondary"
+        android:background="@color/colorLightGray"
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:src="@drawable/logo_kitapevi"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kitap Evi"
+            android:text="ChatGPT Destekli"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="50dp"
             style="@style/HeadlineText"
-            android:textColor="@color/white"
-            android:textSize="50sp"/>
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kütüphane Mobil Uygulaması"
+            android:layout_marginBottom="10dp"
+            style="@style/HeadlineText"
+            android:textColor="@color/black"
+            android:textSize="25sp"/>
 
         <Button
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:id="@+id/kutuphaneButton"
             style="@style/KutuphaneButton"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/colorPrimaryDarkKutuphane"
-            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+            android:layout_marginVertical="5dp"
+            android:textColor="@color/white"
             android:text="Kutuphane" />
 
         <Button
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:id="@+id/kullaniciButton"
             style="@style/KullaniciButton"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:textColor="@color/white"
             android:layout_marginVertical="10dp"
             android:text="Kullanıcı" />
 

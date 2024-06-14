@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:checkable="true"
                 style="@style/SubtitleText"
-                android:backgroundTint="@color/white"
+                app:chipBackgroundColor="@color/white"
                 android:text="Bekleyen"
                 android:id="@+id/bekleyenChip"/>
 
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:backgroundTint="@color/white"
+                app:chipBackgroundColor="@color/white"
                 android:text="Onaylandı"
                 style="@style/SubtitleText"
                 android:id="@+id/onaylandiChip"/>
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkable="true"
-                android:backgroundTint="@color/white"
+                app:chipBackgroundColor="@color/white"
                 android:text="Reddedildi"
                 style="@style/SubtitleText"
                 android:id="@+id/reddedildiChip"/>

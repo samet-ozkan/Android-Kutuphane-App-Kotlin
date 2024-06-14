@@ -6,4 +6,5 @@ object KutuphaneFragments {
     val KITAP_EKLE = "Kitap Ekle"
     val KITAP_OLUSTUR = "Kitap Oluştur"
     val KITAP_ISTEKLERI = "Kitap İstekleri"
+    val TESLIM_DURUMU = "Teslim Durumu"
 }
