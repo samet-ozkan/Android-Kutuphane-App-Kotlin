@@ -11,6 +11,7 @@ import com.sametozkan.kutuphane.data.datasource.remote.KitapYorumService
 import com.sametozkan.kutuphane.data.datasource.remote.KullaniciService
 import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneService
 import com.sametozkan.kutuphane.data.datasource.remote.KutuphaneYorumService
+import com.sametozkan.kutuphane.data.datasource.remote.RefreshTokenService
 import com.sametozkan.kutuphane.data.datasource.remote.TurService
 import com.sametozkan.kutuphane.data.datasource.remote.YazarService
 import com.sametozkan.kutuphane.data.repository.AccountRepositoryImpl
@@ -24,6 +25,7 @@ import com.sametozkan.kutuphane.data.repository.KitapYorumRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KullaniciRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KutuphaneRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KutuphaneYorumRepositoryImpl
+import com.sametozkan.kutuphane.data.repository.RefreshTokenRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.TurRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.YazarRepositoryImpl
 import com.sametozkan.kutuphane.domain.repository.AccountRepository
@@ -37,6 +39,7 @@ import com.sametozkan.kutuphane.domain.repository.KitapYorumRepository
 import com.sametozkan.kutuphane.domain.repository.KullaniciRepository
 import com.sametozkan.kutuphane.domain.repository.KutuphaneRepository
 import com.sametozkan.kutuphane.domain.repository.KutuphaneYorumRepository
+import com.sametozkan.kutuphane.domain.repository.RefreshTokenRepository
 import com.sametozkan.kutuphane.domain.repository.TurRepository
 import com.sametozkan.kutuphane.domain.repository.YazarRepository
 import dagger.Module
@@ -59,6 +62,11 @@ object RepositoryModule {
     @Provides
     fun provideAuthRepository(authService: AuthService): AuthRepository =
         AuthRepositoryImpl(authService)
+
+    @Singleton
+    @Provides
+    fun provideRefreshTokenRepository(refreshTokenService: RefreshTokenService): RefreshTokenRepository =
+        RefreshTokenRepositoryImpl(refreshTokenService)
 
     @Singleton
     @Provides

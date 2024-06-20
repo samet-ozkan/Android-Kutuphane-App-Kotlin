@@ -19,6 +19,7 @@ class FindAllKutuphaneUseCase @Inject constructor(private val kutuphaneRepositor
                     MyResult.Error(Exception("Kutuphane list is null"))
                 }
             } else {
+                println("Code: " + response.code())
                 MyResult.Error(Exception("Failed to find all kutuphane: ${response.message()}"))
             }
         } catch (e: Exception) {

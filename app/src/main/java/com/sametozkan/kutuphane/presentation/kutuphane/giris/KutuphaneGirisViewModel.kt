@@ -43,6 +43,8 @@ class KutuphaneGirisViewModel @Inject constructor(
     fun setSession(jwtRes: JwtRes) {
         sessionManager.apply {
             setJWT(jwtRes.jwt)
+            setRefreshToken(jwtRes.refreshToken)
+            setRefreshExpiryDate(jwtRes.refreshExpiryDate)
             setAccountID(jwtRes.accountId)
             setAccountType(jwtRes.accountType)
         }

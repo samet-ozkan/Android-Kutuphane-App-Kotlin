@@ -3,7 +3,9 @@ package com.sametozkan.kutuphane.data.repository
 import com.sametozkan.kutuphane.data.datasource.remote.AuthService
 import com.sametozkan.kutuphane.data.dto.request.KullaniciRegisterReq
 import com.sametozkan.kutuphane.data.dto.request.LoginReq
+import com.sametozkan.kutuphane.data.dto.request.TokenRefreshReq
 import com.sametozkan.kutuphane.data.dto.response.JwtRes
+import com.sametozkan.kutuphane.data.dto.response.TokenRefreshRes
 import com.sametozkan.kutuphane.domain.repository.AuthRepository
 import retrofit2.Response
 
