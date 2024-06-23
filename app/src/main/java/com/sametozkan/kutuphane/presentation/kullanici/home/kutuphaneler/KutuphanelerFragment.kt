@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKutuphanelerBinding
-import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.KutuphaneActivity
+import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneActivity
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 

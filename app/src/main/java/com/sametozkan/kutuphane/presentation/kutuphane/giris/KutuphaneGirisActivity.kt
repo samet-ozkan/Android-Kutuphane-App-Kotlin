@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneGirisBinding
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeActivity
+import com.sametozkan.kutuphane.util.LoadingManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +23,13 @@ class KutuphaneGirisActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         setupGirisYapButton();
+        observeLoading()
+    }
+
+    private fun observeLoading(){
+        LoadingManager.loading.observe(this){
+            binding.isLoading = it
+        }
     }
 
     private fun setupGirisYapButton(){

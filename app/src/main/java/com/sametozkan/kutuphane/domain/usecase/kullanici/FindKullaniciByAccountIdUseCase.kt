@@ -4,12 +4,14 @@ import com.sametozkan.kutuphane.data.dto.response.KullaniciRes
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.domain.repository.KullaniciRepository
 import com.sametozkan.kutuphane.domain.repository.KutuphaneRepository
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
 class FindKullaniciByAccountIdUseCase @Inject constructor(private val kullaniciRepository: KullaniciRepository) {
 
     suspend operator fun invoke(accountId: Long): MyResult<KullaniciRes> {
+        LoadingManager.startLoading()
         return try {
             val response = kullaniciRepository.findByAccountId(accountId)
             if (response.isSuccessful) {
@@ -24,6 +26,8 @@ class FindKullaniciByAccountIdUseCase @Inject constructor(private val kullaniciR
             }
         } catch (e: Exception) {
             MyResult.Error(e)
+        } finally {
+            LoadingManager.stopLoading()
         }
     }
 }

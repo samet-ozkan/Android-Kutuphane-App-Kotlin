@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriOnaylandiBinding
+import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
+import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeViewModel
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -45,7 +48,9 @@ class KitapIstekleriOnaylandiFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    println(myResult.exception.message)
+                    myResult.exception.message?.let {
+                        ErrorDialog(it).show(parentFragmentManager, "Hata")
+                    }
                 }
             }
         }

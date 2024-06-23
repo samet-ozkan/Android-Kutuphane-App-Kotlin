@@ -18,6 +18,7 @@ import com.sametozkan.kutuphane.presentation.kutuphane.home.teslimdurumu.Kutupha
 import com.sametozkan.kutuphane.util.KullaniciFragments
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.util.KutuphaneFragments
+import com.sametozkan.kutuphane.util.LoadingManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +39,14 @@ class KutuphaneHomeActivity : AppCompatActivity() {
         setNavigationItemClickListener()
 
         initFrameLayout()
+
+        observeLoading()
+    }
+
+    private fun observeLoading(){
+        LoadingManager.loading.observe(this){
+            binding.isLoading = it
+        }
     }
 
     private fun initFrameLayout() {

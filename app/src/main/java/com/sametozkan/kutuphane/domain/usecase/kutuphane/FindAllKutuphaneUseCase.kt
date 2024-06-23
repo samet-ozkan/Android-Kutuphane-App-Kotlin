@@ -2,6 +2,7 @@ package com.sametozkan.kutuphane.domain.usecase.kutuphane
 
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.domain.repository.KutuphaneRepository
+import com.sametozkan.kutuphane.util.LoadingManager
 import javax.inject.Inject
 import com.sametozkan.kutuphane.util.MyResult
 
@@ -9,6 +10,7 @@ import com.sametozkan.kutuphane.util.MyResult
 class FindAllKutuphaneUseCase @Inject constructor(private val kutuphaneRepository: KutuphaneRepository) {
 
     suspend operator fun invoke(): MyResult<List<KutuphaneRes>> {
+        LoadingManager.startLoading()
         return try {
             val response = kutuphaneRepository.findAll()
             if (response.isSuccessful) {
@@ -24,6 +26,8 @@ class FindAllKutuphaneUseCase @Inject constructor(private val kutuphaneRepositor
             }
         } catch (e: Exception) {
             MyResult.Error(e)
+        } finally {
+            LoadingManager.stopLoading()
         }
     }
 }

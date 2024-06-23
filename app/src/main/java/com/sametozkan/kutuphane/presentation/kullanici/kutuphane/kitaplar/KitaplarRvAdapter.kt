@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.kitaplar
+package com.sametozkan.kutuphane.presentation.kullanici.kutuphane.kitaplar
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

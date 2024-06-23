@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.sametozkan.kutuphane.databinding.ActivityKitapEkleBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.kitapolustur.KitapOlusturFragment
 import com.sametozkan.kutuphane.util.KutuphaneFragments
+import com.sametozkan.kutuphane.util.LoadingManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +24,14 @@ class KitapEkleActivity : AppCompatActivity() {
 
         observeChangeFragment()
         viewModel.changeFragment.value = KutuphaneFragments.KITAP_EKLE
+
+        observeLoading()
+    }
+
+    private fun observeLoading(){
+        LoadingManager.loading.observe(this){
+            binding.isLoading = it
+        }
     }
 
     private fun observeChangeFragment() {

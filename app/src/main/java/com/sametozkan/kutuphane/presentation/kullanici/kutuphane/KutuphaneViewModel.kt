@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane
+package com.sametozkan.kutuphane.presentation.kullanici.kutuphane
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

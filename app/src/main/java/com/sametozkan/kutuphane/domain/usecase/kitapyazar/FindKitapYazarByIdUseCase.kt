@@ -2,6 +2,7 @@ package com.sametozkan.kutuphane.domain.usecase.kitapyazar
 
 import com.sametozkan.kutuphane.data.dto.response.KitapYazarRes
 import com.sametozkan.kutuphane.domain.repository.KitapYazarRepository
+import com.sametozkan.kutuphane.util.LoadingManager
 import javax.inject.Inject
 import com.sametozkan.kutuphane.util.MyResult
 
@@ -9,6 +10,7 @@ import com.sametozkan.kutuphane.util.MyResult
 class FindKitapYazarByIdUseCase @Inject constructor(private val kitapYazarRepository: KitapYazarRepository) {
 
     suspend operator fun invoke(id: Long): MyResult<KitapYazarRes> {
+        LoadingManager.startLoading()
         return try {
             val response = kitapYazarRepository.findById(id)
             if (response.isSuccessful) {
@@ -23,6 +25,8 @@ class FindKitapYazarByIdUseCase @Inject constructor(private val kitapYazarReposi
             }
         } catch (e: Exception) {
             MyResult.Error(e)
+        } finally {
+            LoadingManager.stopLoading()
         }
     }
 }

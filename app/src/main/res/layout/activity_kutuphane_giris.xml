@@ -4,9 +4,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.sametozkan.kutuphane.presentation.kutuphane.giris.KutuphaneGirisViewModel" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,101 +21,112 @@
         android:background="@color/colorPrimaryDarkKutuphane">
 
         <ImageView
+            android:id="@+id/backButton"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/back_square_svgrepo_com"
-            app:tint="@color/white"
             android:layout_margin="10dp"
+            android:src="@drawable/back_square_svgrepo_com"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/backButton"/>
+            app:tint="@color/white" />
 
         <TextView
+            android:id="@+id/kullaniciText"
+            style="@style/HeadlineText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
-            style="@style/HeadlineText"
+            android:layout_marginTop="20dp"
             android:text="Kütüphane"
-            android:textSize="40sp"
             android:textColor="@color/white"
-            android:id="@+id/kullaniciText"
+            android:textSize="40sp"
             app:layout_constraintStart_toStartOf="@id/backButton"
-            app:layout_constraintTop_toBottomOf="@id/backButton"/>
+            app:layout_constraintTop_toBottomOf="@id/backButton" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:gravity="center"
             android:layout_marginTop="50dp"
             android:background="@drawable/rounded_top_corners"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kullaniciText"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
             android:orientation="vertical"
-            android:id="@+id/linearLayout">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kullaniciText">
 
             <TextView
+                style="@style/SubtitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
-                style="@style/SubtitleText"
-                android:textSize="30sp"
-                android:text="Giriş Yap" />
+                android:text="Giriş Yap"
+                android:textSize="30sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="350dp"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/emailEdit"
                     android:background="@color/white"
                     android:hint="Email"
-                    android:text="@={viewModel.email}"/>
+                    android:text="@={viewModel.email}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="350dp"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/passwordEdit"
-                    android:inputType="textPassword"
-                    android:hint="Şifre"
                     android:background="@color/white"
-                    android:text="@={viewModel.password}"/>
+                    android:hint="Şifre"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.password}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:id="@+id/hemenKaydolun"
+                style="@style/CaptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/CaptionText"
-                android:text="Doğrulama kodunuz var mı? Hemen kaydolun."
-                android:textColor="@color/colorPrimaryDarkKutuphane"
                 android:layout_margin="10dp"
-                android:id="@+id/hemenKaydolun"/>
+                android:text="Doğrulama kodunuz var mı? Hemen kaydolun."
+                android:textColor="@color/colorPrimaryDarkKutuphane" />
 
             <Button
                 android:id="@+id/girisYapButton"
-                android:layout_width="200dp"
-                android:layout_margin="10dp"
                 style="@style/KullaniciButton"
-                android:backgroundTint="@color/colorPrimaryDarkKutuphane"
-                android:textColor="@color/white"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:layout_marginVertical="5dp"
-                android:text="Giriş Yap" />
+                android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+                android:text="Giriş Yap"
+                android:textColor="@color/white" />
 
         </LinearLayout>
+
+        <include
+            android:id="@+id/loadingLayout"
+            layout="@layout/state_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

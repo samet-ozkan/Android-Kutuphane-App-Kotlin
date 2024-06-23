@@ -15,6 +15,7 @@ import com.sametozkan.kutuphane.presentation.kullanici.home.kitaponerileri.Kitap
 import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphaneler.KutuphanelerFragment
 import com.sametozkan.kutuphane.presentation.kullanici.home.profil.KullaniciProfilFragment
 import com.sametozkan.kutuphane.util.KullaniciFragments
+import com.sametozkan.kutuphane.util.LoadingManager
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,6 +34,13 @@ class KullaniciHomeActivity : AppCompatActivity() {
         setupLogoutButton()
 
         initFrameLayout()
+        observeLoading()
+    }
+
+    private fun observeLoading(){
+        LoadingManager.loading.observe(this){
+            binding.isLoading = it
+        }
     }
 
     private fun initFrameLayout(){

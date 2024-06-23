@@ -25,13 +25,13 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
     val viewModel: KutuphaneKitapIstekleriViewModel by viewModels()
 
     val onaylaClickListener: (KitapKullaniciRes) -> Unit = { kitapKullaniciRes ->
-        viewModel.kitapIstegiOnayla(kitapKullaniciRes.id){
-            myResult -> 
-            when(myResult){
+        viewModel.kitapIstegiOnayla(kitapKullaniciRes.id) { myResult ->
+            when (myResult) {
                 is MyResult.Success -> {
                     Toast.makeText(context, "Onaylandı!", Toast.LENGTH_SHORT).show()
                     fetchIstekler()
                 }
+
                 is MyResult.Error -> {
                     Toast.makeText(context, "Onaylanamadı!", Toast.LENGTH_SHORT).show()
                     println(myResult.exception.message)
@@ -41,13 +41,13 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
     }
 
     val reddetClickListener: (KitapKullaniciRes) -> Unit = { kitapKullaniciRes ->
-        viewModel.kitapIstegiReddet(kitapKullaniciRes.id){
-                myResult ->
-            when(myResult){
+        viewModel.kitapIstegiReddet(kitapKullaniciRes.id) { myResult ->
+            when (myResult) {
                 is MyResult.Success -> {
                     Toast.makeText(context, "Reddedildi!", Toast.LENGTH_SHORT).show()
                     fetchIstekler()
                 }
+
                 is MyResult.Error -> {
                     Toast.makeText(context, "Reddedilemedi!", Toast.LENGTH_SHORT).show()
                     println(myResult.exception.message)
@@ -89,9 +89,11 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
 
             if (checkedIds.contains(R.id.bekleyenChip)) {
                 chips.add(KutuphaneKitapIstekleriChips.BEKLEYEN)
-            } else if (checkedIds.contains(R.id.onaylandiChip)) {
+            }
+            if (checkedIds.contains(R.id.onaylandiChip)) {
                 chips.add(KutuphaneKitapIstekleriChips.ONAYLANDI)
-            } else if (checkedIds.contains(R.id.reddedildiChip)) {
+            }
+            if (checkedIds.contains(R.id.reddedildiChip)) {
                 chips.add(KutuphaneKitapIstekleriChips.REDDEDILDI)
             }
 

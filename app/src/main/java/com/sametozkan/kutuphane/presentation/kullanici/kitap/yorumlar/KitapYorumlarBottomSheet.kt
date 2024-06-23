@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitap.yorumlar
+package com.sametozkan.kutuphane.presentation.kullanici.kitap.yorumlar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sametozkan.kutuphane.databinding.BottomSheetKitapYorumlarBinding
-import com.sametozkan.kutuphane.presentation.kullanici.home.kitap.KitapViewModel
+import com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapViewModel
 import com.sametozkan.kutuphane.util.MyResult
 
 class KitapYorumlarBottomSheet : BottomSheetDialogFragment() {

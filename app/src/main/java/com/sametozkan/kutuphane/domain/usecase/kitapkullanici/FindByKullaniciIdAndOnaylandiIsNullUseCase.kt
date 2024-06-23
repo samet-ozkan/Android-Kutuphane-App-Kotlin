@@ -2,12 +2,14 @@ package com.sametozkan.kutuphane.domain.usecase.kitapkullanici
 
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.domain.repository.KitapKullaniciRepository
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
 class FindByKullaniciIdAndOnaylandiIsNullUseCase @Inject constructor(private val kitapKullaniciRepository: KitapKullaniciRepository) {
 
     suspend operator fun invoke(accountId: Long): MyResult<List<KitapKullaniciRes>> {
+        LoadingManager.startLoading()
         return try {
             val response = kitapKullaniciRepository.findByKullaniciIdAndOnaylandiIsNull(accountId)
             if (response.isSuccessful) {
@@ -22,6 +24,8 @@ class FindByKullaniciIdAndOnaylandiIsNullUseCase @Inject constructor(private val
             }
         } catch (e: Exception) {
             MyResult.Error(e)
+        } finally {
+            LoadingManager.stopLoading()
         }
     }
 }

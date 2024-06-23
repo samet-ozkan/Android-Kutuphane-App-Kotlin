@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitap.yorumlar
+package com.sametozkan.kutuphane.presentation.kullanici.kitap.yorumlar
 
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +39,7 @@ class KitapYorumlarRvAdapter :
         fun bindItem(kitapYorumRes: KitapYorumRes) {
             binding.kitapYorumRes = kitapYorumRes
             binding.spoilerGosterButton.setOnClickListener {
-                binding.spoilerLayout.visibility = View.INVISIBLE
+                binding.spoilerLayout.visibility = View.GONE
                 binding.yorumTextView.visibility = View.VISIBLE
             }
         }

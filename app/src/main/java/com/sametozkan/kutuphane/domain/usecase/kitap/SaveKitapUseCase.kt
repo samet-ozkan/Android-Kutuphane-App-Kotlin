@@ -4,6 +4,7 @@ import com.sametozkan.kutuphane.data.dto.request.KitapReq
 import com.sametozkan.kutuphane.data.dto.request.TurReq
 import com.sametozkan.kutuphane.data.dto.request.YazarReq
 import com.sametozkan.kutuphane.domain.repository.KitapRepository
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
@@ -12,6 +13,7 @@ class SaveKitapUseCase @Inject constructor(private val kitapRepository: KitapRep
     suspend operator fun invoke(
         kitapReq: KitapReq,
     ): MyResult<Long> {
+        LoadingManager.startLoading()
         return try {
             val response = kitapRepository.save(kitapReq)
             if (response.isSuccessful) {
@@ -26,6 +28,8 @@ class SaveKitapUseCase @Inject constructor(private val kitapRepository: KitapRep
             }
         } catch (e: Exception) {
             MyResult.Error(e)
+        } finally {
+            LoadingManager.stopLoading()
         }
     }
 }

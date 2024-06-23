@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriOnayBekleyenlerBinding
+import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
+import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeViewModel
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,9 +47,10 @@ class KitapIstekleriOnayBekleyenlerFragment : Fragment() {
                 is MyResult.Success -> {
                     rvAdapter.list = myResult.data
                 }
-
                 is MyResult.Error -> {
-                    println(myResult.exception.message)
+                    myResult.exception.message?.let {
+                        ErrorDialog(it).show(parentFragmentManager, "Hata")
+                    }
                 }
             }
         }
@@ -62,7 +66,9 @@ class KitapIstekleriOnayBekleyenlerFragment : Fragment() {
                     refreshList()
                 }
                 is MyResult.Error -> {
-                    println(myResult.exception.message)
+                    myResult.exception.message?.let {
+                        ErrorDialog(it).show(parentFragmentManager, "Hata")
+                    }
                 }
             }
             }

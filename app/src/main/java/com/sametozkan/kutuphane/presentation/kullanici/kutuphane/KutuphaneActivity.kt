@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane
+package com.sametozkan.kutuphane.presentation.kullanici.kutuphane
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneBinding
-import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.kitaplar.KitaplarActivity
-import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
+import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.kitaplar.KitaplarActivity
+import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +26,13 @@ class KutuphaneActivity : AppCompatActivity() {
         setupKutuphaneId()
         setupYorumlarButton()
         setupKitaplarButton()
+        observeLoading()
+    }
+
+    private fun observeLoading(){
+        LoadingManager.loading.observe(this){
+            binding.isLoading = it
+        }
     }
 
     private fun setupKitaplarButton() {

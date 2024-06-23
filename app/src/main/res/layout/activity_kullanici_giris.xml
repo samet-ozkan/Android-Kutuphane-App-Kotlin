@@ -1,115 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.sametozkan.kutuphane.presentation.kullanici.giris.KullaniciGirisViewModel" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/back_square_svgrepo_com"
-            app:tint="@color/white"
-            android:layout_margin="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/backButton"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            style="@style/HeadlineText"
-            android:text="Kullanıcı"
-            android:textSize="40sp"
-            android:textColor="@color/white"
-            android:id="@+id/kullaniciText"
-            app:layout_constraintStart_toStartOf="@id/backButton"
-            app:layout_constraintTop_toBottomOf="@id/backButton"/>
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/rounded_top_corners"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kullaniciText"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="vertical"
-            android:id="@+id/linearLayout">
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/back_square_svgrepo_com"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
 
             <TextView
+                android:id="@+id/kullaniciText"
+                style="@style/HeadlineText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
-                style="@style/SubtitleText"
-                android:textSize="30sp"
-                android:text="Giriş Yap" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="350dp"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/emailEdit"
-                    android:hint="Email"
-                    android:background="@color/white"
-                    android:text="@={viewModel.email}"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="350dp"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:id="@+id/passwordEdit"
-                    android:inputType="textPassword"
-                    android:hint="Şifre"
-                    android:text="@={viewModel.password}"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/CaptionText"
-                android:text="Hesabınız yok mu? Hemen kaydolun."
-                android:textColor="@color/colorPrimaryDark"
-                android:layout_margin="10dp"
-                android:id="@+id/hemenKaydolun"/>
-
-            <Button
-                android:id="@+id/girisYapButton"
-                android:layout_width="200dp"
-                android:layout_margin="10dp"
-                style="@style/KullaniciButton"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Kullanıcı"
                 android:textColor="@color/white"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:text="Giriş Yap" />
+                android:textSize="40sp"
+                app:layout_constraintStart_toStartOf="@id/backButton"
+                app:layout_constraintTop_toBottomOf="@id/backButton" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/rounded_top_corners"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/kullaniciText">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    style="@style/SubtitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:text="Giriş Yap"
+                    android:textSize="30sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/emailEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="@{!isLoading}"
+                        android:background="@color/white"
+                        android:hint="Email"
+                        android:text="@={viewModel.email}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/passwordEdit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:hint="Şifre"
+                        android:enabled="@{!isLoading}"
+                        android:inputType="textPassword"
+                        android:text="@={viewModel.password}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/hemenKaydolun"
+                    style="@style/CaptionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Hesabınız yok mu? Hemen kaydolun."
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <Button
+                    android:id="@+id/girisYapButton"
+                    style="@style/KullaniciButton"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:text="Giriş Yap"
+                    android:enabled="@{!isLoading}"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            app:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/state_loading"/>
+
+    </RelativeLayout>
 
 </layout>

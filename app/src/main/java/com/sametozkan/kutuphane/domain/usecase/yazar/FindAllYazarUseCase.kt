@@ -2,12 +2,14 @@ package com.sametozkan.kutuphane.domain.usecase.yazar
 
 import com.sametozkan.kutuphane.data.dto.response.YazarRes
 import com.sametozkan.kutuphane.domain.repository.YazarRepository
+import com.sametozkan.kutuphane.util.LoadingManager
 import javax.inject.Inject
 import com.sametozkan.kutuphane.util.MyResult
 
 class FindAllYazarUseCase @Inject constructor(private val yazarRepository: YazarRepository) {
 
     suspend operator fun invoke(): MyResult<List<YazarRes>> {
+        LoadingManager.startLoading()
         return try {
             val response = yazarRepository.findAll()
             if (response.isSuccessful) {
@@ -22,6 +24,8 @@ class FindAllYazarUseCase @Inject constructor(private val yazarRepository: Yazar
             }
         } catch (e: Exception) {
             MyResult.Error(e)
+        } finally {
+            LoadingManager.stopLoading()
         }
     }
 }

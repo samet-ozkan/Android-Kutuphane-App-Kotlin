@@ -1,16 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/appBarLayout"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/frameLayout"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -21,37 +35,37 @@
                     android:layout_height="match_parent">
 
                     <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintGuide_percent="0.9"
                         android:orientation="vertical"
-                        android:id="@+id/guideline1"/>
+                        app:layout_constraintGuide_percent="0.9" />
 
                     <TextView
                         android:id="@+id/toolbarTitle"
+                        style="@style/HeadlineText"
                         android:layout_width="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/guideline1"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:gravity="center|left"
                         android:paddingLeft="20dp"
-                        android:layout_height="match_parent"
-                        style="@style/HeadlineText"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="Kullanıcı"
                         android:textColor="@color/white"
-                        android:layout_gravity="center"
-                        android:text="Kullanıcı" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/guideline1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
+                        android:id="@+id/logout"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        app:layout_constraintStart_toStartOf="@id/guideline1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:tint="@color/white"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         android:src="@drawable/baseline_logout_24"
-                        android:id="@+id/logout"/>
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/guideline1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -61,19 +75,35 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <FrameLayout
-            app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/frameLayout"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+
+        <include
+            layout="@layout/state_loading"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/loadingLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/frameLayout"
             android:layout_height="75dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:menu="@menu/nav_menu_kullanici"/>
+            app:menu="@menu/nav_menu_kullanici" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

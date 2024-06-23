@@ -3,12 +3,14 @@ package com.sametozkan.kutuphane.domain.usecase.kitapyazar
 import com.sametozkan.kutuphane.data.dto.request.KitapYazarReq
 import com.sametozkan.kutuphane.data.dto.response.KitapYazarRes
 import com.sametozkan.kutuphane.domain.repository.KitapYazarRepository
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
 class UpdateKitapYazarUseCase @Inject constructor(private val kitapYazarRepository: KitapYazarRepository) {
 
     suspend operator fun invoke(id: Long, kitapYazarReq: KitapYazarReq): MyResult<KitapYazarRes> {
+        LoadingManager.startLoading()
         return try {
             val response = kitapYazarRepository.update(id, kitapYazarReq)
             if (response.isSuccessful) {
@@ -23,6 +25,8 @@ class UpdateKitapYazarUseCase @Inject constructor(private val kitapYazarReposito
             }
         } catch (e: Exception) {
             MyResult.Error(e)
+        } finally {
+            LoadingManager.stopLoading()
         }
     }
 }

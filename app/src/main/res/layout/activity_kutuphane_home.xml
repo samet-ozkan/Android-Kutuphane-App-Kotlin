@@ -5,9 +5,15 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
         <variable
             name="viewModel"
             type="com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout
@@ -17,50 +23,64 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.AppBarLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_centerInParent="true"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    style="@style/KutuphaneToolbar">
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        style="@style/KutuphaneToolbar">
 
-                        <TextView
-                            android:id="@+id/toolbarTitle"
-                            style="@style/HeadlineText"
-                            android:layout_width="0dp"
-                            android:gravity="center|right"
-                            android:paddingRight="20dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="Kutuphane"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                            <TextView
+                                android:id="@+id/toolbarTitle"
+                                style="@style/HeadlineText"
+                                android:layout_width="0dp"
+                                android:gravity="center|right"
+                                android:paddingRight="20dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Kutuphane"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:textColor="@color/white"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                </androidx.appcompat.widget.Toolbar>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </com.google.android.material.appbar.AppBarLayout>
+                    </androidx.appcompat.widget.Toolbar>
 
-            <FrameLayout
-                android:id="@+id/frameLayout"
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <FrameLayout
+                    android:id="@+id/frameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <include
+                android:id="@+id/loadingLayout"
+                layout="@layout/state_loading"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                app:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"

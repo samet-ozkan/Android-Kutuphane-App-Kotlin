@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitap
+package com.sametozkan.kutuphane.presentation.kullanici.kitap
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,6 +16,7 @@ import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.SaveKitapKullanici
 import com.sametozkan.kutuphane.domain.usecase.kitapyorum.FindYorumlarByKitapIdUseCase
 import com.sametozkan.kutuphane.domain.usecase.kitapyorum.SaveKitapYorumUseCase
 import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindKutuphaneByIdUseCase
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

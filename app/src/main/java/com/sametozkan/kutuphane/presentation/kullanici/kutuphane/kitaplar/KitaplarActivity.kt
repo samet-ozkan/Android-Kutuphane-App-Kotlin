@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.kitaplar
+package com.sametozkan.kutuphane.presentation.kullanici.kutuphane.kitaplar
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.data.dto.response.KitapRes
 import com.sametozkan.kutuphane.databinding.ActivityKitaplarBinding
-import com.sametozkan.kutuphane.presentation.kullanici.home.kitap.KitapActivity
+import com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapActivity
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,6 +39,14 @@ class KitaplarActivity : AppCompatActivity() {
         setupRv()
         setupSearchView()
         observeQuery()
+
+        observeLoading()
+    }
+
+    private fun observeLoading(){
+        LoadingManager.loading.observe(this){
+            binding.isLoading = it
+        }
     }
 
     private fun observeQuery() {

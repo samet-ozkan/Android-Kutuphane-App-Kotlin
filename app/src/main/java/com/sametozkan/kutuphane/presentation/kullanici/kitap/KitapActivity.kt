@@ -1,4 +1,4 @@
-package com.sametozkan.kutuphane.presentation.kullanici.home.kitap
+package com.sametozkan.kutuphane.presentation.kullanici.kitap
 
 import android.os.Bundle
 import android.widget.Toast
@@ -7,8 +7,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKitapBinding
 import com.sametozkan.kutuphane.databinding.ActivityKitaplarBinding
-import com.sametozkan.kutuphane.presentation.kullanici.home.kitap.yorumlar.KitapYorumlarBottomSheet
-import com.sametozkan.kutuphane.presentation.kullanici.home.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
+import com.sametozkan.kutuphane.presentation.kullanici.kitap.yorumlar.KitapYorumlarBottomSheet
+import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
+import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,6 +30,14 @@ class KitapActivity : AppCompatActivity() {
         fetchData()
         setupOduncAlButton()
         setupYorumlarButton()
+
+        observeLoading()
+    }
+
+    private fun observeLoading(){
+        LoadingManager.loading.observe(this){
+            binding.isLoading = it
+        }
     }
 
     private fun setupYorumlarButton() {

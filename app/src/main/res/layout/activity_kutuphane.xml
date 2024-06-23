@@ -5,272 +5,294 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="kutuphane"
             type="com.sametozkan.kutuphane.data.dto.response.KutuphaneRes" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:background="@color/colorPrimaryDark"
-                style="@style/Toolbar">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.1" />
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginHorizontal="10dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/guideline1"
-                        android:id="@+id/cancelIcon"
-                        app:tint="@color/white"
-                        android:src="@drawable/baseline_arrow_back_24"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:text="@{kutuphane.adi}"
-                        style="@style/HeadlineText"
-                        android:layout_marginHorizontal="10dp"
-                        android:id="@+id/toolbarTitle"
-                        android:paddingRight="20dp"
-                        app:layout_constraintStart_toStartOf="@id/guideline1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:gravity="center|right"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        tools:text="Kütüphane Adı"
-                        android:textColor="@color/white"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorLightGray"
-            android:fillViewport="true">
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
-                android:id="@+id/constraintLayout1"
-                android:layout_height="match_parent">
+                android:layout_height="?attr/actionBarSize">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:id="@+id/backgroundTop"
-                    android:src="@drawable/background_top_blue"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    style="@style/Toolbar"
+                    android:background="@color/colorPrimaryDark">
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/locationIcon"
-                    app:tint="@color/white"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/constraintLayout1"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintBottom_toTopOf="@id/sehir"
-                    android:src="@drawable/baseline_location_on_24"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sehir"
-                    android:text="@{kutuphane.sehir}"
-                    style="@style/SubtitleText"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toBottomOf="@id/locationIcon"
-                    tools:text="Bursa" />
-
-                <Button
-                    android:id="@+id/kitaplarButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:text="Kitaplar"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sehir"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    app:layout_constraintBottom_toTopOf="@id/yorumlarButton"
-                    app:icon="@drawable/book_2_svgrepo_com"
-                    app:iconSize="25dp"
-                    style="@style/KullaniciButton"
-                    android:backgroundTint="@color/white"/>
-
-                <Button
-                    android:id="@+id/yorumlarButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Yorumları Görüntüle"
-                    android:textColor="@color/colorPrimaryDark"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/kitaplarButton"
-                    app:layout_constraintBottom_toBottomOf="@id/backgroundTop"
-                    style="@style/KullaniciButton"
-                    app:icon="@drawable/baseline_comment_24"
-                    app:iconSize="25dp"
-                    android:backgroundTint="@color/white"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/kutuphaneBilgileri"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/backgroundTop"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/HeadlineText"
-                        android:layout_margin="10dp"
-                        android:text="Kütüphane Bilgileri"/>
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="35dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/background_kitap_info"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.1" />
+
                         <ImageView
-                            android:layout_width="0dp"
-                            android:layout_weight="0.5"
-                            android:layout_gravity="center"
-                            android:layout_height="25dp"
-                            android:src="@drawable/book_2_svgrepo_com"/>
+                            android:id="@+id/cancelIcon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:src="@drawable/baseline_arrow_back_24"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/guideline1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/white" />
 
                         <TextView
+                            android:id="@+id/toolbarTitle"
+                            style="@style/HeadlineText"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:gravity="center|left"
-                            style="@style/SubtitleText"
-                            android:text="Teslim Süresi:"
-                            android:layout_weight="2"/>
+                            android:layout_marginHorizontal="10dp"
+                            android:gravity="center|right"
+                            android:paddingRight="20dp"
+                            android:text="@{kutuphane.adi}"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@id/guideline1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Kütüphane Adı" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorLightGray"
+                android:fillViewport="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/backgroundTop"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:src="@drawable/background_top_blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/locationIcon"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/baseline_location_on_24"
+                        app:layout_constraintBottom_toTopOf="@id/sehir"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/constraintLayout1"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/sehir"
+                        style="@style/SubtitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{kutuphane.sehir}"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/locationIcon"
+                        tools:text="Bursa" />
+
+                    <Button
+                        android:id="@+id/kitaplarButton"
+                        style="@style/KullaniciButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:backgroundTint="@color/white"
+                        android:text="Kitaplar"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:icon="@drawable/book_2_svgrepo_com"
+                        app:iconSize="25dp"
+                        app:layout_constraintBottom_toTopOf="@id/yorumlarButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/sehir"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <Button
+                        android:id="@+id/yorumlarButton"
+                        style="@style/KullaniciButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white"
+                        android:text="Yorumları Görüntüle"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:icon="@drawable/baseline_comment_24"
+                        app:iconSize="25dp"
+                        app:layout_constraintBottom_toBottomOf="@id/backgroundTop"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/kitaplarButton" />
+
+                    <LinearLayout
+                        android:id="@+id/kutuphaneBilgileri"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/backgroundTop">
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="5"
-                            android:gravity="center|left"
-                            android:id="@+id/kutuphaneTeslimSuresi"
-                            android:layout_height="match_parent"
-                            android:text="@{`Teslim süresi: ` + String.valueOf(kutuphane.teslimSuresi) + ` gün`}"
-                            android:padding="10dp"
-                            style="@style/BodyText"
-                            tools:text="10 gün" />
+                            style="@style/HeadlineText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:text="Kütüphane Bilgileri" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/background_kitap_info"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/book_2_svgrepo_com" />
+
+                            <TextView
+                                style="@style/SubtitleText"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center|left"
+                                android:text="Teslim Süresi:" />
+
+                            <TextView
+                                android:id="@+id/kutuphaneTeslimSuresi"
+                                style="@style/BodyText"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
+                                android:gravity="center|left"
+                                android:padding="10dp"
+                                android:text="@{`Teslim süresi: ` + String.valueOf(kutuphane.teslimSuresi) + ` gün`}"
+                                tools:text="10 gün" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/background_kitap_info"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="25dp"
+                                android:layout_gravity="center"
+                                android:layout_weight="0.5"
+                                android:src="@drawable/description_svgrepo_com" />
+
+                            <TextView
+                                style="@style/SubtitleText"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center|left"
+                                android:text="Adres:" />
+
+                            <TextView
+                                android:id="@+id/kutuphaneAdresi"
+                                style="@style/BodyText"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:gravity="center|left"
+                                android:padding="10dp"
+                                android:text="@{kutuphane.adresi}"
+                                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/chatGpt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/background_kitap_info"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_weight="0.5"
-                            android:layout_gravity="center"
-                            android:layout_height="25dp"
-                            android:src="@drawable/description_svgrepo_com"/>
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/kutuphaneBilgileri">
 
                         <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center|left"
-                            style="@style/SubtitleText"
-                            android:text="Adres:"
-                            android:layout_weight="2"/>
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_weight="5"
-                            android:padding="10dp"
-                            android:gravity="center|left"
-                            android:id="@+id/kutuphaneAdresi"
+                            style="@style/HeadlineText"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{kutuphane.adresi}"
+                            android:layout_margin="10dp"
+                            android:text="ChatGPT Yorumu" />
+
+                        <TextView
+                            android:id="@+id/chatGptYorumu"
                             style="@style/BodyText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/background_kitap_info"
+                            android:padding="10dp"
+                            android:text="@{kutuphane.chatGptYorumu}"
                             tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
 
                     </LinearLayout>
 
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/kutuphaneBilgileri"
-                    android:id="@+id/chatGpt"
-                    android:orientation="vertical">
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/HeadlineText"
-                        android:layout_margin="10dp"
-                        android:text="ChatGPT Yorumu"/>
+        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        style="@style/BodyText"
-                        android:padding="10dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/background_kitap_info"
-                        android:id="@+id/chatGptYorumu"
-                        android:text="@{kutuphane.chatGptYorumu}"
-                        tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+        <include
+            android:id="@+id/loadingLayout"
+            layout="@layout/state_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            app:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
-                </LinearLayout>
+    </RelativeLayout>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-
-    </LinearLayout>
 </layout>
