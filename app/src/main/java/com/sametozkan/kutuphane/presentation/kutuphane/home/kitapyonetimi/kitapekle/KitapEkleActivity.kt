@@ -26,6 +26,13 @@ class KitapEkleActivity : AppCompatActivity() {
         viewModel.changeFragment.value = KutuphaneFragments.KITAP_EKLE
 
         observeLoading()
+        setBackButton()
+    }
+
+    private fun setBackButton(){
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun observeLoading(){

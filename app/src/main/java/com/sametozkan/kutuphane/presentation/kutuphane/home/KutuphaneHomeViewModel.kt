@@ -36,4 +36,8 @@ class KutuphaneHomeViewModel @Inject constructor(
             }
         } ?: run { println("Account ID null!") }
     }
+
+    fun logout(){
+        sessionManager.clear()
+    }
 }

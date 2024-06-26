@@ -28,6 +28,11 @@ class KutuphaneActivity : AppCompatActivity() {
         setupYorumlarButton()
         setupKitaplarButton()
         observeLoading()
+        setupBackButton()
+    }
+
+    private fun setupBackButton(){
+        onBackPressedDispatcher.onBackPressed()
     }
 
     private fun observeLoading(){

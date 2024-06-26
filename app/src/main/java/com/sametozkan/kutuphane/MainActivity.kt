@@ -36,12 +36,14 @@ class MainActivity : AppCompatActivity() {
                         "kutuphane" -> {
                             val intent =
                                 Intent(this@MainActivity, KutuphaneHomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                             startActivity(intent)
                         }
 
                         "kullanici" -> {
                             val intent =
                                 Intent(this@MainActivity, KullaniciHomeActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                             startActivity(intent)
                         }
                     }

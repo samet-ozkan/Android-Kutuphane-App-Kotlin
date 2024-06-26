@@ -42,6 +42,11 @@ class KitaplarActivity : AppCompatActivity() {
         observeQuery()
 
         observeLoading()
+        setupBackButton()
+    }
+
+    private fun setupBackButton(){
+        onBackPressedDispatcher.onBackPressed()
     }
 
     private fun observeLoading(){

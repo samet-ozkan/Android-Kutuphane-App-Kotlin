@@ -33,6 +33,13 @@ class KitapActivity : AppCompatActivity() {
         setupYorumlarButton()
 
         observeLoading()
+        setupBackButton()
+    }
+
+    private fun setupBackButton(){
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun observeLoading(){

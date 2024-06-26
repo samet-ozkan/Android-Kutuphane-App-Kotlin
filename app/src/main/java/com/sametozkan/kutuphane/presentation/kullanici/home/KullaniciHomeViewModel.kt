@@ -36,4 +36,8 @@ private val findKullaniciByAccountIdUseCase: FindKullaniciByAccountIdUseCase
             }
         } ?: run { println("Account ID null!") }
     }
+
+    fun logout(){
+        sessionManager.clear()
+    }
 }

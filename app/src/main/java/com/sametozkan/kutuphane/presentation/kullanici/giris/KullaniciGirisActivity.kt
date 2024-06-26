@@ -42,6 +42,7 @@ class KullaniciGirisActivity : AppCompatActivity() {
                     is MyResult.Success -> {
                         val intent = Intent(this, KullaniciHomeActivity::class.java)
                         startActivity(intent)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         viewModel.setSession(myResult.data)
                     }
 

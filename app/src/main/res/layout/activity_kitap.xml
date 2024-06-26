@@ -55,7 +55,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/guideline1"
-                            android:id="@+id/cancelIcon"
+                            android:id="@+id/backButton"
                             app:tint="@color/white"
                             android:src="@drawable/baseline_arrow_back_24"/>
 

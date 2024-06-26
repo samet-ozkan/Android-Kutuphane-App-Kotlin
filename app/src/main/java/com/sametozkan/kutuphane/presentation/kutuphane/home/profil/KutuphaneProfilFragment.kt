@@ -1,11 +1,13 @@
 package com.sametozkan.kutuphane.presentation.kutuphane.home.profil
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.sametozkan.kutuphane.MainActivity
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneProfilBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
@@ -26,6 +28,20 @@ class KutuphaneProfilFragment : Fragment() {
         binding = FragmentKutuphaneProfilBinding.inflate(inflater, container, false)
         setupKutuphane()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupCikisYapButton()
+    }
+
+    private fun setupCikisYapButton(){
+        binding.cikisYapButton.setOnClickListener {
+            sharedViewModel.logout()
+            val intent = Intent(context, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
     }
 
     private fun setupKutuphane() {
