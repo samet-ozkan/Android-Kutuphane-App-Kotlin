@@ -42,7 +42,9 @@ class KutuphaneGirisActivity : AppCompatActivity() {
                     is MyResult.Success -> {
                         val jwtRes = result.data
                         viewModel.setSession(jwtRes)
-                        startActivity(Intent(this, KutuphaneHomeActivity::class.java))
+                        val intent = Intent(this, KutuphaneHomeActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        startActivity(intent)
                     }
                     is MyResult.Error -> {
                         when(result.responseCode){

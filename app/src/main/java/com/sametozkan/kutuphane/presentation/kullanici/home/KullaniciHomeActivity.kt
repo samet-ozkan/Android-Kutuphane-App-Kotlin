@@ -100,4 +100,5 @@ class KullaniciHomeActivity : AppCompatActivity() {
             true
         }
     }
+
 }

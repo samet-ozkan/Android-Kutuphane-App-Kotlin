@@ -54,7 +54,7 @@ class KutuphanelerFragment : Fragment() {
     private fun setupKutuphanelerRv() {
         rvAdapter = KutuphanelerRvAdapter(ArrayList()) {
             kutuphaneId ->
-            val intent = Intent(context, KutuphaneActivity::class.java)
+            val intent = Intent(requireContext(), KutuphaneActivity::class.java)
             intent.putExtra("Kütüphane ID", kutuphaneId)
             startActivity(intent)
         }
