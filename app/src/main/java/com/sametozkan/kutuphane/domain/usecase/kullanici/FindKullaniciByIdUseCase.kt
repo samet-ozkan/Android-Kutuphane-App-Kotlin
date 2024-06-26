@@ -18,13 +18,13 @@ class FindKullaniciByIdUseCase @Inject constructor(private val kullaniciReposito
                 if (kullaniciRes != null) {
                     MyResult.Success(kullaniciRes)
                 } else {
-                    MyResult.Error(Exception("Kullanici response body is null"))
+                    MyResult.Error(Exception("Kullanici response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find kullanici by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kullanici by id!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.ActivityKullaniciGirisBinding
 import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
 import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeActivity
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,8 +46,10 @@ class KullaniciGirisActivity : AppCompatActivity() {
                     }
 
                     is MyResult.Error -> {
-                        myResult.exception.message?.let {
-                            ErrorDialog(it).show(supportFragmentManager, "Hata")
+                        when(myResult.responseCode){
+                            401 -> ErrorDialog(getString(R.string.wrong_email_or_password)).show(supportFragmentManager, "Hata")
+                            404 -> ErrorDialog(getString(R.string.wrong_email_or_password)).show(supportFragmentManager, "Hata")
+                            else -> ErrorDialog(getString(R.string.error_generic)).show(supportFragmentManager, "Hata")
                         }
                     }
                 }

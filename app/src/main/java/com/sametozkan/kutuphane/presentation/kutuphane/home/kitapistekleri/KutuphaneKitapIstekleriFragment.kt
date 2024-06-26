@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneKitapIstekleriBinding
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.KutuphaneKitapIstekleriChips
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,8 +34,7 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(context, "Onaylanamadı!", Toast.LENGTH_SHORT).show()
-                    println(myResult.exception.message)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }
@@ -49,8 +49,7 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(context, "Reddedilemedi!", Toast.LENGTH_SHORT).show()
-                    println(myResult.exception.message)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }
@@ -110,8 +109,7 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(context, "Kitap istekleri alınamadı!", Toast.LENGTH_SHORT).show()
-                    println(myResult.exception.message)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }

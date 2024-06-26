@@ -18,13 +18,13 @@ class UpdateKullaniciUseCase @Inject constructor(private val kullaniciRepository
                 if (kullaniciRes != null) {
                     MyResult.Success(kullaniciRes)
                 } else {
-                    MyResult.Error(Exception("Kullanici response body is null"))
+                    MyResult.Error(Exception("Kullanici response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to update kullanici: ${response.message()}"))
+                MyResult.Error(Exception("Failed to update kullanici!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.sametozkan.kutuphane.databinding.FragmentKitapOnerileriBinding
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,8 +50,7 @@ class KitapOnerileriFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    println(myResult.exception.message)
-                    Toast.makeText(context, "Hata oluştu!", Toast.LENGTH_SHORT).show()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }

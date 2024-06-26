@@ -10,6 +10,7 @@ import com.sametozkan.kutuphane.databinding.FragmentKullaniciProfilBinding
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneProfilBinding
 import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeViewModel
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,7 +37,7 @@ class KullaniciProfilFragment : Fragment() {
                     binding.kullaniciRes = myResult.data
                 }
                 is MyResult.Error -> {
-                    myResult.exception.printStackTrace()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }

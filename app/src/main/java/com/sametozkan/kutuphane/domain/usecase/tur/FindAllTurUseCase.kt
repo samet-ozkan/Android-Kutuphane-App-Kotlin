@@ -18,13 +18,13 @@ class FindAllTurUseCase @Inject constructor(private val turRepository: TurReposi
                 if (turList != null) {
                     MyResult.Success(turList)
                 } else {
-                    MyResult.Error(Exception("Tur list is null"))
+                    MyResult.Error(Exception("Tur list is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find all tur: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all tur!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

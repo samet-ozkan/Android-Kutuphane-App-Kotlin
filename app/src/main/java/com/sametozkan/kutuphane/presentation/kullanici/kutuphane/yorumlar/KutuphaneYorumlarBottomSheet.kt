@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.BottomSheetKutuphaneYorumlarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneViewModel
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 
 class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
@@ -58,8 +59,7 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
                     }
 
                     is MyResult.Error -> {
-                        Toast.makeText(context, myResult.exception.message, Toast.LENGTH_SHORT)
-                            .show()
+                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                     }
                 }
             }
@@ -83,11 +83,7 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(
-                        context,
-                        "Kütüphane yorumları alınırken hata oluştu!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }

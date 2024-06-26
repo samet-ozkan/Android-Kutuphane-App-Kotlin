@@ -1,5 +1,6 @@
 package com.sametozkan.kutuphane.data.datasource.remote.authenticator
 
+import android.accounts.Account
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -12,6 +13,7 @@ import com.sametozkan.kutuphane.data.dto.request.TokenRefreshReq
 import com.sametozkan.kutuphane.domain.usecase.auth.RefreshTokenUseCase
 import com.sametozkan.kutuphane.presentation.kullanici.giris.KullaniciGirisActivity
 import com.sametozkan.kutuphane.presentation.kutuphane.giris.KutuphaneGirisActivity
+import com.sametozkan.kutuphane.util.AccountType
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.async
@@ -34,18 +36,16 @@ class AuthAuthenticator @Inject constructor(
         const val TAG = "AuthAuthenticator"
     }
 
-    private fun showLoginScreen(){
+    private fun showLoginScreen() {
         val accountType = sessionManager.getAccountType()
         sessionManager.clear()
-        lateinit var intentClass : Class<out AppCompatActivity>
+        lateinit var intentClass: Class<out AppCompatActivity>
         accountType?.let {
-            if (it.equals("kutuphane")){
+            if (it.equals(AccountType.KUTUPHANE.type)) {
                 intentClass = KutuphaneGirisActivity::class.java
-            }
-            else if(it.equals("kullanici")){
+            } else if (it.equals(AccountType.KULLANICI.type)) {
                 intentClass = KullaniciGirisActivity::class.java
-            }
-            else{
+            } else {
                 intentClass = MainActivity::class.java
             }
 
@@ -58,47 +58,56 @@ class AuthAuthenticator @Inject constructor(
     }
 
     override fun authenticate(route: Route?, response: Response): Request? {
-        val currentToken = sessionManager.getJWT()
+        if (response.code == 401) {
+            val currentToken = sessionManager.getJWT()
 
-        val token = runBlocking {
-            val updatedToken = sessionManager.getJWT()
+            val token = runBlocking {
+                val updatedToken = sessionManager.getJWT()
 
-            if (currentToken != updatedToken) {
-                updatedToken?.let {
-                    response.request.newBuilder()
-                        .header(HEADER_AUTHORIZATION, "$TOKEN_TYPE $it")
-                        .build()
-                }
-            } else {
-                sessionManager.getRefreshToken()?.let { refreshToken ->
-                    Log.d(TAG, "authenticate: refreshToken -> " + refreshToken)
-                    val result = async { refreshTokenUseCase(TokenRefreshReq(refreshToken)) }.await()
-                    when (result) {
-                        is MyResult.Success -> {
-                            Log.d(TAG, "authenticate: result success")
-                            result.data?.let { newData ->
-                                Log.d(TAG, "authenticate: newData refreshToken" + newData.refreshToken)
-                                runBlocking {
-                                    sessionManager.setJWT(newData.jwt)
-                                    sessionManager.setRefreshToken(newData.refreshToken)
-                                    sessionManager.setRefreshExpiryDate(newData.refreshExpiryDate)
+                if (currentToken != updatedToken) {
+                    updatedToken?.let {
+                        response.request.newBuilder()
+                            .header(HEADER_AUTHORIZATION, "$TOKEN_TYPE $it")
+                            .build()
+                    }
+                } else {
+                    sessionManager.getRefreshToken()?.let { refreshToken ->
+                        Log.d(TAG, "authenticate: refreshToken -> " + refreshToken)
+                        val result =
+                            async { refreshTokenUseCase(TokenRefreshReq(refreshToken)) }.await()
+                        when (result) {
+                            is MyResult.Success -> {
+                                Log.d(TAG, "authenticate: result success")
+                                result.data?.let { newData ->
+                                    Log.d(
+                                        TAG,
+                                        "authenticate: newData refreshToken" + newData.refreshToken
+                                    )
+                                    runBlocking {
+                                        sessionManager.setJWT(newData.jwt)
+                                        sessionManager.setRefreshToken(newData.refreshToken)
+                                        sessionManager.setRefreshExpiryDate(newData.refreshExpiryDate)
+                                    }
+                                    response.request.newBuilder()
+                                        .header(HEADER_AUTHORIZATION, "$TOKEN_TYPE ${newData.jwt}")
+                                        .build()
                                 }
-                                response.request.newBuilder()
-                                    .header(HEADER_AUTHORIZATION, "$TOKEN_TYPE ${newData.jwt}")
-                                    .build()
                             }
-                        }
-                        is MyResult.Error -> {
-                            Log.d(TAG, "authenticate: error show login")
-                            showLoginScreen()
-                            null
+
+                            is MyResult.Error -> {
+                                Log.d(TAG, "authenticate: error show login")
+                                showLoginScreen()
+                                null
+                            }
                         }
                     }
                 }
             }
-        }
 
-        return token
+            return token
+        } else {
+            return null
+        }
     }
 
 }

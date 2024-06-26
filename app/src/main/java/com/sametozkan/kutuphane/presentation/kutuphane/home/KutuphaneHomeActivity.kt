@@ -15,6 +15,7 @@ import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapistekleri.Kutup
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.KutuphaneKitapYonetimiFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.profil.KutuphaneProfilFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.teslimdurumu.KutuphaneTeslimDurumuFragment
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.KullaniciFragments
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.util.KutuphaneFragments
@@ -65,7 +66,7 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    myResult.exception.printStackTrace()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
                 }
             }
         }

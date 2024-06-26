@@ -19,13 +19,13 @@ class FetchKitapByIsbnUseCase @Inject constructor(private val kitapRepository: K
                 if (kitap != null) {
                     MyResult.Success(kitap)
                 } else {
-                    MyResult.Error(Resources.NotFoundException())
+                    MyResult.Error(Exception("Kitap is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find kitap: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kitap!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

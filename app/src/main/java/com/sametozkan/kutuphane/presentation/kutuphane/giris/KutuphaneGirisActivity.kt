@@ -4,9 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneGirisBinding
+import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeActivity
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,8 +45,11 @@ class KutuphaneGirisActivity : AppCompatActivity() {
                         startActivity(Intent(this, KutuphaneHomeActivity::class.java))
                     }
                     is MyResult.Error -> {
-                        val exception = result.exception
-                        println("Exception: " + exception)
+                        when(result.responseCode){
+                            401 -> ErrorDialog(getString(R.string.wrong_email_or_password)).show(supportFragmentManager, "Hata")
+                            404 -> ErrorDialog(getString(R.string.wrong_email_or_password)).show(supportFragmentManager, "Hata")
+                            else -> ErrorDialog(getString(R.string.error_generic)).show(supportFragmentManager, "Hata")
+                        }
                     }
                 }
             }

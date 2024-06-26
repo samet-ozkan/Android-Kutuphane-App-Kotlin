@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.data.dto.response.KitapRes
 import com.sametozkan.kutuphane.databinding.ActivityKitaplarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapActivity
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -70,7 +71,7 @@ class KitaplarActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    println(myResult.exception.message)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
                 }
             }
         }

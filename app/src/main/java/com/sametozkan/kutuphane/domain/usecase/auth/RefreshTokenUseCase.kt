@@ -24,13 +24,13 @@ class RefreshTokenUseCase @Inject constructor(private val refreshTokenRepository
                 if (tokenRefreshRes != null) {
                     return MyResult.Success(tokenRefreshRes)
                 } else {
-                    MyResult.Error(Exception("Token refresh body is null"))
+                    MyResult.Error(Exception("Refresh token is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to refreshing token: ${response.message()}"))
+                MyResult.Error(Exception("Failed to refreshing token!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         };
     }
     }

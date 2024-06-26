@@ -8,6 +8,7 @@ import com.sametozkan.kutuphane.data.dto.request.LoginReq
 import com.sametozkan.kutuphane.data.dto.response.JwtRes
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.domain.usecase.auth.LoginUseCase
+import com.sametozkan.kutuphane.util.AccountType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -28,7 +29,7 @@ class KutuphaneGirisViewModel @Inject constructor(
         val emailValue = email.value
         val passwordValue = password.value
         if (emailValue != null && passwordValue != null) {
-            val loginReq = LoginReq(emailValue, passwordValue)
+            val loginReq = LoginReq(emailValue, passwordValue, AccountType.KUTUPHANE.type)
             viewModelScope.launch(Dispatchers.IO) {
                 val result = async { loginUseCase(loginReq) }.await()
                 withContext(Dispatchers.Main){

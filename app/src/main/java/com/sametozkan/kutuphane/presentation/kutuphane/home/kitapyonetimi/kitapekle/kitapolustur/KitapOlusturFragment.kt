@@ -19,6 +19,7 @@ import com.sametozkan.kutuphane.data.dto.request.TurReq
 import com.sametozkan.kutuphane.data.dto.request.YazarReq
 import com.sametozkan.kutuphane.databinding.FragmentKitapOlusturBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleViewModel
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -150,15 +151,16 @@ class KitapOlusturFragment : Fragment() {
         binding.olusturButton.setOnClickListener {
             println("Olustur butonuna basildi!")
             println("Kitap adı:" + viewModel.kitapAdi.value)
-            viewModel.olustur { result ->
-                when (result) {
+            viewModel.olustur { myResult ->
+                when (myResult) {
                     is MyResult.Success -> {
                         Toast.makeText(context, "Başarılı!", Toast.LENGTH_SHORT).show()
                         requireActivity().finish()
                     }
 
                     is MyResult.Error -> {
-                        Toast.makeText(context, "Başarısız!", Toast.LENGTH_SHORT).show()
+                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+
                     }
                 }
             }
@@ -215,7 +217,7 @@ class KitapOlusturFragment : Fragment() {
                     }
 
                     is MyResult.Error -> {
-                        Toast.makeText(context, "Hata oluştu.", Toast.LENGTH_SHORT).show()
+                        ErrorUtil.showErrorDialog(result.responseCode, result.exception.message, parentFragmentManager, context)
                     }
                 }
             }

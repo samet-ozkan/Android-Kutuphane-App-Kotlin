@@ -18,15 +18,16 @@ class UpdateYazarUseCase @Inject constructor(private val yazarRepository: YazarR
                 if (yazarRes != null) {
                     MyResult.Success(yazarRes)
                 } else {
-                    MyResult.Error(Exception("Yazar response body is null"))
+                    MyResult.Error(Exception("Yazar response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to update yazar: ${response.message()}"))
+                MyResult.Error(Exception("Failed to update yazar!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }
+
     }
 }

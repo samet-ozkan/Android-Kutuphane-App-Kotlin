@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sametozkan.kutuphane.databinding.BottomSheetKitapYorumlarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapViewModel
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 
 class KitapYorumlarBottomSheet : BottomSheetDialogFragment() {
@@ -56,8 +57,7 @@ class KitapYorumlarBottomSheet : BottomSheetDialogFragment() {
                     }
 
                     is MyResult.Error -> {
-                        Toast.makeText(context, myResult.exception.message, Toast.LENGTH_SHORT)
-                            .show()
+                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                     }
                 }
             }
@@ -81,11 +81,7 @@ class KitapYorumlarBottomSheet : BottomSheetDialogFragment() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(
-                        context,
-                        "Kitap yorumları alınırken hata oluştu!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }

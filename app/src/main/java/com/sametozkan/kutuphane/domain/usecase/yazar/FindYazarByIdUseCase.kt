@@ -17,13 +17,13 @@ class FindYazarByIdUseCase @Inject constructor(private val yazarRepository: Yaza
                 if (yazarRes != null) {
                     MyResult.Success(yazarRes)
                 } else {
-                    MyResult.Error(Exception("Yazar response body is null"))
+                    MyResult.Error(Exception("Yazar response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find yazar by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find yazar by id!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

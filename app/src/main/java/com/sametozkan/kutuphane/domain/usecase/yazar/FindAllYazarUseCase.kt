@@ -17,13 +17,13 @@ class FindAllYazarUseCase @Inject constructor(private val yazarRepository: Yazar
                 if (yazarList != null) {
                     MyResult.Success(yazarList)
                 } else {
-                    MyResult.Error(Exception("Yazar list is null"))
+                    MyResult.Error(Exception("Yazar list is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find all yazar: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all yazar!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

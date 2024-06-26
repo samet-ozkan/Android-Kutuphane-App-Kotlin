@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneTeslimDurumuBinding
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.KutuphaneKitapIstekleriChips
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,8 +34,7 @@ class KutuphaneTeslimDurumuFragment : Fragment() {
                     fetchTeslimEdilmeyenler()
                 }
                 is MyResult.Error -> {
-                    Toast.makeText(context, "Teslim edilemedi!", Toast.LENGTH_SHORT).show()
-                    println(myResult.exception.message)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }
@@ -68,8 +68,7 @@ class KutuphaneTeslimDurumuFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(context, "Teslim edilmeyen kitaplar alınamadı!", Toast.LENGTH_SHORT).show()
-                    println(myResult.exception.message)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }

@@ -14,10 +14,10 @@ class DeleteKitapKullaniciByIdUseCase @Inject constructor(private val kitapKulla
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to delete kitap kullanici: ${response.message()}"))
+                MyResult.Error(Exception("Failed to delete kitap kullanici!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

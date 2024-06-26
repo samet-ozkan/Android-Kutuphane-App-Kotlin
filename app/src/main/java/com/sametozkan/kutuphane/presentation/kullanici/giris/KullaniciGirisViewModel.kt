@@ -8,6 +8,7 @@ import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionM
 import com.sametozkan.kutuphane.data.dto.request.LoginReq
 import com.sametozkan.kutuphane.data.dto.response.JwtRes
 import com.sametozkan.kutuphane.domain.usecase.auth.LoginUseCase
+import com.sametozkan.kutuphane.util.AccountType
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,7 +31,7 @@ class KullaniciGirisViewModel @Inject constructor(
         email.value?.let { email ->
             password.value?.let { password ->
                 viewModelScope.launch(Dispatchers.IO) {
-                    val result = async { loginUseCase(LoginReq(email, password)) }.await()
+                    val result = async { loginUseCase(LoginReq(email, password, AccountType.KULLANICI.type)) }.await()
                     withContext(Dispatchers.Main) {
                         onResult(result)
                     }

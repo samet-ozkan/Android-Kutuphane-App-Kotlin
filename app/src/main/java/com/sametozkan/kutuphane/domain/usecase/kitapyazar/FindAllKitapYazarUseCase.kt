@@ -18,13 +18,13 @@ class FindAllKitapYazarUseCase @Inject constructor(private val kitapYazarReposit
                 if (kitapYazarList != null) {
                     MyResult.Success(kitapYazarList)
                 } else {
-                    MyResult.Error(Exception("Kitap yazar list is null"))
+                    MyResult.Error(Exception("Kitap yazar list is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find all kitap yazar: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all kitap yazar!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

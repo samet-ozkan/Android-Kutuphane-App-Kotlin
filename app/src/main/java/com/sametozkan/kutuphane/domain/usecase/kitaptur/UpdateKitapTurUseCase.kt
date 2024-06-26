@@ -18,13 +18,13 @@ class UpdateKitapTurUseCase @Inject constructor(private val kitapTurRepository: 
                 if (kitapTurRes != null) {
                     MyResult.Success(kitapTurRes)
                 } else {
-                    MyResult.Error(Exception("Kitap tur response body is null"))
+                    MyResult.Error(Exception("Kitap tur response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to update kitap tur: ${response.message()}"))
+                MyResult.Error(Exception("Failed to update kitap tur!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

@@ -17,13 +17,13 @@ class FindAllKitapTurUseCase @Inject constructor(private val kitapTurRepository:
                 if (kitapTurList != null) {
                     MyResult.Success(kitapTurList)
                 } else {
-                    MyResult.Error(Exception("Kitap tur list is null"))
+                    MyResult.Error(Exception("Kitap tur list is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find all kitap tur: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all kitap tur!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

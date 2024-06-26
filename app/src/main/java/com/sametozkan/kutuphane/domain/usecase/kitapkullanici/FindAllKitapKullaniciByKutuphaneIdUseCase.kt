@@ -17,13 +17,13 @@ class FindAllKitapKullaniciByKutuphaneIdUseCase @Inject constructor(private val 
                 if (kitapKullaniciList != null) {
                     MyResult.Success(kitapKullaniciList)
                 } else {
-                    MyResult.Error(Exception("Kitap kullanici list is null"))
+                    MyResult.Error(Exception("Kitap kullanici list is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find kitapKullanici list: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kitap kullanici list!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

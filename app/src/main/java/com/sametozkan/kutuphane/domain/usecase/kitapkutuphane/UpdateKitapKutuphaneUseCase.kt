@@ -18,13 +18,13 @@ class UpdateKitapKutuphaneUseCase @Inject constructor(private val kitapKutuphane
                 if (kitapKutuphaneRes != null) {
                     MyResult.Success(kitapKutuphaneRes)
                 } else {
-                    MyResult.Error(Exception("Kitap kutuphane response body is null"))
+                    MyResult.Error(Exception("Kitap kutuphane response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to update kitap kutuphane: ${response.message()}"))
+                MyResult.Error(Exception("Failed to update kitap kutuphane!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

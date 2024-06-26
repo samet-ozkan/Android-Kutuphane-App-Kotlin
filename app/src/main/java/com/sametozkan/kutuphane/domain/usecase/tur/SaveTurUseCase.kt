@@ -16,10 +16,10 @@ class SaveTurUseCase @Inject constructor(private val turRepository: TurRepositor
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to save tur: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save tur!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

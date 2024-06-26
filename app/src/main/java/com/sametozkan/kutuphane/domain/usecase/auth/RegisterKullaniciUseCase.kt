@@ -15,10 +15,10 @@ class RegisterKullaniciUseCase @Inject constructor(private val authRepository: A
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to register kullanici: ${response.message()}"))
+                MyResult.Error(Exception("Failed to register kullanici!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

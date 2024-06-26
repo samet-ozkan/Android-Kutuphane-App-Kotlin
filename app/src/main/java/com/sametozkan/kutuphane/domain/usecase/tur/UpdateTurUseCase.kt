@@ -18,13 +18,13 @@ class UpdateTurUseCase @Inject constructor(private val turRepository: TurReposit
                 if (turRes != null) {
                     MyResult.Success(turRes)
                 } else {
-                    MyResult.Error(Exception("Tur response body is null"))
+                    MyResult.Error(Exception("Tur response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to update tur: ${response.message()}"))
+                MyResult.Error(Exception("Failed to update tur!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

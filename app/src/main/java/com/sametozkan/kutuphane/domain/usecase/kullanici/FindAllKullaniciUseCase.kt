@@ -18,13 +18,13 @@ class FindAllKullaniciUseCase @Inject constructor(private val kullaniciRepositor
                 if (kullaniciList != null) {
                     MyResult.Success(kullaniciList)
                 } else {
-                    MyResult.Error(Exception("Kullanici list is null"))
+                    MyResult.Error(Exception("Kullanici list is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find all kullanici: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all kullanici!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriReddedildiBinding
 import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeViewModel
 import com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.reddedildi.KitapIstekleriReddedildiViewModel
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +49,7 @@ class KitapIstekleriReddedildiFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    println(myResult.exception.message)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }

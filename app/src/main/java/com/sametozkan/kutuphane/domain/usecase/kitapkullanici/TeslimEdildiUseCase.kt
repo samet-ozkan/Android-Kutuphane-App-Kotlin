@@ -13,10 +13,10 @@ class TeslimEdildiUseCase @Inject constructor(private val kitapKullaniciReposito
             if (response.isSuccessful) {
                     MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to find kitap kullanici by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kitap kullanici by id!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

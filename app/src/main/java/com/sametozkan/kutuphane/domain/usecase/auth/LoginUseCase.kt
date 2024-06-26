@@ -18,13 +18,13 @@ class LoginUseCase @Inject constructor(private val authRepository: AuthRepositor
                 if (jwtRes != null) {
                     MyResult.Success(jwtRes)
                 } else {
-                    MyResult.Error(Exception("JWT response body is null"))
+                    MyResult.Error(Exception("Jwt is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to login: ${response.message()}"))
+                MyResult.Error(Exception("Failed to login!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

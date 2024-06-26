@@ -17,13 +17,13 @@ class FindYorumlarByKitapIdUseCase @Inject constructor(private val kitapYorumRep
                 if (list != null) {
                     MyResult.Success(list)
                 } else {
-                    MyResult.Error(Exception("List is null"))
+                    MyResult.Error(Exception("Kitap yorum list is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find all comments: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all comments!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

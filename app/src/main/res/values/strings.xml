@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Kutuphane</string>
+    <string name="wrong_email_or_password">Hatalı e-posta veya şifre girdiniz. Lütfen bilgilerinizi kontrol edip tekrar deneyin.</string>
+    <string name="error_generic">Hata oluştu.</string>
+    <string name="error_not_found">Aradığınız kaynak bulunamadı.</string>
+    <string name="error_access_denied">Bu kaynağa erişim hakkınız bulunmamaktadır.</string>
 </resources>

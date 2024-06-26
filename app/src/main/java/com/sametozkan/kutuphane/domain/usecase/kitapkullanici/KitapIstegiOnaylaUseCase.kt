@@ -15,10 +15,10 @@ class KitapIstegiOnaylaUseCase @Inject constructor(private val kitapKullaniciRep
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to save kitap kullanici: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save kitap kullanici!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

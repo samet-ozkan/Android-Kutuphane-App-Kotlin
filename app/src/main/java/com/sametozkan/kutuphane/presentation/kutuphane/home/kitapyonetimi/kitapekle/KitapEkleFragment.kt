@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sametozkan.kutuphane.databinding.FragmentKitapEkleBinding
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.KutuphaneFragments
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,20 +42,20 @@ class KitapEkleFragment : Fragment() {
                     is MyResult.Success -> {
                         sharedViewModel.kitapId = result.data.id
                         sharedViewModel.saveKitapKutuphane {
-                            result ->
-                            when(result){
+                            myResult ->
+                            when(myResult){
                                 is MyResult.Success -> {
                                     Toast.makeText(context, "Kitap kütüphaneye eklendi.", Toast.LENGTH_SHORT).show()
                                     requireActivity().finish()
                                 }
                                 is MyResult.Error -> {
-                                    Toast.makeText(context, "İşlem başarısız oldu.", Toast.LENGTH_SHORT).show()
+                                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                                 }
                             }
                         }
                     }
                     is MyResult.Error -> {
-                        if(result.exception is NotFoundException){
+                        if(result.responseCode == 404){
                             sharedViewModel.changeFragment.postValue(KutuphaneFragments.KITAP_OLUSTUR)
                         }
                     }

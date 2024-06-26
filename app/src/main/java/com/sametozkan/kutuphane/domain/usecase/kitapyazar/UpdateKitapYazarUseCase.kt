@@ -18,13 +18,13 @@ class UpdateKitapYazarUseCase @Inject constructor(private val kitapYazarReposito
                 if (kitapYazarRes != null) {
                     MyResult.Success(kitapYazarRes)
                 } else {
-                    MyResult.Error(Exception("Kitap yazar response body is null"))
+                    MyResult.Error(Exception("Kitap yazar response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to update kitap yazar: ${response.message()}"))
+                MyResult.Error(Exception("Failed to update kitap yazar!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

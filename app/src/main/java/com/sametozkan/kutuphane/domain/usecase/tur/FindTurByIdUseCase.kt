@@ -17,13 +17,13 @@ class FindTurByIdUseCase @Inject constructor(private val turRepository: TurRepos
                 if (turRes != null) {
                     MyResult.Success(turRes)
                 } else {
-                    MyResult.Error(Exception("Tur response body is null"))
+                    MyResult.Error(Exception("Tur response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find tur by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find tur by id!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

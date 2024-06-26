@@ -15,13 +15,13 @@ class FetchKitapOnerileriUseCase @Inject constructor(private val kitapKullaniciR
                 if (kitapOnerileri != null) {
                     MyResult.Success(kitapOnerileri)
                 } else {
-                    MyResult.Error(Exception("Kitap onerileri list is null"))
+                    MyResult.Error(Exception("Kitap onerileri list is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find kitap onerileri list: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kitap onerileri list!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         }
     }
 }

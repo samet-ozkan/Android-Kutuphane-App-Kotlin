@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriOnayBekleyenlerBinding
 import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
 import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeViewModel
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,9 +49,7 @@ class KitapIstekleriOnayBekleyenlerFragment : Fragment() {
                     rvAdapter.list = myResult.data
                 }
                 is MyResult.Error -> {
-                    myResult.exception.message?.let {
-                        ErrorDialog(it).show(parentFragmentManager, "Hata")
-                    }
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }
@@ -66,9 +65,7 @@ class KitapIstekleriOnayBekleyenlerFragment : Fragment() {
                     refreshList()
                 }
                 is MyResult.Error -> {
-                    myResult.exception.message?.let {
-                        ErrorDialog(it).show(parentFragmentManager, "Hata")
-                    }
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
             }

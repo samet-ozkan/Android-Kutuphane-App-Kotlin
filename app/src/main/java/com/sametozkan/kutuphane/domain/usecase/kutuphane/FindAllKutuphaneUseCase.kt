@@ -18,14 +18,14 @@ class FindAllKutuphaneUseCase @Inject constructor(private val kutuphaneRepositor
                 if (kutuphaneList != null) {
                     MyResult.Success(kutuphaneList)
                 } else {
-                    MyResult.Error(Exception("Kutuphane list is null"))
+                    MyResult.Error(Exception("Kutuphane list is null!"), response.code())
                 }
             } else {
                 println("Code: " + response.code())
-                MyResult.Error(Exception("Failed to find all kutuphane: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find all kutuphane!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

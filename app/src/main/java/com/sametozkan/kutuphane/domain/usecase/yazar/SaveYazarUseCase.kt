@@ -16,10 +16,10 @@ class SaveYazarUseCase @Inject constructor(private val yazarRepository: YazarRep
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to save yazar: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save yazar!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

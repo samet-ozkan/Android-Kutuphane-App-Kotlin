@@ -13,10 +13,10 @@ class SaveAccountUseCase @Inject constructor(private val accountRepository: Acco
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to save account: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save account!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         }
     }
 }

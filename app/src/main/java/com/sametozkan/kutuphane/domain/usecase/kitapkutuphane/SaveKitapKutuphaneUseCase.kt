@@ -1,5 +1,6 @@
 package com.sametozkan.kutuphane.domain.usecase.kitapkutuphane
 
+import android.content.res.Resources.NotFoundException
 import com.sametozkan.kutuphane.data.dto.request.KitapKutuphaneReq
 import com.sametozkan.kutuphane.domain.repository.KitapKutuphaneRepository
 import com.sametozkan.kutuphane.util.LoadingManager
@@ -15,10 +16,10 @@ class SaveKitapKutuphaneUseCase @Inject constructor(private val kitapKutuphaneRe
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to save kitap kutuphane: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save kitap kutuphane!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

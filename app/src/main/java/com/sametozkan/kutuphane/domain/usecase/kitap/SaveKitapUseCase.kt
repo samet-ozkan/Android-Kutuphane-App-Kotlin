@@ -21,13 +21,13 @@ class SaveKitapUseCase @Inject constructor(private val kitapRepository: KitapRep
                 kitapId?.let {
                     MyResult.Success(kitapId)
                 } ?: kotlin.run {
-                    MyResult.Error(Exception("Kitap Id is null!"))
+                    MyResult.Error(Exception("Kitap Id is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to save kitap: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save kitap!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

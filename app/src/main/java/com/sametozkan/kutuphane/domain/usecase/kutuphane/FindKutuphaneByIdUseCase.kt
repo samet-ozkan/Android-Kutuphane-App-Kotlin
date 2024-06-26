@@ -18,13 +18,13 @@ class FindKutuphaneByIdUseCase @Inject constructor(private val kutuphaneReposito
                 if (kutuphaneRes != null) {
                     MyResult.Success(kutuphaneRes)
                 } else {
-                    MyResult.Error(Exception("Kutuphane response body is null"))
+                    MyResult.Error(Exception("Kutuphane response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find kutuphane by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kutuphane by id!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

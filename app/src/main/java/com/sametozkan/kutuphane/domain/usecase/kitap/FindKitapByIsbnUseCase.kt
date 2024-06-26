@@ -18,15 +18,13 @@ class FindKitapByIsbnUseCase @Inject constructor(private val kitapRepository: Ki
                 if (kitap != null) {
                     MyResult.Success(kitap)
                 } else {
-                    MyResult.Error(Exception())
+                    MyResult.Error(Exception("Kitap is null!"), response.code())
                 }
-            } else if (response.code() == 404) {
-                MyResult.Error(NotFoundException())
             } else {
-                MyResult.Error(Exception())
+                MyResult.Error(Exception("Failed to find kitap by isbn!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

@@ -15,13 +15,13 @@ class FindAccountByIdUseCase @Inject constructor(private val accountRepository: 
                 if (accountRes != null) {
                     MyResult.Success(accountRes)
                 } else {
-                    MyResult.Error(Exception("Account not found"))
+                    MyResult.Error(Exception("Account is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find account: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find account!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         }
     }
 }

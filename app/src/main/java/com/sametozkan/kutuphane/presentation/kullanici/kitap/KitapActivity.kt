@@ -9,6 +9,7 @@ import com.sametozkan.kutuphane.databinding.ActivityKitapBinding
 import com.sametozkan.kutuphane.databinding.ActivityKitaplarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kitap.yorumlar.KitapYorumlarBottomSheet
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,7 +59,7 @@ class KitapActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Ödünç alma isteği gönderildi.", Toast.LENGTH_LONG).show()
                             }
                             is MyResult.Error -> {
-                                Toast.makeText(this, "Ödünç alma isteği gönderilirken hata oluştu.", Toast.LENGTH_LONG).show()
+                                ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
                             }
                         }
                     }
@@ -79,8 +80,7 @@ class KitapActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    println(myResult.exception.message)
-                    Toast.makeText(this, "Kutuphane verileri alınamadı!", Toast.LENGTH_SHORT).show()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
                 }
             }
         }
@@ -92,7 +92,7 @@ class KitapActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(this, "Kitap verileri alınamadı!", Toast.LENGTH_SHORT).show()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
                 }
             }
         }

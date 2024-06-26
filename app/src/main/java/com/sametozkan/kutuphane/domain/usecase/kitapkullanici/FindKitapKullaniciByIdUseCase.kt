@@ -17,13 +17,13 @@ class FindKitapKullaniciByIdUseCase @Inject constructor(private val kitapKullani
                 if (kitapKullaniciRes != null) {
                     MyResult.Success(kitapKullaniciRes)
                 } else {
-                    MyResult.Error(Exception("Kitap kullanici response body is null"))
+                    MyResult.Error(Exception("Kitap kullanici response body is null!"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to find kitap kullanici by id: ${response.message()}"))
+                MyResult.Error(Exception("Failed to find kitap kullanici by id!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

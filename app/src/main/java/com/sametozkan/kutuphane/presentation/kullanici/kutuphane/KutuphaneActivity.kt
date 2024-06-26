@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.kitaplar.KitaplarActivity
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,11 +60,7 @@ class KutuphaneActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    Toast.makeText(
-                        this,
-                        "Kütüphane verisi alınırken hata oluştu!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
                 }
             }
         }

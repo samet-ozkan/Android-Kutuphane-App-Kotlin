@@ -16,10 +16,10 @@ class SaveKitapYorumUseCase @Inject constructor(private val kitapYorumRepository
             if (response.isSuccessful) {
                 MyResult.Success(Unit)
             } else {
-                MyResult.Error(Exception("Failed to save yorum: ${response.message()}"))
+                MyResult.Error(Exception("Failed to save yorum!"), response.code())
             }
         } catch (e: Exception) {
-            MyResult.Error(e)
+            MyResult.Error(e, null)
         } finally {
             LoadingManager.stopLoading()
         }

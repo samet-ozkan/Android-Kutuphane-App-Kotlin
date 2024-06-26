@@ -14,6 +14,7 @@ import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneKitapYonetimiBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleActivity
+import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +49,7 @@ class KutuphaneKitapYonetimiFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    myResult.exception.printStackTrace()
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
                 }
             }
         }
