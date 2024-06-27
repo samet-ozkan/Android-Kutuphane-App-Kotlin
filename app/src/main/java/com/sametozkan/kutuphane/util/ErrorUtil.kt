@@ -7,25 +7,59 @@ import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
 
 object ErrorUtil {
 
-    fun showErrorDialog(responseCode: Int?, exceptionMessage: String?, fragmentManager: FragmentManager, context: Context?) {
+    fun showErrorDialog(
+        responseCode: Int?,
+        exception: Exception,
+        fragmentManager: FragmentManager,
+        context: Context?
+    ) {
         fragmentManager.findFragmentByTag("Hata")?.let {
             return
         }
 
-        exceptionMessage?.let {
+        exception.message?.let {
             println(it)
         }
 
         context?.let {
-            responseCode?.let {
-                when(it){
-                    200 -> println("Veri null.")
-                    404 -> ErrorDialog(context.getString(R.string.error_not_found)).show(fragmentManager, "Hata")
-                    403 -> ErrorDialog(context.getString(R.string.error_access_denied)).show(fragmentManager, "Hata")
-                    else -> ErrorDialog(context.getString(R.string.error_generic)).show(fragmentManager, "Hata")
+            when (exception) {
+                is MyException.AllFieldsMustBeFilledException ->
+                    ErrorDialog(context.getString(R.string.error_fill_all_fields)).show(
+                        fragmentManager,
+                        "Hata"
+                    )
+
+                is MyException.InvalidCredentialsException ->
+                    ErrorDialog(context.getString(R.string.wrong_email_or_password)).show(
+                        fragmentManager,
+                        "Hata"
+                    )
+
+                is MyException.ConflictException ->
+                    ErrorDialog(context.getString(R.string.error_conflict)).show(fragmentManager, "Hata")
+
+                else -> responseCode?.let {
+                    when (it) {
+                        200 -> println("Veri null.")
+                        404 -> ErrorDialog(context.getString(R.string.error_not_found)).show(
+                            fragmentManager,
+                            "Hata"
+                        )
+
+                        403 -> ErrorDialog(context.getString(R.string.error_access_denied)).show(
+                            fragmentManager,
+                            "Hata"
+                        )
+
+                    }
+                } ?: kotlin.run {
+                    ErrorDialog(context.getString(R.string.error_generic)).show(
+                        fragmentManager,
+                        "Hata"
+                    )
                 }
             }
-        }
 
+        }
     }
 }

@@ -2,7 +2,6 @@ package com.sametozkan.kutuphane.presentation.kullanici.kutuphane.kitaplar
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -78,7 +77,7 @@ class KitaplarActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                 }
             }
         }

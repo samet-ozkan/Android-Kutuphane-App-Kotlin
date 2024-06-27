@@ -8,6 +8,7 @@ import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.ActivityKullaniciGirisBinding
 import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
 import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeActivity
+import com.sametozkan.kutuphane.presentation.kullanici.kaydol.KullaniciKaydolActivity
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
@@ -25,8 +26,16 @@ class KullaniciGirisActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.viewModel = viewModel
 
+        setupHemenKaydolun()
         setupGirisYapButton()
         observeLoading()
+    }
+
+    private fun setupHemenKaydolun(){
+        binding.hemenKaydolun.setOnClickListener {
+            val intent = Intent(this, KullaniciKaydolActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun observeLoading() {
@@ -42,19 +51,15 @@ class KullaniciGirisActivity : AppCompatActivity() {
                     is MyResult.Success -> {
                         viewModel.setSession(myResult.data)
                         val intent = Intent(this, KullaniciHomeActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
 
                     is MyResult.Error -> {
-                        when(myResult.responseCode){
-                            401 -> ErrorDialog(getString(R.string.wrong_email_or_password)).show(supportFragmentManager, "Hata")
-                            404 -> ErrorDialog(getString(R.string.wrong_email_or_password)).show(supportFragmentManager, "Hata")
-                            else -> ErrorDialog(getString(R.string.error_generic)).show(supportFragmentManager, "Hata")
+                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                         }
                     }
                 }
             }
-        }
     }
 }

@@ -4,6 +4,7 @@ import com.sametozkan.kutuphane.data.dto.request.LoginReq
 import com.sametozkan.kutuphane.data.dto.response.JwtRes
 import com.sametozkan.kutuphane.domain.repository.AuthRepository
 import com.sametozkan.kutuphane.util.LoadingManager
+import com.sametozkan.kutuphane.util.MyException
 import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
@@ -21,7 +22,13 @@ class LoginUseCase @Inject constructor(private val authRepository: AuthRepositor
                     MyResult.Error(Exception("Jwt is null"), response.code())
                 }
             } else {
-                MyResult.Error(Exception("Failed to login!"), response.code())
+                if (response.code() == 404 || response.code() == 401)
+                    MyResult.Error(
+                        MyException.InvalidCredentialsException("Failed to login!"),
+                        response.code()
+                    )
+                else
+                    MyResult.Error(Exception("Failed to login!"), response.code())
             }
         } catch (e: Exception) {
             MyResult.Error(e, null)

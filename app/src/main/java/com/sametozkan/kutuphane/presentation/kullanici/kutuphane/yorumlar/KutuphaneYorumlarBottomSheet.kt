@@ -1,6 +1,5 @@
 package com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.BottomSheetKutuphaneYorumlarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
@@ -59,7 +57,7 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
                     }
 
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                     }
                 }
             }
@@ -83,7 +81,7 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                 }
             }
         }

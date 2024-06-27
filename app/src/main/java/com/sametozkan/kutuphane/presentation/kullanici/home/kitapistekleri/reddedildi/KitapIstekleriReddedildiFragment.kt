@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriReddedildiBinding
-import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeViewModel
 import com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.reddedildi.KitapIstekleriReddedildiViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
@@ -49,7 +47,7 @@ class KitapIstekleriReddedildiFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                 }
             }
         }

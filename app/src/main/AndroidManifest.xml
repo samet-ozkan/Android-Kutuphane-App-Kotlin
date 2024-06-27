@@ -30,6 +30,7 @@
         <activity android:name=".presentation.kutuphane.home.KutuphaneHomeActivity" />
         <activity android:name=".presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleActivity" />
         <activity android:name=".presentation.kullanici.giris.KullaniciGirisActivity" />
+        <activity android:name=".presentation.kullanici.kaydol.KullaniciKaydolActivity" />
         <activity android:name=".presentation.kullanici.home.KullaniciHomeActivity" />
         <activity android:name=".presentation.kullanici.kutuphane.KutuphaneActivity" />
         <activity android:name=".presentation.kullanici.kutuphane.kitaplar.KitaplarActivity" />

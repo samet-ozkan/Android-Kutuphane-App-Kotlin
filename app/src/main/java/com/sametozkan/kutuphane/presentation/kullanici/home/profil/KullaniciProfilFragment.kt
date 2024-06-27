@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.sametozkan.kutuphane.MainActivity
 import com.sametozkan.kutuphane.databinding.FragmentKullaniciProfilBinding
-import com.sametozkan.kutuphane.databinding.FragmentKutuphaneProfilBinding
 import com.sametozkan.kutuphane.presentation.kullanici.home.KullaniciHomeViewModel
-import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +39,7 @@ class KullaniciProfilFragment : Fragment() {
         binding.cikisYapButton.setOnClickListener {
             sharedViewModel.logout()
             val intent = Intent(context, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
     }
@@ -53,7 +51,7 @@ class KullaniciProfilFragment : Fragment() {
                     binding.kullaniciRes = myResult.data
                 }
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                 }
             }
         }

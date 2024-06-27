@@ -1,6 +1,5 @@
 package com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle
 
-import android.content.res.Resources.NotFoundException
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -49,7 +48,7 @@ class KitapEkleFragment : Fragment() {
                                     requireActivity().finish()
                                 }
                                 is MyResult.Error -> {
-                                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                                 }
                             }
                         }

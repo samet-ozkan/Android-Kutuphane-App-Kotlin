@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.sametozkan.kutuphane.presentation.kullanici.kaydol.KullaniciKaydolViewModel" />
+
+        <variable
+            name="isLoading"
+            type="Boolean" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/colorPrimaryDark">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/back_square_svgrepo_com"
+                app:layout_constraintBottom_toTopOf="@id/scrollView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
+            <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/rounded_top_corners"
+                android:paddingTop="20dp"
+                android:paddingHorizontal="10dp"
+                android:fillViewport="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/backButton">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SubtitleText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Kaydol"
+                        android:textSize="30sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_person_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/adEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/BodyText"
+                            android:background="@color/white"
+                            android:enabled="@{!isLoading}"
+                            android:hint="Ad"
+                            android:text="@={viewModel.ad}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_person_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/soyadEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            style="@style/BodyText"
+
+                            android:enabled="@{!isLoading}"
+                            android:hint="Soyad"
+                            android:inputType="text"
+                            android:text="@={viewModel.soyad}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_email_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emailEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            style="@style/BodyText"
+                            android:enabled="@{!isLoading}"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+                            android:text="@={viewModel.email}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_password_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passwordEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:enabled="@{!isLoading}"
+                            style="@style/BodyText"
+                            android:hint="Şifre"
+                            android:inputType="textPassword"
+                            android:text="@={viewModel.password}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_password_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passwordTekrarEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            style="@style/BodyText"
+                            android:enabled="@{!isLoading}"
+                            android:hint="Şifre (Tekrar)"
+                            android:inputType="text"
+                            android:text="@={viewModel.passwordTekrar}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_contact_phone_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/telefonEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/BodyText"
+                            android:background="@color/white"
+                            android:enabled="@{!isLoading}"
+                            android:hint="Telefon Numarası"
+                            android:inputType="phone"
+                            android:text="@={viewModel.telefon}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_location_on_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/adresEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:enabled="@{!isLoading}"
+                            android:hint="Adres"
+                            style="@style/BodyText"
+                            android:inputType="text"
+                            android:text="@={viewModel.adres}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dogumTarihiEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            style="@style/BodyText"
+                            android:enabled="@{!isLoading}"
+                            android:hint="Doğum Tarihi"
+                            android:inputType="date"
+                            android:text="@={viewModel.dogumTarihi}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/kaydolButton"
+                        style="@style/KullaniciButton"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginVertical="5dp"
+                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:enabled="@{!isLoading}"
+                        android:text="Kaydol"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/state_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
+
+    </RelativeLayout>
+
+
+</layout>

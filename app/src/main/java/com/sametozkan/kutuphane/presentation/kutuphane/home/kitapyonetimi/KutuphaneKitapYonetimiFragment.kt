@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sametozkan.kutuphane.data.dto.response.KitapRes
-import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneKitapYonetimiBinding
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleActivity
@@ -49,7 +46,7 @@ class KutuphaneKitapYonetimiFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                 }
             }
         }

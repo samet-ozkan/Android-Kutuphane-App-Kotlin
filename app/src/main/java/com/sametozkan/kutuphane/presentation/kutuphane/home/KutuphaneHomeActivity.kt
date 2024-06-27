@@ -16,7 +16,6 @@ import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.Kutuph
 import com.sametozkan.kutuphane.presentation.kutuphane.home.profil.KutuphaneProfilFragment
 import com.sametozkan.kutuphane.presentation.kutuphane.home.teslimdurumu.KutuphaneTeslimDurumuFragment
 import com.sametozkan.kutuphane.util.ErrorUtil
-import com.sametozkan.kutuphane.util.KullaniciFragments
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.util.KutuphaneFragments
 import com.sametozkan.kutuphane.util.LoadingManager
@@ -66,7 +65,7 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                 }
             }
         }
@@ -106,7 +105,7 @@ class KutuphaneHomeActivity : AppCompatActivity() {
                 R.id.logout -> {
                     SessionManager(applicationContext).clear()
                     val intent = Intent(this, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                 }
 

@@ -159,7 +159,7 @@ class KitapOlusturFragment : Fragment() {
                     }
 
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
 
                     }
                 }
@@ -217,7 +217,7 @@ class KitapOlusturFragment : Fragment() {
                     }
 
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(result.responseCode, result.exception.message, parentFragmentManager, context)
+                        ErrorUtil.showErrorDialog(result.responseCode, result.exception, parentFragmentManager, context)
                     }
                 }
             }

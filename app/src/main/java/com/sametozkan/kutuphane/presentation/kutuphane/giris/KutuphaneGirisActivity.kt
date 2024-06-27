@@ -9,7 +9,6 @@ import com.sametozkan.kutuphane.databinding.ActivityKutuphaneGirisBinding
 import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeActivity
-import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,7 +42,7 @@ class KutuphaneGirisActivity : AppCompatActivity() {
                         val jwtRes = result.data
                         viewModel.setSession(jwtRes)
                         val intent = Intent(this, KutuphaneHomeActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
                     is MyResult.Error -> {

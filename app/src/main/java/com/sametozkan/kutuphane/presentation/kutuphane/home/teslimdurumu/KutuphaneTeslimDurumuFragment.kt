@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneTeslimDurumuBinding
 import com.sametozkan.kutuphane.util.ErrorUtil
-import com.sametozkan.kutuphane.util.KutuphaneKitapIstekleriChips
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +32,7 @@ class KutuphaneTeslimDurumuFragment : Fragment() {
                     fetchTeslimEdilmeyenler()
                 }
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                 }
             }
         }
@@ -68,7 +66,7 @@ class KutuphaneTeslimDurumuFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
                 }
             }
         }

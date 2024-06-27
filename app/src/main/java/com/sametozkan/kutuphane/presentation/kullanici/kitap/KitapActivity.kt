@@ -6,9 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKitapBinding
-import com.sametozkan.kutuphane.databinding.ActivityKitaplarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kitap.yorumlar.KitapYorumlarBottomSheet
-import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
@@ -66,7 +64,7 @@ class KitapActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Ödünç alma isteği gönderildi.", Toast.LENGTH_LONG).show()
                             }
                             is MyResult.Error -> {
-                                ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
+                                ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                             }
                         }
                     }
@@ -87,7 +85,7 @@ class KitapActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                 }
             }
         }
@@ -99,7 +97,7 @@ class KitapActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                 }
             }
         }

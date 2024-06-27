@@ -2,7 +2,6 @@ package com.sametozkan.kutuphane.presentation.kullanici.kutuphane
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneBinding
@@ -67,7 +66,7 @@ class KutuphaneActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception.message, supportFragmentManager, this)
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                 }
             }
         }

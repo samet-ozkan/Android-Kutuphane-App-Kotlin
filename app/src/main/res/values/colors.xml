@@ -39,5 +39,6 @@
     <color name="colorLightGray">#E0E0E0</color>
     <color name="colorDarkGray">#424242</color>
     <color name="red">#FF0000</color>
+    <color name="green">#008000</color>
     <color name="colorGrayTransparent">#B3000000</color>
 </resources>
