@@ -1,6 +1,7 @@
 package com.sametozkan.kutuphane.data.datasource.remote
 
 import com.sametozkan.kutuphane.data.dto.request.KullaniciRegisterReq
+import com.sametozkan.kutuphane.data.dto.request.KutuphaneRegisterReq
 import com.sametozkan.kutuphane.data.dto.request.LoginReq
 import com.sametozkan.kutuphane.data.dto.request.TokenRefreshReq
 import com.sametozkan.kutuphane.data.dto.response.JwtRes
@@ -17,5 +18,8 @@ interface AuthService {
 
     @POST("/api/auth/register/kullanici")
     suspend fun registerKullanici(@Body kullaniciRegisterReq: KullaniciRegisterReq): Response<Unit>
+
+    @POST("/api/auth/register/kutuphane")
+    suspend fun registerKutuphane(@Body kutuphaneRegisterReq: KutuphaneRegisterReq): Response<Unit>
 
 }

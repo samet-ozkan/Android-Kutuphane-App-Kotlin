@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.kutuphane.giris.KutuphaneGirisActivity" />
+        <activity android:name=".presentation.kutuphane.kaydol.KutuphaneKaydolActivity" />
         <activity android:name=".presentation.kutuphane.home.KutuphaneHomeActivity" />
         <activity android:name=".presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleActivity" />
         <activity android:name=".presentation.kullanici.giris.KullaniciGirisActivity" />

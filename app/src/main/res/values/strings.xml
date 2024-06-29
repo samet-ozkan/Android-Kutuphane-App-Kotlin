@@ -5,6 +5,8 @@
     <string name="error_not_found">Aradığınız kaynak bulunamadı.</string>
     <string name="error_access_denied">Bu kaynağa erişim hakkınız bulunmamaktadır.</string>
     <string name="error_fill_all_fields">Tüm alanları doldurunuz.</string>
+    <string name="error_invalid_verification_code">Doğrulama kodunuz geçersiz. Lütfen kodunuzu tekrar kontrol edin veya daha fazla yardım için yöneticinizle iletişime geçin.</string>
+    <string name="error_password_mismatch">Şifreler uyuşmuyor. Lütfen şifrenizi kontrol edip tekrar deneyin.</string>
     <string name="registration_success_message">Kayıt işlemi başarıyla tamamlandı!</string>
     <string name="error_conflict">Girdiğiniz veri sistemde mevcut kurallarla çakışıyor. Lütfen girdiğiniz bilgileri kontrol edin ve tekrar deneyin.</string>
 </resources>

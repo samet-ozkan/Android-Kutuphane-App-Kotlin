@@ -8,7 +8,8 @@
 
         <variable
             name="viewModel"
-            type="com.sametozkan.kutuphane.presentation.kullanici.kaydol.KullaniciKaydolViewModel" />
+            type="com.sametozkan.kutuphane.presentation.kutuphane.kaydol.KutuphaneKaydolViewModel"
+            />
 
         <variable
             name="isLoading"
@@ -24,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:background="@color/colorPrimaryDark">
+            android:background="@color/colorPrimaryDarkKutuphane">
 
             <ImageView
                 android:id="@+id/backButton"
@@ -71,7 +72,7 @@
                         android:layout_width="350dp"
                         android:layout_height="60dp"
                         android:layout_margin="10dp"
-                        app:startIconDrawable="@drawable/baseline_person_24">
+                        app:startIconDrawable="@drawable/baseline_home_24">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/adEdit"
@@ -80,28 +81,8 @@
                             style="@style/BodyText"
                             android:background="@color/white"
                             android:enabled="@{!isLoading}"
-                            android:hint="Ad"
+                            android:hint="Kütüphane Adı"
                             android:text="@={viewModel.ad}" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="350dp"
-                        android:layout_height="60dp"
-                        android:layout_margin="10dp"
-                        app:startIconDrawable="@drawable/baseline_person_24">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/soyadEdit"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            style="@style/BodyText"
-
-                            android:enabled="@{!isLoading}"
-                            android:hint="Soyad"
-                            android:inputType="text"
-                            android:text="@={viewModel.soyad}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -185,6 +166,23 @@
                         android:layout_width="350dp"
                         android:layout_height="60dp"
                         android:layout_margin="10dp"
+                        android:hint="Şehir"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                        app:startIconDrawable="@drawable/baseline_location_city_24">
+
+                        <AutoCompleteTextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/sehir"
+                            style="@style/BodyText"
+                            android:layout_height="wrap_content"
+                            android:inputType="none" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
                         app:startIconDrawable="@drawable/baseline_location_on_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -204,29 +202,48 @@
                         android:layout_width="350dp"
                         android:layout_height="60dp"
                         android:layout_margin="10dp"
-                        app:startIconDrawable="@drawable/baseline_calendar_month_24">
+                        app:startIconDrawable="@drawable/baseline_access_time_filled_24">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/dogumTarihiEdit"
+                            android:id="@+id/teslimSuresiEdit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/white"
-                            style="@style/BodyText"
                             android:enabled="@{!isLoading}"
-                            android:hint="Doğum Tarihi"
-                            android:inputType="date"
-                            android:text="@={viewModel.dogumTarihi}" />
+                            android:hint="Teslim Süresi (Gün)"
+                            style="@style/BodyText"
+                            android:inputType="number"
+                            android:text="@={viewModel.teslimSuresi}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="350dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        app:startIconDrawable="@drawable/baseline_key_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dogrulamaKoduEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:enabled="@{!isLoading}"
+                            android:hint="Doğrulama Kodu"
+                            style="@style/BodyText"
+                            android:inputType="text"
+                            android:text="@={viewModel.dogrulamaKodu}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
                         android:id="@+id/kaydolButton"
-                        style="@style/KullaniciButton"
+                        style="@style/KutuphaneButton"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:layout_marginVertical="5dp"
-                        android:backgroundTint="@color/colorPrimaryDark"
+                        android:backgroundTint="@color/colorPrimaryDarkKutuphane"
                         android:enabled="@{!isLoading}"
                         android:text="Kaydol"
                         android:textColor="@color/white" />

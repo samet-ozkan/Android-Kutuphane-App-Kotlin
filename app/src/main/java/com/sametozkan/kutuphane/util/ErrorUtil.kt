@@ -38,6 +38,11 @@ object ErrorUtil {
                 is MyException.ConflictException ->
                     ErrorDialog(context.getString(R.string.error_conflict)).show(fragmentManager, "Hata")
 
+                is MyException.InvalidVerificationCodeException ->
+                    ErrorDialog(context.getString(R.string.error_invalid_verification_code)).show(fragmentManager, "Hata");
+
+                is MyException.PasswordMismatchException ->
+                    ErrorDialog(context.getString(R.string.error_password_mismatch)).show(fragmentManager, "Hata")
                 else -> responseCode?.let {
                     when (it) {
                         200 -> println("Veri null.")

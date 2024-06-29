@@ -28,10 +28,17 @@ class KullaniciGirisActivity : AppCompatActivity() {
 
         setupHemenKaydolun()
         setupGirisYapButton()
+        setupBackButton()
         observeLoading()
     }
 
-    private fun setupHemenKaydolun(){
+    private fun setupBackButton() {
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun setupHemenKaydolun() {
         binding.hemenKaydolun.setOnClickListener {
             val intent = Intent(this, KullaniciKaydolActivity::class.java)
             startActivity(intent)
@@ -51,15 +58,21 @@ class KullaniciGirisActivity : AppCompatActivity() {
                     is MyResult.Success -> {
                         viewModel.setSession(myResult.data)
                         val intent = Intent(this, KullaniciHomeActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     }
 
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
-                        }
+                        ErrorUtil.showErrorDialog(
+                            myResult.responseCode,
+                            myResult.exception,
+                            supportFragmentManager,
+                            this
+                        )
                     }
                 }
             }
+        }
     }
 }

@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneGirisBinding
 import com.sametozkan.kutuphane.presentation.dialog.ErrorDialog
+import com.sametozkan.kutuphane.presentation.kullanici.kaydol.KullaniciKaydolActivity
 import com.sametozkan.kutuphane.util.MyResult
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeActivity
+import com.sametozkan.kutuphane.presentation.kutuphane.kaydol.KutuphaneKaydolActivity
 import com.sametozkan.kutuphane.util.LoadingManager
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +26,23 @@ class KutuphaneGirisActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.viewModel = viewModel
 
-        setupGirisYapButton();
+        setupGirisYapButton()
+        setupHemenKaydolun()
+        setupBackButton()
         observeLoading()
+    }
+
+    private fun setupBackButton(){
+        binding.backButton.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    private fun setupHemenKaydolun(){
+        binding.hemenKaydolun.setOnClickListener {
+            val intent = Intent(this, KutuphaneKaydolActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun observeLoading(){

@@ -2,6 +2,7 @@ package com.sametozkan.kutuphane.data.repository
 
 import com.sametozkan.kutuphane.data.datasource.remote.AuthService
 import com.sametozkan.kutuphane.data.dto.request.KullaniciRegisterReq
+import com.sametozkan.kutuphane.data.dto.request.KutuphaneRegisterReq
 import com.sametozkan.kutuphane.data.dto.request.LoginReq
 import com.sametozkan.kutuphane.data.dto.request.TokenRefreshReq
 import com.sametozkan.kutuphane.data.dto.response.JwtRes
@@ -17,5 +18,9 @@ class AuthRepositoryImpl(private val authService: AuthService) : AuthRepository 
 
     override suspend fun registerKullanici(kullaniciRegisterReq: KullaniciRegisterReq): Response<Unit> {
         return authService.registerKullanici(kullaniciRegisterReq)
+    }
+
+    override suspend fun registerKutuphane(kutuphaneRegisterReq: KutuphaneRegisterReq): Response<Unit> {
+        return authService.registerKutuphane(kutuphaneRegisterReq)
     }
 }
