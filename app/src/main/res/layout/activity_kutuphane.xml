@@ -250,35 +250,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/chatGpt"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/kutuphaneBilgileri">
-
-                        <TextView
-                            style="@style/HeadlineText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="ChatGPT Yorumu" />
-
-                        <TextView
-                            android:id="@+id/chatGptYorumu"
-                            style="@style/BodyText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:padding="10dp"
-                            android:text="@{kutuphane.chatGptYorumu}"
-                            tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
-
-                    </LinearLayout>
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

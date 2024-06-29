@@ -2,6 +2,7 @@ package com.sametozkan.kutuphane.di
 
 import com.sametozkan.kutuphane.data.datasource.remote.AccountService
 import com.sametozkan.kutuphane.data.datasource.remote.AuthService
+import com.sametozkan.kutuphane.data.datasource.remote.GoogleBooksService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapKullaniciService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapKutuphaneService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapService
@@ -55,6 +56,11 @@ object ServiceModule {
     @Provides
     fun provideKitapService(@AuthenticatedClient retrofit: Retrofit): KitapService =
         retrofit.create(KitapService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideGoogleBooksService(@AuthenticatedClient retrofit: Retrofit): GoogleBooksService =
+        retrofit.create(GoogleBooksService::class.java)
 
     @Singleton
     @Provides

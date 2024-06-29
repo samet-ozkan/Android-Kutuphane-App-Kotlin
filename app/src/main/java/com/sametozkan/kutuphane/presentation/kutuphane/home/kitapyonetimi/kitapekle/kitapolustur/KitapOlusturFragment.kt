@@ -18,6 +18,7 @@ import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.dto.request.TurReq
 import com.sametozkan.kutuphane.data.dto.request.YazarReq
 import com.sametozkan.kutuphane.databinding.FragmentKitapOlusturBinding
+import com.sametozkan.kutuphane.presentation.dialog.SuccessDialog
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
@@ -154,10 +155,10 @@ class KitapOlusturFragment : Fragment() {
             viewModel.olustur { myResult ->
                 when (myResult) {
                     is MyResult.Success -> {
-                        Toast.makeText(context, "Başarılı!", Toast.LENGTH_SHORT).show()
-                        requireActivity().finish()
+                        SuccessDialog("Kitap başarıyla oluşturuldu ve kütüphaneniz ile ilişkilendirildi."){
+                            requireActivity().finish()
+                        }
                     }
-
                     is MyResult.Error -> {
                         ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
 
@@ -211,7 +212,7 @@ class KitapOlusturFragment : Fragment() {
                         }
                         Toast.makeText(
                             context,
-                            "Bilgiler Google Books API'den getirildi.",
+                            "Kitap bilgileri Google Books'dan getirildi.",
                             Toast.LENGTH_SHORT
                         ).show()
                     }

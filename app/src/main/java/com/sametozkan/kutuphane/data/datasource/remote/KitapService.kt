@@ -26,6 +26,4 @@ interface KitapService {
     @GET("/api/kitap/isbn/{isbn}")
     suspend fun findByIsbn(@Path("isbn") isbn: Long): Response<KitapRes>
 
-    @GET("/api/kitap/fetch/{isbn}")
-    suspend fun fetchByIsbn(@Path("isbn") isbn: Long): Response<KitapReq>
 }

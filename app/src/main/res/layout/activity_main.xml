@@ -17,16 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ChatGPT Destekli"
-            android:layout_marginTop="10dp"
-            style="@style/HeadlineText"
-            android:textColor="@color/black"
-            android:textSize="25sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kütüphane Mobil Uygulaması"
+            android:text="Kütüphane Uygulaması"
             android:layout_marginBottom="10dp"
             style="@style/HeadlineText"
             android:textColor="@color/black"

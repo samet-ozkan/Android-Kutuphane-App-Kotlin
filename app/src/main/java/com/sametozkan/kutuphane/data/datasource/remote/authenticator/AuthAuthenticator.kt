@@ -72,17 +72,11 @@ class AuthAuthenticator @Inject constructor(
                     }
                 } else {
                     sessionManager.getRefreshToken()?.let { refreshToken ->
-                        Log.d(TAG, "authenticate: refreshToken -> " + refreshToken)
                         val result =
                             async { refreshTokenUseCase(TokenRefreshReq(refreshToken)) }.await()
                         when (result) {
                             is MyResult.Success -> {
-                                Log.d(TAG, "authenticate: result success")
                                 result.data?.let { newData ->
-                                    Log.d(
-                                        TAG,
-                                        "authenticate: newData refreshToken" + newData.refreshToken
-                                    )
                                     runBlocking {
                                         sessionManager.setJWT(newData.jwt)
                                         sessionManager.setRefreshToken(newData.refreshToken)

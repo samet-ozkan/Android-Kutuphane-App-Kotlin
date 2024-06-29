@@ -2,7 +2,6 @@ package com.sametozkan.kutuphane.data.datasource.remote
 
 import com.sametozkan.kutuphane.data.dto.request.KitapKullaniciReq
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
-import com.sametozkan.kutuphane.data.dto.response.KitapOnerisiRes
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -36,9 +35,6 @@ interface KitapKullaniciService {
 
     @GET("/api/kitap-kullanici/kutuphane/{accountId}")
     suspend fun findByKutuphaneId(@Path("accountId") accountId: Long): Response<List<KitapKullaniciRes>>
-
-    @GET("/api/kitap-kullanici/kitap-onerileri/{accountId}")
-    suspend fun fetchKitapOnerileri(@Path("accountId") accountId: Long): Response<List<KitapOnerisiRes>>
 
     @POST("/api/kitap-kullanici/onayla/{kitapKullaniciId}")
     suspend fun kitapIstegiOnayla(@Path("kitapKullaniciId") kitapKullaniciId : Long): Response<Unit>

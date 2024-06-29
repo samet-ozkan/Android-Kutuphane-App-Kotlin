@@ -2,7 +2,6 @@ package com.sametozkan.kutuphane.domain.repository
 
 import com.sametozkan.kutuphane.data.dto.request.KitapKullaniciReq
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
-import com.sametozkan.kutuphane.data.dto.response.KitapOnerisiRes
 import retrofit2.Response
 
 interface KitapKullaniciRepository {
@@ -21,7 +20,6 @@ interface KitapKullaniciRepository {
     suspend fun findByKutuphaneId(accountId: Long): Response<List<KitapKullaniciRes>>
     suspend fun kitapIstegiReddet(kitapKullaniciId: Long): Response<Unit>
     suspend fun kitapIstegiOnayla(kitapKullaniciId: Long): Response<Unit>
-    suspend fun fetchKitapOnerileri(accountId: Long): Response<List<KitapOnerisiRes>>
     suspend fun teslimEdilmeyenler(kutuphaneAccountId: Long): Response<List<KitapKullaniciRes>>
     suspend fun teslimEdildi(kitapKullaniciId: Long): Response<Unit>
 }

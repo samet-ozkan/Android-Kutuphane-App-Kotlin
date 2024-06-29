@@ -15,5 +15,4 @@ interface KitapRepository {
     suspend fun findAll(): Response<List<KitapRes>>
 
     suspend fun findByIsbn(isbn: Long): Response<KitapRes>
-    suspend fun fetchByIsbn(isbn: Long): Response<KitapReq>
 }

@@ -2,6 +2,7 @@ package com.sametozkan.kutuphane.di
 
 import com.sametozkan.kutuphane.data.datasource.remote.AccountService
 import com.sametozkan.kutuphane.data.datasource.remote.AuthService
+import com.sametozkan.kutuphane.data.datasource.remote.GoogleBooksService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapKullaniciService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapKutuphaneService
 import com.sametozkan.kutuphane.data.datasource.remote.KitapService
@@ -16,6 +17,7 @@ import com.sametozkan.kutuphane.data.datasource.remote.TurService
 import com.sametozkan.kutuphane.data.datasource.remote.YazarService
 import com.sametozkan.kutuphane.data.repository.AccountRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.AuthRepositoryImpl
+import com.sametozkan.kutuphane.data.repository.GoogleBooksRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KitapKullaniciRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KitapKutuphaneRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.KitapRepositoryImpl
@@ -30,6 +32,7 @@ import com.sametozkan.kutuphane.data.repository.TurRepositoryImpl
 import com.sametozkan.kutuphane.data.repository.YazarRepositoryImpl
 import com.sametozkan.kutuphane.domain.repository.AccountRepository
 import com.sametozkan.kutuphane.domain.repository.AuthRepository
+import com.sametozkan.kutuphane.domain.repository.GoogleBooksRepository
 import com.sametozkan.kutuphane.domain.repository.KitapKullaniciRepository
 import com.sametozkan.kutuphane.domain.repository.KitapKutuphaneRepository
 import com.sametozkan.kutuphane.domain.repository.KitapRepository
@@ -82,6 +85,11 @@ object RepositoryModule {
     @Provides
     fun provideKitapRepository(kitapService: KitapService): KitapRepository =
         KitapRepositoryImpl(kitapService)
+
+    @Singleton
+    @Provides
+    fun provideGoogleBooksRepository(googleBooksService: GoogleBooksService): GoogleBooksRepository =
+        GoogleBooksRepositoryImpl(googleBooksService)
 
     @Singleton
     @Provides

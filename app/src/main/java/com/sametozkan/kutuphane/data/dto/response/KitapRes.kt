@@ -7,7 +7,6 @@ data class KitapRes(
     val yayinTarihi: String,
     val dil: String,
     val sayfaSayisi: Int,
-    val chatGptYorumu: String,
     val aciklama: String,
     val yazarlar: List<YazarRes>,
     val turler: List<TurRes>,

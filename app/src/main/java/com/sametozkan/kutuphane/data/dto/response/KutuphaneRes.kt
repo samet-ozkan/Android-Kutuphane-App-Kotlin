@@ -10,5 +10,4 @@ data class KutuphaneRes(
     val account: AccountRes,
     val kitaplar: List<KitapRes>,
     val teslimSuresi: Int,
-    val chatGptYorumu: String
 )

@@ -27,8 +27,4 @@ class KitapRepositoryImpl(private val kitapService: KitapService) : KitapReposit
     override suspend fun findByIsbn(isbn: Long): Response<KitapRes> {
         return kitapService.findByIsbn(isbn)
     }
-
-    override suspend fun fetchByIsbn(isbn: Long): Response<KitapReq>{
-        return kitapService.fetchByIsbn(isbn)
-    }
 }

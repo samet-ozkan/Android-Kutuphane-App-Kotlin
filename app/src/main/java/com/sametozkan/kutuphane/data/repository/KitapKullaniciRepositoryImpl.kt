@@ -3,7 +3,6 @@ package com.sametozkan.kutuphane.data.repository
 import com.sametozkan.kutuphane.data.datasource.remote.KitapKullaniciService
 import com.sametozkan.kutuphane.data.dto.request.KitapKullaniciReq
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
-import com.sametozkan.kutuphane.data.dto.response.KitapOnerisiRes
 import com.sametozkan.kutuphane.domain.repository.KitapKullaniciRepository
 import retrofit2.Response
 
@@ -45,9 +44,6 @@ class KitapKullaniciRepositoryImpl(private val kitapKullaniciService: KitapKulla
         return kitapKullaniciService.findByKutuphaneId(accountId)
     }
 
-    override suspend fun fetchKitapOnerileri(accountId: Long): Response<List<KitapOnerisiRes>> {
-        return kitapKullaniciService.fetchKitapOnerileri(accountId)
-    }
 
     override suspend fun kitapIstegiOnayla(kitapKullaniciId: Long): Response<Unit> {
         return kitapKullaniciService.kitapIstegiOnayla(kitapKullaniciId)

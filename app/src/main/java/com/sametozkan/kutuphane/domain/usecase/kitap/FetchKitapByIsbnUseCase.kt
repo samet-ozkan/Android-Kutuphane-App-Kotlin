@@ -3,17 +3,18 @@ package com.sametozkan.kutuphane.domain.usecase.kitap
 import android.content.res.Resources
 import com.sametozkan.kutuphane.data.dto.request.KitapReq
 import com.sametozkan.kutuphane.data.dto.response.KitapRes
+import com.sametozkan.kutuphane.domain.repository.GoogleBooksRepository
 import com.sametozkan.kutuphane.domain.repository.KitapRepository
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
 import javax.inject.Inject
 
-class FetchKitapByIsbnUseCase @Inject constructor(private val kitapRepository: KitapRepository) {
+class FetchKitapByIsbnUseCase @Inject constructor(private val googleBooksRepository: GoogleBooksRepository) {
 
     suspend operator fun invoke(isbn: Long): MyResult<KitapReq> {
         LoadingManager.startLoading()
         return try {
-            val response = kitapRepository.fetchByIsbn(isbn)
+            val response = googleBooksRepository.fetchByIsbn(isbn)
             if (response.isSuccessful) {
                 val kitap = response.body()
                 if (kitap != null) {
