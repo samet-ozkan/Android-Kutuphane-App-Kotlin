@@ -84,7 +84,7 @@
 
         <include
             android:id="@+id/loadingLayout"
-            layout="@layout/state_loading"
+            layout="@layout/include_state_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"

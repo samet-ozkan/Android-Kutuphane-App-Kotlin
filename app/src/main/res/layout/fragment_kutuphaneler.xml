@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="isEmpty"
+            type="Boolean" />
 
         <variable
             name="viewModel"
             type="com.sametozkan.kutuphane.presentation.kullanici.home.kutuphaneler.KutuphanelerViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorLightGray"
@@ -17,7 +23,16 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_margin="10dp"
+            android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
             android:layout_height="match_parent"
             android:id="@+id/kutuphanelerRv"/>
-    </LinearLayout>
+
+        <include
+            layout="@layout/include_liste_bos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:visibility="@{isEmpty ? View.VISIBLE : View.GONE}" />
+
+    </RelativeLayout>
 </layout>

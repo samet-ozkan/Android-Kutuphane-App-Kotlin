@@ -42,10 +42,16 @@ class KitapIstekleriOnaylandiFragment : Fragment() {
         viewModel.fetchOnaylananlar { myResult ->
             when (myResult) {
                 is MyResult.Success -> {
+                    binding.isEmpty = myResult.data.isEmpty()
                     rvAdapter.list = myResult.data
                 }
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        parentFragmentManager,
+                        context
+                    )
                 }
             }
         }

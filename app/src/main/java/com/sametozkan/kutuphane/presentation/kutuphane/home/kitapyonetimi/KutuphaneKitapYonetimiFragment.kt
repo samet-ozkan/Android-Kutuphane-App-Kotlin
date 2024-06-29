@@ -42,6 +42,7 @@ class KutuphaneKitapYonetimiFragment : Fragment() {
         sharedViewModel.fetchKutuphane { myResult ->
             when (myResult) {
                 is MyResult.Success -> {
+                    binding.isEmpty = myResult.data.kitaplar.isEmpty()
                     rvAdapter.list = myResult.data.kitaplar
                 }
 

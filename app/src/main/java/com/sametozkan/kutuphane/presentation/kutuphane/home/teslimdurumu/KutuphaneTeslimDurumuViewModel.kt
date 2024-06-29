@@ -1,5 +1,6 @@
 package com.sametozkan.kutuphane.presentation.kutuphane.home.teslimdurumu
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,6 +27,8 @@ class KutuphaneTeslimDurumuViewModel @Inject constructor(
 
     val query = MutableLiveData<String>()
     var kitaplar = ArrayList<KitapKullaniciRes>()
+    private val _isEmpty = MutableLiveData(false)
+    val isEmpty: LiveData<Boolean> get() = _isEmpty
 
     fun teslimEdildi(kitapKullaniciId: Long, onResult: (MyResult<Unit>) -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -64,6 +67,8 @@ class KutuphaneTeslimDurumuViewModel @Inject constructor(
                 } as ArrayList<KitapKullaniciRes>
             }
         }
+
+        _isEmpty.value = list.isEmpty()
 
         return list
     }

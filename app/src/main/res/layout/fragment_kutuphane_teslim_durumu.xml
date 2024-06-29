@@ -2,25 +2,50 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isEmpty"
+            type="Boolean" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:background="@color/colorLightGray"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
         <SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:queryHint="Kullanıcı id veya ad, soyad girin"
-            android:background="@color/white"
             android:layout_height="wrap_content"
-            android:id="@+id/searchView"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
             android:layout_margin="10dp"
+            android:iconifiedByDefault="false"
+            android:background="@color/white"
+            android:queryHint="Kullanıcı id veya tam ad giriniz." />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recyclerView"/>
+            android:layout_margin="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}" />
+
+            <include
+                layout="@layout/include_liste_bos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:visibility="@{isEmpty ? View.VISIBLE : View.GONE}" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 </layout>

@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isEmpty"
+            type="Boolean" />
+
         <variable
             name="sharedViewModel"
             type="com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapViewModel" />
@@ -57,48 +64,28 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/yorumYok"
-                android:gravity="center"
-                android:layout_margin="10dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/null_svgrepo_com"/>
-
-                <TextView
-                    style="@style/CaptionText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Henüz yorum yok."
-                    />
-
-            </LinearLayout>
-
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/yorumlarRv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_centerInParent="true"
+                android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <include
+                layout="@layout/include_liste_bos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                app:visibility="@{isEmpty ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
 
     </LinearLayout>
 </layout>

@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.lifecycle.MutableLiveData
+import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.dto.response.TurRes
 import com.sametozkan.kutuphane.data.dto.response.YazarRes
 import java.text.SimpleDateFormat
@@ -108,7 +109,7 @@ object BindingAdapter {
     fun setYazarItems(listView: ListView, items: List<YazarRes>?) {
         items?.let {
             val fullNames = it.map { yazar -> "${yazar.adi} ${yazar.soyadi}" }
-            val adapter = ArrayAdapter(listView.context, android.R.layout.simple_list_item_1, fullNames)
+            val adapter = ArrayAdapter(listView.context, R.layout.simple_list_item, fullNames)
             listView.adapter = adapter
         }
     }
@@ -118,7 +119,7 @@ object BindingAdapter {
     fun setTurItems(listView: ListView, items: List<TurRes>?) {
         items?.let {
             val turNames = it.map { tur -> "${tur.tur}" }
-            val adapter = ArrayAdapter(listView.context, android.R.layout.simple_list_item_1, turNames)
+            val adapter = ArrayAdapter(listView.context, R.layout.simple_list_item, turNames)
             listView.adapter = adapter
         }
     }

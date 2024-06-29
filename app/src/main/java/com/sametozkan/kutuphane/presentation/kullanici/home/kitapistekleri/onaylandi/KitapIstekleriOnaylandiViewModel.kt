@@ -22,7 +22,6 @@ class KitapIstekleriOnaylandiViewModel @Inject constructor(
     private val sessionManager: SessionManager,
 ) : ViewModel() {
 
-
     fun fetchOnaylananlar(onResult: (MyResult<List<KitapKullaniciRes>>) -> Unit){
         sessionManager.getAccountID()?.let { account_id ->
             viewModelScope.launch(Dispatchers.IO) {

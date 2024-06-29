@@ -74,6 +74,13 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
 
         observeQuery()
         observeChips()
+        observeIsEmpty()
+    }
+
+    private fun observeIsEmpty(){
+        viewModel.isEmpty.observe(viewLifecycleOwner){
+            binding.isEmpty = it
+        }
     }
 
     private fun observeChips() {

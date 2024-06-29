@@ -7,6 +7,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="isEmpty"
+            type="Boolean" />
+
+        <variable
             name="isLoading"
             type="Boolean" />
 
@@ -66,7 +70,8 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/guideline1"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:queryHint="Kitap adı veya ISBN girin." />
+                            android:iconifiedByDefault="false"
+                            app:queryHint="Kitap adı veya ISBN giriniz." />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -74,16 +79,32 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/kitaplarRv"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorLightGray" />
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/kitaplarRv"
+                    android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:background="@color/colorLightGray" />
+
+                <include
+                    layout="@layout/include_liste_bos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:visibility="@{isEmpty ? View.VISIBLE : View.GONE}" />
+
+            </RelativeLayout>
+
         </LinearLayout>
 
         <include
             android:id="@+id/loadingState"
-            layout="@layout/state_loading"
+            layout="@layout/include_state_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"

@@ -40,6 +40,7 @@ class KutuphanelerFragment : Fragment() {
         viewModel.fetchKutuphaneler { myResult ->
             when (myResult) {
                 is MyResult.Success -> {
+                    binding.isEmpty = myResult.data.isEmpty()
                     rvAdapter.list = myResult.data
                 }
 

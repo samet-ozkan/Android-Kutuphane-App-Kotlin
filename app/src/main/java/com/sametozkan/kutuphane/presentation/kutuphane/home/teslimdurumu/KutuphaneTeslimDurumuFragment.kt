@@ -55,6 +55,13 @@ class KutuphaneTeslimDurumuFragment : Fragment() {
         fetchTeslimEdilmeyenler()
 
         observeQuery()
+        observeIsEmpty()
+    }
+
+    private fun observeIsEmpty(){
+        viewModel.isEmpty.observe(viewLifecycleOwner){
+            binding.isEmpty = it
+        }
     }
 
     private fun fetchTeslimEdilmeyenler() {

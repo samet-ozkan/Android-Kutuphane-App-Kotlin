@@ -68,16 +68,8 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
         sharedViewModel.fetchYorumlar { myResult ->
             when (myResult) {
                 is MyResult.Success -> {
+                    binding.isEmpty = myResult.data.isEmpty()
                     rvAdapter.list = myResult.data
-                    if (myResult.data.isEmpty()) {
-                        println("My result data empty!")
-                        binding.yorumYok.visibility = View.VISIBLE
-                        binding.yorumlarRv.visibility = View.GONE
-                    } else {
-                        println("My result data empty degil!")
-                        binding.yorumYok.visibility = View.GONE
-                        binding.yorumlarRv.visibility = View.VISIBLE
-                    }
                 }
 
                 is MyResult.Error -> {

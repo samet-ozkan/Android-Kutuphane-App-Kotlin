@@ -43,6 +43,7 @@ class KitapIstekleriOnayBekleyenlerFragment : Fragment() {
         viewModel.fetchOnayBekleyenler { myResult ->
             when (myResult) {
                 is MyResult.Success -> {
+                    binding.isEmpty = myResult.data.isEmpty()
                     rvAdapter.list = myResult.data
                 }
                 is MyResult.Error -> {
