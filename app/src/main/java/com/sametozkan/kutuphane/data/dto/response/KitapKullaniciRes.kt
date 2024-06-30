@@ -7,10 +7,9 @@ data class KitapKullaniciRes(
     val kitap: KitapRes,
     val kutuphane: KutuphaneRes,
     val kullanici: KullaniciRes,
-    val alimTarihi: List<Int>?,
-    val teslimTarihi: List<Int>?,
-    val createdTime: List<Int>,
+    val alimTarihi: String?,
+    val teslimTarihi: String?,
+    val createdTime: String,
     val iadeDurumu: Boolean,
     val onaylandi: Boolean?
-    //Burda kaldim createdTime object bekliyorsun liste geliyor diyor.
 )

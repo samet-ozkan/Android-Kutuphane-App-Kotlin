@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.ActivityKutuphaneBinding
+import com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapActivity
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.kitaplar.KitaplarActivity
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar.KutuphaneYorumlarBottomSheet
 import com.sametozkan.kutuphane.util.ErrorUtil
@@ -16,7 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class KutuphaneActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityKutuphaneBinding
-    val viewModel: KutuphaneViewModel by viewModels()
+    private val viewModel: KutuphaneViewModel by viewModels()
+    private lateinit var sonKitapAlanlarRvAdapter : SonKitapAlanlarRvAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +31,22 @@ class KutuphaneActivity : AppCompatActivity() {
         setupKitaplarButton()
         observeLoading()
         setupBackButton()
+        setupSonKitapAlanlarRv()
+    }
+
+    private fun setupSonKitapAlanlarRv(){
+        sonKitapAlanlarRvAdapter = SonKitapAlanlarRvAdapter(ArrayList()){
+            kitapRes, kutuphaneRes ->
+            val intent = Intent(this, KitapActivity::class.java)
+            intent.putExtra("Kütüphane ID", kutuphaneRes.id)
+            intent.putExtra("Kitap ID", kitapRes.id)
+            startActivity(intent)
+        }
+        binding.sonKitapAlanlarRv.apply {
+            adapter = sonKitapAlanlarRvAdapter
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+        }
     }
 
     private fun setupBackButton(){
@@ -65,6 +84,19 @@ class KutuphaneActivity : AppCompatActivity() {
                     binding.kutuphane = myResult.data
                 }
 
+                is MyResult.Error -> {
+                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
+                }
+            }
+        }
+
+        viewModel.fetchRecentKitapKullaniciRecords(3){
+            myResult ->
+            when(myResult){
+                is MyResult.Success -> {
+                    binding.isSonKitapAlanlarEmpty = myResult.data.isEmpty()
+                    sonKitapAlanlarRvAdapter.list = myResult.data
+                }
                 is MyResult.Error -> {
                     ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                 }

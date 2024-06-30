@@ -9,6 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface KitapKullaniciService {
 
@@ -47,6 +48,9 @@ interface KitapKullaniciService {
 
     @POST("/api/kitap-kullanici/teslim-edildi/{kitapKullaniciId}")
     suspend fun teslimEdildi(@Path("kitapKullaniciId") kitapKullaniciId: Long): Response<Unit>
+
+    @GET("/api/kitap-kullanici/recent")
+    suspend fun fetchRecentRecords(@Query("limit") limit: Int) : Response<List<KitapKullaniciRes>>
 
     @DELETE("/api/kitap-kullanici/delete/{id}")
     suspend fun deleteById(@Path("id") id: Long) : Response<Unit>

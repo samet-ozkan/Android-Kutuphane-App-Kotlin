@@ -61,6 +61,10 @@ class KitapKullaniciRepositoryImpl(private val kitapKullaniciService: KitapKulla
         return kitapKullaniciService.teslimEdildi(kitapKullaniciId)
     }
 
+    override suspend fun fetchRecentRecords(limit: Int) : Response<List<KitapKullaniciRes>>{
+        return kitapKullaniciService.fetchRecentRecords(limit)
+    }
+
     override suspend fun deleteById(id: Long): Response<Unit> {
         return kitapKullaniciService.deleteById(id);
     }

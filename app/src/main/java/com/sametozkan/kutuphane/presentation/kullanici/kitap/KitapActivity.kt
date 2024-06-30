@@ -29,7 +29,6 @@ class KitapActivity : AppCompatActivity() {
         fetchData()
         setupOduncAlButton()
         setupYorumlarButton()
-
         observeLoading()
         setupBackButton()
     }

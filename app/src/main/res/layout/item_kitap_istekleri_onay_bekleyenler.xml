@@ -45,7 +45,7 @@
                 android:gravity="center"
                 style="@style/CaptionText"
                 tools:text="17/02/2024 12:48"
-                tarih="@{kitapKullaniciRes.createdTime}"/>
+                android:text="@{kitapKullaniciRes.createdTime}"/>
 
             <Button
                 android:layout_width="100dp"

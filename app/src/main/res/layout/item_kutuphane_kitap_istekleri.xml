@@ -67,7 +67,7 @@
 
                         <TextView
                             style="@style/CaptionText"
-                            tarih="@{kitapKullaniciRes.createdTime}"
+                            android:text="@{kitapKullaniciRes.createdTime}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="17/02/2024 12:48" />
@@ -196,7 +196,7 @@
 
                         <TextView
                             style="@style/CaptionText"
-                            tarih="@{kitapKullaniciRes.alimTarihi}"
+                            android:text="@{kitapKullaniciRes.alimTarihi}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="12/12/2024 12:12" />
@@ -218,7 +218,7 @@
 
                         <TextView
                             style="@style/CaptionText"
-                            tarih="@{kitapKullaniciRes.teslimTarihi}"
+                            android:text="@{kitapKullaniciRes.teslimTarihi}"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="Henüz teslim edilmedi." />

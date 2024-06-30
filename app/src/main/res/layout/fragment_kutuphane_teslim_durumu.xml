@@ -24,7 +24,7 @@
             android:layout_margin="10dp"
             android:iconifiedByDefault="false"
             android:background="@color/white"
-            android:queryHint="Kullanıcı id veya tam ad giriniz." />
+            android:queryHint="Kullanıcı ID veya tam ad giriniz." />
 
         <RelativeLayout
             android:layout_width="match_parent"

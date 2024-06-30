@@ -5,8 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sametozkan.kutuphane.data.datasource.local.sharedpreferences.SessionManager
 import com.sametozkan.kutuphane.data.dto.request.KutuphaneYorumReq
+import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneYorumRes
+import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.FetchRecentKitapKullaniciRecordsUseCase
 import com.sametozkan.kutuphane.domain.usecase.kutuphane.FindKutuphaneByIdUseCase
 import com.sametozkan.kutuphane.domain.usecase.kutuphaneyorum.FindYorumlarByKutuphaneIdUseCase
 import com.sametozkan.kutuphane.domain.usecase.kutuphaneyorum.SaveKutuphaneYorumUseCase
@@ -23,6 +25,7 @@ class KutuphaneViewModel @Inject constructor(
     private val findKutuphaneByIdUseCase: FindKutuphaneByIdUseCase,
     private val findYorumlarByKutuphaneIdUseCase: FindYorumlarByKutuphaneIdUseCase,
     private val saveKutuphaneYorumUseCase: SaveKutuphaneYorumUseCase,
+    private val fetchRecentKitapKullaniciRecordsUseCase: FetchRecentKitapKullaniciRecordsUseCase,
     private val sessionManager: SessionManager
 ) : ViewModel() {
 
@@ -39,6 +42,15 @@ class KutuphaneViewModel @Inject constructor(
             }
         } ?: kotlin.run {
             println("Kutuphane ID is null!")
+        }
+    }
+
+    fun fetchRecentKitapKullaniciRecords(limit: Int, onResult: (MyResult<List<KitapKullaniciRes>>) -> Unit){
+        viewModelScope.launch(Dispatchers.IO) {
+            val result = async { fetchRecentKitapKullaniciRecordsUseCase(limit) }.await()
+            withContext(Dispatchers.Main){
+                onResult(result)
+            }
         }
     }
 

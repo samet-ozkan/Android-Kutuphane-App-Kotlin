@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 style="@style/CaptionText"
                 tools:text="17/02/2024 12:48"
-                tarih="@{kitapKullaniciRes.alimTarihi}"/>
+                android:text="@{kitapKullaniciRes.alimTarihi}"/>
 
         </LinearLayout>
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 style="@style/CaptionText"
                 tools:text="Mevcut değil"
-                tarih="@{kitapKullaniciRes.teslimTarihi}"/>
+                android:text="@{kitapKullaniciRes.teslimTarihi}"/>
 
         </LinearLayout>
 

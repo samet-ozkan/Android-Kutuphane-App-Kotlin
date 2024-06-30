@@ -70,7 +70,6 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/guideline1"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:iconifiedByDefault="false"
                             app:queryHint="Kitap adı veya ISBN giriniz." />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
