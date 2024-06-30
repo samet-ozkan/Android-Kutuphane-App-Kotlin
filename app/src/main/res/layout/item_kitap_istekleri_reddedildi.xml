@@ -13,24 +13,36 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/rounded_corners"
-        android:padding="10dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CaptionText"
+            android:layout_margin="10dp"
+            android:id="@+id/kutuphaneAdiTv"
+            android:text="@{kitapKullaniciRes.kutuphane.adi}"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            tools:text="İstanbul Halk Kütüphanesi" />
+
         <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             layout="@layout/item_kitap"
             bind:kitapRes="@{kitapKullaniciRes.kitap}" />
 
         <TextView
             android:id="@+id/teslimTarihiTv"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
             android:layout_height="wrap_content"
             android:text="Reddedildi"
-            android:layout_gravity="center"
-            style="@style/CaptionText"
-            />
+            android:textStyle="bold"
+            style="@style/CaptionText" />
 
     </LinearLayout>
 </layout>

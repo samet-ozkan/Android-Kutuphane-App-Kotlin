@@ -1,5 +1,6 @@
 package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.onaybekleyenler
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
+import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriOnayBekleyenlerBinding
+import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneActivity
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,28 +50,51 @@ class KitapIstekleriOnayBekleyenlerFragment : Fragment() {
                     binding.isEmpty = myResult.data.isEmpty()
                     rvAdapter.list = myResult.data
                 }
+
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        parentFragmentManager,
+                        context
+                    )
                 }
             }
         }
     }
 
-    private fun setupRv() {
-        rvAdapter = OnayBekleyenlerRvAdapter(ArrayList()) { kitapKullaniciRes ->
-            viewModel.deleteById(kitapKullaniciRes.id) {
-            myResult ->
-            when(myResult) {
+    val onIptalEtClickListener: (KitapKullaniciRes) -> Unit = { kitapKullaniciRes ->
+        viewModel.deleteById(kitapKullaniciRes.id) { myResult ->
+            when (myResult) {
                 is MyResult.Success -> {
-                    Toast.makeText(context, "Kitap isteği başarıyla iptal edildi.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Kitap isteği başarıyla iptal edildi.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     refreshList()
                 }
+
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        parentFragmentManager,
+                        context
+                    )
                 }
             }
-            }
         }
+    }
+
+    val onKutuphaneClickListener: (KutuphaneRes) -> Unit = { kutuphaneRes ->
+        val intent = Intent(context, KutuphaneActivity::class.java)
+        intent.putExtra("Kütüphane ID", kutuphaneRes.id)
+        startActivity(intent)
+    }
+
+    private fun setupRv() {
+        rvAdapter = OnayBekleyenlerRvAdapter(ArrayList(), onIptalEtClickListener, onKutuphaneClickListener)
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = rvAdapter

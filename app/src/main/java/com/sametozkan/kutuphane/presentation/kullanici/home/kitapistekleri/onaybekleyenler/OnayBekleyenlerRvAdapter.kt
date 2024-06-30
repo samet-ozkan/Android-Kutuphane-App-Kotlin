@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
-import com.sametozkan.kutuphane.data.dto.response.KitapRes
+import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.databinding.ItemKitapIstekleriOnayBekleyenlerBinding
 
 class OnayBekleyenlerRvAdapter : RecyclerView.Adapter<OnayBekleyenlerRvAdapter.ViewHolder> {
@@ -15,26 +15,33 @@ class OnayBekleyenlerRvAdapter : RecyclerView.Adapter<OnayBekleyenlerRvAdapter.V
             notifyDataSetChanged()
         }
 
-    val itemClickListener: (KitapKullaniciRes) -> Unit
+    val onIptalEtClickListener: (KitapKullaniciRes) -> Unit
 
-    constructor(list: List<KitapKullaniciRes>, itemClickListener: (KitapKullaniciRes) -> Unit) {
+    val onKutuphaneClickListener: (KutuphaneRes) -> Unit
+
+    constructor(list: List<KitapKullaniciRes>, onIptalEtClickListener: (KitapKullaniciRes) -> Unit, onKutuphaneClickListener: (KutuphaneRes) -> Unit) {
         this.list = list
-        this.itemClickListener = itemClickListener
+        this.onIptalEtClickListener = onIptalEtClickListener
+        this.onKutuphaneClickListener = onKutuphaneClickListener
     }
 
-    class ViewHolder(private val binding : ItemKitapIstekleriOnayBekleyenlerBinding, private val itemClickListener: (KitapKullaniciRes) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding : ItemKitapIstekleriOnayBekleyenlerBinding, private val onIptalEtClickListener: (KitapKullaniciRes) -> Unit,
+    private val onKutuphaneClickListener: (KutuphaneRes) -> Unit) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindItem(kitapKullaniciRes: KitapKullaniciRes){
             binding.kitapKullaniciRes = kitapKullaniciRes
             binding.iptalEtButton.setOnClickListener {
-                itemClickListener(kitapKullaniciRes)
+                onIptalEtClickListener(kitapKullaniciRes)
+            }
+            binding.kutuphaneAdiTv.setOnClickListener {
+                onKutuphaneClickListener(kitapKullaniciRes.kutuphane)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemKitapIstekleriOnayBekleyenlerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, itemClickListener)
+        return ViewHolder(binding, onIptalEtClickListener, onKutuphaneClickListener)
     }
 
     override fun getItemCount(): Int {

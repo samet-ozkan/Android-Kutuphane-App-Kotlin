@@ -1,5 +1,6 @@
 package com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.onaylandi
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKitapIstekleriReddedildiBinding
 import com.sametozkan.kutuphane.presentation.kullanici.home.kitapistekleri.reddedildi.KitapIstekleriReddedildiViewModel
+import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneActivity
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,8 +57,10 @@ class KitapIstekleriReddedildiFragment : Fragment() {
     }
 
     private fun setupRv() {
-        rvAdapter = KitapIstekleriOnaylandiRvAdapter(ArrayList()) { kitapKullaniciRes ->
-            // TODO: Click listener ekle
+        rvAdapter = KitapIstekleriOnaylandiRvAdapter(ArrayList()) { kutuphaneRes ->
+            val intent = Intent(context, KutuphaneActivity::class.java)
+            intent.putExtra("Kütüphane ID", kutuphaneRes.id)
+            startActivity(intent)
         }
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
