@@ -15,6 +15,7 @@ import com.sametozkan.kutuphane.databinding.BottomSheetKutuphaneYorumlarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 
 class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
 
@@ -51,13 +52,18 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
             sharedViewModel.yorumGonder { myResult ->
                 when (myResult) {
                     is MyResult.Success -> {
-                        Toast.makeText(context, "Yorum gönderildi", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Yorum gönderildi.", Toast.LENGTH_SHORT).show()
                         refreshComments()
                         binding.yorumEditText.setText("")
                     }
 
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                        ErrorUtil.showErrorDialog(
+                            myResult.responseCode,
+                            myResult.exception,
+                            parentFragmentManager,
+                            context
+                        )
                     }
                 }
             }
@@ -73,7 +79,12 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        parentFragmentManager,
+                        context
+                    )
                 }
             }
         }
@@ -94,6 +105,7 @@ class KutuphaneYorumlarBottomSheet : BottomSheetDialogFragment() {
         binding.yorumlarRv.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(this@KutuphaneYorumlarBottomSheet.context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
     }

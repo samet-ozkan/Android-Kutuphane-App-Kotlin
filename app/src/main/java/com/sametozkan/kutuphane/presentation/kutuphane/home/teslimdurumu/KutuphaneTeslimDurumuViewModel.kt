@@ -1,5 +1,7 @@
 package com.sametozkan.kutuphane.presentation.kutuphane.home.teslimdurumu
 
+import android.os.Build
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,6 +11,7 @@ import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
 import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.FindAllKitapKullaniciByKutuphaneIdUseCase
 import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.TeslimEdildiUseCase
 import com.sametozkan.kutuphane.domain.usecase.kitapkullanici.TeslimEdilmeyenlerUseCase
+import com.sametozkan.kutuphane.util.DateUtil
 import com.sametozkan.kutuphane.util.KutuphaneKitapIstekleriChips
 import com.sametozkan.kutuphane.util.MyResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,6 +19,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +31,7 @@ class KutuphaneTeslimDurumuViewModel @Inject constructor(
     private val teslimEdilmeyenlerUseCase: TeslimEdilmeyenlerUseCase
 ) : ViewModel() {
 
+    var zamaniGecmisCheckbox = ObservableBoolean(false)
     val query = MutableLiveData<String>()
     var kitaplar = ArrayList<KitapKullaniciRes>()
     private val _isEmpty = MutableLiveData(false)
@@ -66,6 +73,23 @@ class KutuphaneTeslimDurumuViewModel @Inject constructor(
                     )
                 } as ArrayList<KitapKullaniciRes>
             }
+        }
+
+        if(zamaniGecmisCheckbox.get()){
+            list = list.filter { kitapKullaniciRes ->
+                kitapKullaniciRes.alimTarihi?.let { alimTarihi ->
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                        val localDate = DateUtil.stringToLocalDateTime(alimTarihi) as LocalDateTime
+                        localDate.isBefore(LocalDateTime.now())
+                    }
+                    else{
+                        val localDate = DateUtil.stringToLocalDateTime(alimTarihi) as org.threeten.bp.LocalDateTime
+                        localDate.isBefore(org.threeten.bp.LocalDateTime.now())
+                    }
+                } ?: kotlin.run {
+                    false
+                }
+            } as ArrayList<KitapKullaniciRes>
         }
 
         _isEmpty.value = list.isEmpty()

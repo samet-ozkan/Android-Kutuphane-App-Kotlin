@@ -10,14 +10,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.sametozkan.kutuphane.databinding.DialogErrorBinding
-import com.sametozkan.kutuphane.databinding.DialogSuccessBinding
-import dagger.hilt.android.AndroidEntryPoint
+import com.sametozkan.kutuphane.databinding.DialogConfirmationBinding
 
-@AndroidEntryPoint
-class SuccessDialog(private val successMessage: String, private val onDismissListener : (SuccessDialog) -> Unit ) : DialogFragment() {
+class ConfirmationDialog(private val message: String, private val onEvetClickListener : (ConfirmationDialog) -> Unit) : DialogFragment() {
 
-    private lateinit var binding: DialogSuccessBinding
+    lateinit var binding : DialogConfirmationBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState)
@@ -29,10 +26,16 @@ class SuccessDialog(private val successMessage: String, private val onDismissLis
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogSuccessBinding.inflate(inflater, container, false)
+        binding = DialogConfirmationBinding.inflate(inflater, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        binding.message = successMessage
+        binding.message = message
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupEvetButton()
+        setupIptalButton()
     }
 
     override fun onStart() {
@@ -47,14 +50,15 @@ class SuccessDialog(private val successMessage: String, private val onDismissLis
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setTamamButton()
+    private fun setupEvetButton(){
+        binding.evetButton.setOnClickListener {
+            onEvetClickListener(this)
+        }
     }
 
-    private fun setTamamButton(){
-        binding.tamamButton.setOnClickListener {
-            onDismissListener(this)
+    private fun setupIptalButton(){
+        binding.iptalButton.setOnClickListener {
+            dismiss()
         }
     }
 }

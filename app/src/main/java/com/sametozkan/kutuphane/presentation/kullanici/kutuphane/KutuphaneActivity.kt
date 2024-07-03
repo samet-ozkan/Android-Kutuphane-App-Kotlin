@@ -12,6 +12,7 @@ import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.yorumlar.Kutuph
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,6 +46,7 @@ class KutuphaneActivity : AppCompatActivity() {
         binding.sonKitapAlanlarRv.apply {
             adapter = sonKitapAlanlarRvAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
     }

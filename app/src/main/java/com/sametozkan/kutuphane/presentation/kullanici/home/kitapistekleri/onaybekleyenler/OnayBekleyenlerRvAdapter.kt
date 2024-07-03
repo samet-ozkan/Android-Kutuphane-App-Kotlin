@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
+import com.sametozkan.kutuphane.data.dto.response.KitapRes
 import com.sametozkan.kutuphane.data.dto.response.KutuphaneRes
 import com.sametozkan.kutuphane.databinding.ItemKitapIstekleriOnayBekleyenlerBinding
 
@@ -15,33 +16,57 @@ class OnayBekleyenlerRvAdapter : RecyclerView.Adapter<OnayBekleyenlerRvAdapter.V
             notifyDataSetChanged()
         }
 
-    val onIptalEtClickListener: (KitapKullaniciRes) -> Unit
+    val iptalEtClickListener: (KitapKullaniciRes) -> Unit
 
-    val onKutuphaneClickListener: (KutuphaneRes) -> Unit
+    val kutuphaneClickListener: (KutuphaneRes) -> Unit
 
-    constructor(list: List<KitapKullaniciRes>, onIptalEtClickListener: (KitapKullaniciRes) -> Unit, onKutuphaneClickListener: (KutuphaneRes) -> Unit) {
+    val isbnClickListener: (KitapRes) -> Unit
+
+    constructor(
+        list: List<KitapKullaniciRes>,
+        onIptalEtClickListener: (KitapKullaniciRes) -> Unit,
+        onKutuphaneClickListener: (KutuphaneRes) -> Unit,
+        isbnClickListener: (KitapRes) -> Unit
+    ) {
         this.list = list
-        this.onIptalEtClickListener = onIptalEtClickListener
-        this.onKutuphaneClickListener = onKutuphaneClickListener
+        this.iptalEtClickListener = onIptalEtClickListener
+        this.kutuphaneClickListener = onKutuphaneClickListener
+        this.isbnClickListener = isbnClickListener
     }
 
-    class ViewHolder(private val binding : ItemKitapIstekleriOnayBekleyenlerBinding, private val onIptalEtClickListener: (KitapKullaniciRes) -> Unit,
-    private val onKutuphaneClickListener: (KutuphaneRes) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        private val binding: ItemKitapIstekleriOnayBekleyenlerBinding,
+        private val iptalEtClickListener: (KitapKullaniciRes) -> Unit,
+        private val kutuphaneClickListener: (KutuphaneRes) -> Unit,
+        private val isbnClickListener: (KitapRes) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindItem(kitapKullaniciRes: KitapKullaniciRes){
+        fun bindItem(kitapKullaniciRes: KitapKullaniciRes) {
             binding.kitapKullaniciRes = kitapKullaniciRes
             binding.iptalEtButton.setOnClickListener {
-                onIptalEtClickListener(kitapKullaniciRes)
+                iptalEtClickListener(kitapKullaniciRes)
             }
             binding.kutuphaneAdiTv.setOnClickListener {
-                onKutuphaneClickListener(kitapKullaniciRes.kutuphane)
+                kutuphaneClickListener(kitapKullaniciRes.kutuphane)
+            }
+            binding.kitapItem.isbnTextView.setOnClickListener {
+                isbnClickListener(kitapKullaniciRes.kitap)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemKitapIstekleriOnayBekleyenlerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding, onIptalEtClickListener, onKutuphaneClickListener)
+        val binding = ItemKitapIstekleriOnayBekleyenlerBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return ViewHolder(
+            binding,
+            iptalEtClickListener,
+            kutuphaneClickListener,
+            isbnClickListener
+        )
     }
 
     override fun getItemCount(): Int {

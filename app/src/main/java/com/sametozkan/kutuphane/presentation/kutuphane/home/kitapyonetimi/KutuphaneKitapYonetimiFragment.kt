@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneKitapYonetimiBinding
+import com.sametozkan.kutuphane.presentation.bottomsheet.KitapBottomSheet
 import com.sametozkan.kutuphane.presentation.kutuphane.home.KutuphaneHomeViewModel
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleActivity
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -60,12 +62,14 @@ class KutuphaneKitapYonetimiFragment : Fragment() {
         }
     }
 
-
     private fun setupKitaplarRv() {
-        rvAdapter = KutuphaneKitapYonetimiRvAdapter(ArrayList())
+        rvAdapter = KutuphaneKitapYonetimiRvAdapter(ArrayList()){
+            KitapBottomSheet(it).show(childFragmentManager, "Kitap")
+        }
         binding.kitapRecyclerView.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(this@KutuphaneKitapYonetimiFragment.context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
     }

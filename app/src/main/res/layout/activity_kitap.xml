@@ -181,258 +181,263 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="5dp"
-                            android:paddingVertical="5dp">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/book_2_svgrepo_com" />
-
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Kitap Adı:" />
-
-                            <TextView
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{viewModel.kitap.adi}"
-                                tools:text="Kitap Adı" />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/book_2_svgrepo_com" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="5dp"
-                            android:paddingVertical="5dp">
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Kitap Adı:" />
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/baseline_calendar_today_24" />
+                                <TextView
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{viewModel.kitap.adi}"
+                                    tools:text="Kitap Adı" />
 
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Yayın Yılı:" />
+                            </LinearLayout>
 
-                            <TextView
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{String.valueOf(viewModel.kitap.yayinTarihi)}"
-                                tools:text="2024" />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/baseline_calendar_today_24" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="5dp"
-                            android:paddingVertical="5dp">
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Yayın Yılı:" />
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/baseline_language_24" />
+                                <TextView
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{String.valueOf(viewModel.kitap.yayinTarihi)}"
+                                    tools:text="2024" />
 
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Dil:" />
+                            </LinearLayout>
 
-                            <TextView
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{viewModel.kitap.dil}"
-                                tools:text="Türkçe" />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/baseline_language_24" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="5dp"
-                            android:paddingVertical="5dp">
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Dil:" />
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/baseline_menu_book_24" />
+                                <TextView
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{viewModel.kitap.dil}"
+                                    tools:text="Türkçe" />
 
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Sayfa Sayısı:" />
+                            </LinearLayout>
 
-                            <TextView
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{String.valueOf(viewModel.kitap.sayfaSayisi)}"
-                                tools:text="234" />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/baseline_menu_book_24" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="5dp"
-                            android:paddingVertical="5dp">
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Sayfa Sayısı:" />
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/description_svgrepo_com" />
+                                <TextView
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{String.valueOf(viewModel.kitap.sayfaSayisi)}"
+                                    tools:text="234" />
 
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Açıklama:" />
+                            </LinearLayout>
 
-                            <TextView
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{viewModel.kitap.aciklama}"
-                                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/description_svgrepo_com" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="5dp"
-                            android:paddingVertical="5dp">
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Açıklama:" />
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/authors_svgrepo_com" />
+                                <TextView
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{viewModel.kitap.aciklama}"
+                                    tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
 
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Yazarlar:" />
+                            </LinearLayout>
 
-                            <ListView
-                                android:id="@+id/yazarlarList"
-                                yazarItems="@{viewModel.kitap.yazarlar}"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                tools:layout_height="120dp" />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
 
-                        </LinearLayout>
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/authors_svgrepo_com" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal"
-                            android:paddingHorizontal="5dp"
-                            android:paddingVertical="5dp">
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Yazarlar:" />
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/types_svgrepo_com" />
+                                <ListView
+                                    android:id="@+id/yazarlarList"
+                                    yazarItems="@{viewModel.kitap.yazarlar}"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    tools:layout_height="120dp" />
 
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Türler:" />
+                            </LinearLayout>
 
-                            <ListView
-                                android:id="@+id/turlerList"
-                                turItems="@{viewModel.kitap.turler}"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                tools:layout_height="120dp" />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/types_svgrepo_com" />
+
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Türler:" />
+
+                                <ListView
+                                    android:id="@+id/turlerList"
+                                    turItems="@{viewModel.kitap.turler}"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    tools:layout_height="120dp" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 

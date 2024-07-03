@@ -17,9 +17,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class KullaniciKaydolActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityKullaniciKaydolBinding
+    private lateinit var binding: ActivityKullaniciKaydolBinding
 
-    val viewModel : KullaniciKaydolViewModel by viewModels()
+    val viewModel: KullaniciKaydolViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,39 +34,46 @@ class KullaniciKaydolActivity : AppCompatActivity() {
         observeLoading()
     }
 
-    private fun setupBackButton(){
+    private fun setupBackButton() {
         binding.backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
     }
 
-    private fun startLoginActivity(){
+    private fun startLoginActivity() {
         val intent = Intent(this, KullaniciGirisActivity::class.java)
         startActivity(intent)
         finish()
     }
 
-    private fun setupKaydolButton(){
+    private fun setupKaydolButton() {
         binding.kaydolButton.setOnClickListener {
-            viewModel.kaydol {
-                myResult ->
-                when(myResult){
+            viewModel.kaydol { myResult ->
+                when (myResult) {
                     is MyResult.Success -> {
-                        val successDialog = SuccessDialog(getString(R.string.registration_success_message)) {
-                            startLoginActivity()
-                        }
+                        val successDialog =
+                            SuccessDialog(getString(R.string.registration_success_message)) { successDialog ->
+                                successDialog.dismiss()
+                                startLoginActivity()
+                            }
                         successDialog.show(supportFragmentManager, "Success")
                     }
+
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
+                        ErrorUtil.showErrorDialog(
+                            myResult.responseCode,
+                            myResult.exception,
+                            supportFragmentManager,
+                            this
+                        )
                     }
                 }
             }
         }
     }
 
-    private fun observeLoading(){
-        LoadingManager.loading.observe(this){
+    private fun observeLoading() {
+        LoadingManager.loading.observe(this) {
             binding.isLoading = it
         }
     }

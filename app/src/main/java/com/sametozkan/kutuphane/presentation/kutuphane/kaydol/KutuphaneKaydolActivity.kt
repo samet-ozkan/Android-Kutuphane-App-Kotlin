@@ -65,6 +65,7 @@ class KutuphaneKaydolActivity : AppCompatActivity() {
                 when(myResult){
                     is MyResult.Success -> {
                         val successDialog = SuccessDialog(getString(R.string.registration_success_message)) {
+                            it.dismiss()
                             startLoginActivity()
                         }
                         successDialog.show(supportFragmentManager, "Success")

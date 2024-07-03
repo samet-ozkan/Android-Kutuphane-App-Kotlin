@@ -3,6 +3,7 @@ package com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitap
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,9 +20,12 @@ import com.sametozkan.kutuphane.data.dto.request.TurReq
 import com.sametozkan.kutuphane.data.dto.request.YazarReq
 import com.sametozkan.kutuphane.databinding.FragmentKitapOlusturBinding
 import com.sametozkan.kutuphane.presentation.dialog.SuccessDialog
+import com.sametozkan.kutuphane.presentation.dialog.TurEkleDialog
+import com.sametozkan.kutuphane.presentation.dialog.YazarEkleDialog
 import com.sametozkan.kutuphane.presentation.kutuphane.home.kitapyonetimi.kitapekle.KitapEkleViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,6 +44,7 @@ class KitapOlusturFragment : Fragment() {
     ): View? {
         binding = FragmentKitapOlusturBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
 
@@ -65,6 +70,7 @@ class KitapOlusturFragment : Fragment() {
         binding.turlerRv.apply {
             adapter = turlerRvAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
         viewModel.turler.observe(viewLifecycleOwner, Observer { turler ->
@@ -82,6 +88,7 @@ class KitapOlusturFragment : Fragment() {
         binding.yazarlarRv.apply {
             adapter = yazarlarRvAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
         viewModel.yazarlar.observe(viewLifecycleOwner, Observer { yazarlar ->
@@ -91,76 +98,54 @@ class KitapOlusturFragment : Fragment() {
 
     private fun setupYazarEkleButton() {
         binding.yazarEkleButton.setOnClickListener {
-            context?.let {
-                showYazarInputDialog(it)
-            }
+            showYazarInputDialog()
         }
     }
 
     private fun setupTurEkleButton() {
         binding.turEkleButton.setOnClickListener {
-            context?.let {
-                showTurInputDialog(it)
-            }
+            showTurInputDialog()
         }
     }
 
-    fun showYazarInputDialog(context: Context) {
-        val builder = AlertDialog.Builder(context, R.style.CustomAlertDialog)
-            .create()
-        val view = layoutInflater.inflate(R.layout.dialog_yazar_ekle, null)
-        val ekleButton = view.findViewById<Button>(R.id.ekle)
-        val vazgecButton = view.findViewById<Button>(R.id.vazgec)
-        builder.setView(view)
-        ekleButton.setOnClickListener {
-            val adi = view.findViewById<EditText>(R.id.yazarAdi).text.toString()
-            val soyadi = view.findViewById<EditText>(R.id.yazarSoyadi).text.toString()
+    fun showYazarInputDialog() {
+        val dialog = YazarEkleDialog { yazarAdi, yazarSoyadi ->
             viewModel.yazarlar.value?.let {
-                it.add(YazarReq(adi, soyadi))
+                it.add(YazarReq(yazarAdi, yazarSoyadi))
+                viewModel.yazarlar.value = it
             }
-            builder.dismiss()
         }
-        vazgecButton.setOnClickListener {
-            builder.dismiss()
-        }
-        builder.setCanceledOnTouchOutside(false)
-        builder.show()
+        dialog.show(childFragmentManager, "Yazar Ekle")
     }
 
-    fun showTurInputDialog(context: Context) {
-        val builder = AlertDialog.Builder(context, R.style.CustomAlertDialog)
-            .create()
-        val view = layoutInflater.inflate(R.layout.dialog_tur_ekle, null)
-        val ekleButton = view.findViewById<Button>(R.id.ekle)
-        val vazgecButton = view.findViewById<Button>(R.id.vazgec)
-        builder.setView(view)
-        ekleButton.setOnClickListener {
-            val turAdi = view.findViewById<EditText>(R.id.turAdi).text.toString()
+    fun showTurInputDialog() {
+        val dialog = TurEkleDialog { turAdi ->
             viewModel.turler.value?.let {
                 it.add(TurReq(turAdi))
+                viewModel.turler.value = it
             }
-            builder.dismiss()
         }
-        vazgecButton.setOnClickListener {
-            builder.dismiss()
-        }
-        builder.setCanceledOnTouchOutside(false)
-        builder.show()
+        dialog.show(childFragmentManager, "Tur Ekle")
     }
 
     private fun setupOlusturButton() {
         binding.olusturButton.setOnClickListener {
-            println("Olustur butonuna basildi!")
-            println("Kitap adı:" + viewModel.kitapAdi.value)
             viewModel.olustur { myResult ->
                 when (myResult) {
                     is MyResult.Success -> {
-                        SuccessDialog("Kitap başarıyla oluşturuldu ve kütüphaneniz ile ilişkilendirildi."){
+                        SuccessDialog("Kitap başarıyla oluşturuldu ve kütüphaneniz ile ilişkilendirildi.") { successDialog ->
+                            successDialog.dismiss()
                             requireActivity().finish()
                         }
                     }
+
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                        ErrorUtil.showErrorDialog(
+                            myResult.responseCode,
+                            myResult.exception,
+                            parentFragmentManager,
+                            context
+                        )
 
                     }
                 }
@@ -218,7 +203,12 @@ class KitapOlusturFragment : Fragment() {
                     }
 
                     is MyResult.Error -> {
-                        ErrorUtil.showErrorDialog(result.responseCode, result.exception, parentFragmentManager, context)
+                        ErrorUtil.showErrorDialog(
+                            result.responseCode,
+                            result.exception,
+                            parentFragmentManager,
+                            context
+                        )
                     }
                 }
             }

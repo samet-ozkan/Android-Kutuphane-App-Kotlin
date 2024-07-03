@@ -3,54 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="message"
             type="String" />
     </data>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center"
-        android:background="@drawable/rounded_corners"
-        android:backgroundTint="@color/colorLightGray"
         android:layout_width="wrap_content"
-        android:paddingVertical="20dp"
-        android:paddingHorizontal="40dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:gravity="center"
+        android:minWidth="300dp"
+        android:minHeight="200dp"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <ImageView
+            android:id="@+id/errorIcon"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/baseline_check_circle_24"
-            android:id="@+id/errorIcon"/>
+            android:src="@drawable/baseline_check_circle_24" />
 
         <TextView
+            android:id="@+id/errorTitle"
+            style="@style/HeadlineText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Başarılı!"
-            style="@style/HeadlineText"
-            android:textColor="@color/green"
-            android:id="@+id/errorTitle"/>
+            android:textColor="@color/green" />
 
         <TextView
+            android:id="@+id/errorText"
+            style="@style/BodyText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{message}"
-            android:gravity="center"
-            tools:text="İşlem başarılı."
             android:layout_marginTop="10dp"
-            style="@style/BodyText"
-            android:id="@+id/errorText"/>
+            android:gravity="center"
+            android:text="@{message}"
+            tools:text="İşlem başarılı." />
 
         <Button
+            android:id="@+id/tamamButton"
+            style="@style/ButtonText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Tamam"
-            style="@style/ButtonText"
             android:backgroundTint="@color/green"
-            android:textColor="@color/white"
-            android:id="@+id/tamamButton"/>
+            android:text="Tamam"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 

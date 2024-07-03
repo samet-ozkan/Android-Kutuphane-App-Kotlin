@@ -70,7 +70,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/guideline1"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:queryHint="Kitap adı veya ISBN giriniz." />
+                            app:queryHint="Kitap adı veya ISBN giriniz" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -80,15 +80,16 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:background="@color/colorLightGray"
                 android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/kitaplarRv"
                     android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
                     android:layout_width="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:background="@color/colorLightGray" />
+                    android:layout_centerInParent="true" />
 
                 <include
                     layout="@layout/include_liste_bos"

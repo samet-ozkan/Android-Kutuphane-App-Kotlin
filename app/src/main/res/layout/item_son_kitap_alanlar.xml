@@ -11,12 +11,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:padding="10dp"
         android:background="@drawable/background_kitap_info"
-        android:orientation="vertical"
-        android:paddingHorizontal="5dp"
-        android:paddingVertical="5dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,16 +25,15 @@
                 style="@style/SubtitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:text="Kitap:" />
 
             <TextView
                 android:id="@+id/kitapAdi"
                 style="@style/BodyText"
-                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:paddingLeft="10dp"
                 android:maxLines="1"
                 android:text="@{kitapKullaniciRes.kitap.adi}"
                 android:textColor="@color/colorPrimaryDark"
@@ -56,7 +52,6 @@
                 style="@style/SubtitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:text="Kullanıcı:" />
 
             <TextView
@@ -65,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:padding="5dp"
+                android:paddingLeft="5dp"
                 android:maxLines="1"
                 android:paddingRight="10dp"
                 android:text="@{kitapKullaniciRes.kullanici.adi + ` ` + kitapKullaniciRes.kullanici.soyadi + ` #` + kitapKullaniciRes.kullanici.id}"
@@ -83,7 +78,6 @@
                 style="@style/SubtitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:text="Alım Tarihi:" />
 
             <TextView
@@ -93,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:padding="5dp"
+                android:paddingLeft="5dp"
                 android:text="@{kitapKullaniciRes.alimTarihi}"
                 tools:text="13/02/2024" />
 

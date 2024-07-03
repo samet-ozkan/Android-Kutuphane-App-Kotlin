@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="kitapKullaniciRes"
             type="com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes" />
@@ -13,26 +12,46 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corners"
+        android:background="@drawable/background_kitap_istekleri"
         android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/CaptionText"
-            android:layout_margin="10dp"
+            android:padding="5dp"
             android:id="@+id/kutuphaneAdiTv"
-            android:text="@{kitapKullaniciRes.kutuphane.adi}"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            tools:text="İstanbul Halk Kütüphanesi" />
+            android:background="@color/red"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/CaptionText"
+                android:layout_gravity="center"
+                android:text="@{kitapKullaniciRes.kutuphane.adi}"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                tools:text="İstanbul Halk Kütüphanesi" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:src="@drawable/baseline_forward_24"
+                app:tint="@color/white"/>
+
+        </LinearLayout>
 
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/item_kitap"
+            android:id="@+id/kitapItem"
+            app:kitapRes="@{kitapKullaniciRes.kitap}"
+            app:linkColor="@{@color/colorPrimaryDark}"
             bind:kitapRes="@{kitapKullaniciRes.kitap}" />
 
         <TextView

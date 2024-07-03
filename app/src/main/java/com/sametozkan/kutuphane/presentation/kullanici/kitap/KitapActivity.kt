@@ -1,11 +1,11 @@
 package com.sametozkan.kutuphane.presentation.kullanici.kitap
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.sametozkan.kutuphane.databinding.ActivityKitapBinding
+import com.sametozkan.kutuphane.presentation.dialog.ConfirmationDialog
+import com.sametozkan.kutuphane.presentation.dialog.SuccessDialog
 import com.sametozkan.kutuphane.presentation.kullanici.kitap.yorumlar.KitapYorumlarBottomSheet
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
@@ -47,32 +47,30 @@ class KitapActivity : AppCompatActivity() {
 
     private fun setupYorumlarButton() {
         binding.yorumlarButton.setOnClickListener {
-            val kutuphaneYorumlarBottomSheet = KitapYorumlarBottomSheet()
-            kutuphaneYorumlarBottomSheet.show(supportFragmentManager, "Yorumlar")
+            val kitapYorumlarBottomSheet = KitapYorumlarBottomSheet()
+            kitapYorumlarBottomSheet.show(supportFragmentManager, "Yorumlar")
         }
     }
 
     private fun setupOduncAlButton(){
         binding.oduncAlButton.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage("Kitabı ödünç almak istediğinize emin misiniz?")
-                .setPositiveButton("Evet") { dialog, id ->
-                    viewModel.oduncAl { myResult ->
-                        when(myResult){
-                            is MyResult.Success -> {
-                                Toast.makeText(this, "Ödünç alma isteği gönderildi.", Toast.LENGTH_LONG).show()
-                            }
-                            is MyResult.Error -> {
-                                ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
-                            }
+            ConfirmationDialog("Kitabı ödünç almak istediğinize emin misiniz?"){
+                confirmationDialog ->
+                confirmationDialog.dismiss()
+                viewModel.oduncAl { myResult ->
+                    when(myResult){
+                        is MyResult.Success -> {
+                            SuccessDialog("Ödünç alma isteği gönderildi."){
+                                successDialog ->
+                                successDialog.dismiss()
+                            }.show(supportFragmentManager, "Success")
+                        }
+                        is MyResult.Error -> {
+                            ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
                         }
                     }
                 }
-                .setNegativeButton("Hayır") { dialog, id ->
-                    dialog.dismiss()
-                }
-            val alert = builder.create()
-            alert.show()
+            }.show(supportFragmentManager, "Confirmation")
         }
     }
 

@@ -184,206 +184,212 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_marginRight="5dp"
-                                android:layout_gravity="center"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/book_2_svgrepo_com" />
-
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Adı:" />
-
-                            <TextView
-                                android:id="@+id/kutuphaneAdi"
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{kutuphane.adi}"
-                                tools:text="Bursa Halk Kütüphanesi" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="5dp"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/baseline_location_on_24" />
-
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Şehir:" />
-
-                            <TextView
-                                android:id="@+id/kutuphaneSehir"
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{kutuphane.sehir}"
-                                tools:text="Bursa" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="5dp"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/baseline_access_time_filled_24" />
-
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Teslim Süresi:" />
-
-                            <TextView
-                                android:id="@+id/kutuphaneTeslimSuresi"
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{String.valueOf(kutuphane.teslimSuresi) + ` gün`}"
-                                tools:text="10 gün" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="5dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="5dp"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/baseline_phone_24" />
-
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Telefon:" />
-
-                            <TextView
-                                android:id="@+id/kutuphaneTelefonNumarasi"
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{kutuphane.sehir}"
-                                tools:text="Bursa" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="5dp"
                             android:background="@drawable/background_kitap_info"
-                            android:orientation="horizontal">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center"
-                                android:layout_marginRight="5dp"
-                                android:layout_weight="0.5"
-                                android:src="@drawable/description_svgrepo_com" />
-
-                            <TextView
-                                style="@style/SubtitleText"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="2"
-                                android:gravity="center|left"
-                                android:text="Adres:" />
-
-                            <TextView
-                                android:id="@+id/kutuphaneAdresi"
-                                style="@style/BodyText"
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:gravity="center|left"
-                                android:padding="10dp"
-                                android:text="@{kutuphane.adresi}"
-                                tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
 
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/book_2_svgrepo_com" />
+
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Adı:" />
+
+                                <TextView
+                                    android:id="@+id/kutuphaneAdi"
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{kutuphane.adi}"
+                                    tools:text="Bursa Halk Kütüphanesi" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/baseline_location_on_24" />
+
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Şehir:" />
+
+                                <TextView
+                                    android:id="@+id/kutuphaneSehir"
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{kutuphane.sehir}"
+                                    tools:text="Bursa" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/baseline_access_time_filled_24" />
+
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Teslim Süresi:" />
+
+                                <TextView
+                                    android:id="@+id/kutuphaneTeslimSuresi"
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{String.valueOf(kutuphane.teslimSuresi) + ` gün`}"
+                                    tools:text="10 gün" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/baseline_phone_24" />
+
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Telefon:" />
+
+                                <TextView
+                                    android:id="@+id/kutuphaneTelefonNumarasi"
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{kutuphane.sehir}"
+                                    tools:text="Bursa" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="10dp"
+                                android:orientation="horizontal"
+                                android:paddingHorizontal="5dp"
+                                android:paddingVertical="5dp">
+
+                                <ImageView
+                                    android:layout_width="0dp"
+                                    android:layout_height="25dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_weight="0.5"
+                                    android:src="@drawable/description_svgrepo_com" />
+
+                                <TextView
+                                    style="@style/SubtitleText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="2"
+                                    android:gravity="center|left"
+                                    android:text="Adres:" />
+
+                                <TextView
+                                    android:id="@+id/kutuphaneAdresi"
+                                    style="@style/BodyText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="5"
+                                    android:gravity="center|left"
+                                    android:padding="10dp"
+                                    android:text="@{kutuphane.adresi}"
+                                    tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged." />
+
+                            </LinearLayout>
                         </LinearLayout>
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="wrap_content"
+                            android:layout_marginVertical="10dp"
+                            android:layout_height="2dp"/>
 
                         <TextView
                             style="@style/HeadlineText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginBottom="10dp"
                             android:text="Son Kitap Alanlar" />
 
                         <RelativeLayout
@@ -392,19 +398,18 @@
                             android:layout_margin="10dp">
 
                             <androidx.recyclerview.widget.RecyclerView
-                                android:layout_width="match_parent"
                                 android:id="@+id/sonKitapAlanlarRv"
-                                android:visibility="@{isSonKitapAlanlarEmpty ? View.GONE : View.VISIBLE}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-                                android:layout_height="wrap_content" />
+                                android:visibility="@{isSonKitapAlanlarEmpty ? View.GONE : View.VISIBLE}" />
 
                             <include
+                                layout="@layout/include_liste_bos"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentTop="true"
-                                layout="@layout/include_liste_bos"
-                                app:visibility="@{isSonKitapAlanlarEmpty ? View.VISIBLE : View.GONE}"
-                                />
+                                app:visibility="@{isSonKitapAlanlarEmpty ? View.VISIBLE : View.GONE}" />
 
                         </RelativeLayout>
 

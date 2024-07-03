@@ -6,7 +6,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:background="@color/colorLightGray"
         android:orientation="vertical">
 
         <ImageView
@@ -18,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kütüphane Uygulaması"
-            android:layout_marginBottom="10dp"
+            android:layout_margin="60dp"
             style="@style/HeadlineText"
             android:textColor="@color/black"
             android:textSize="25sp"/>

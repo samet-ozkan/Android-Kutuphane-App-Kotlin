@@ -12,6 +12,7 @@ import com.sametozkan.kutuphane.databinding.FragmentKutuphanelerBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kutuphane.KutuphaneActivity
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,6 +62,7 @@ class KutuphanelerFragment : Fragment() {
         binding.kutuphanelerRv.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(this@KutuphanelerFragment.context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
     }

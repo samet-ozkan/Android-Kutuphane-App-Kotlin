@@ -14,7 +14,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:padding="10dp"
         android:background="@drawable/rounded_corners_stroke"
         android:orientation="vertical">
@@ -37,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="15"
                 android:padding="5dp"
-                android:text="@{`#` + kitapYorumRes.kullanici.id + ` ` + kitapYorumRes.kullanici.adi + ` ` + kitapYorumRes.kullanici.soyadi}"
-                tools:hint="#23 Samet Ozkan" />
+                android:text="@{kitapYorumRes.kullanici.adi + ` ` + kitapYorumRes.kullanici.soyadi + ` #` + kitapYorumRes.kullanici.id}"
+                tools:hint="Samet Ozkan #4" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:gravity="center"
                 android:id="@+id/spoilerLayout"
-                android:visibility="@{kitapYorumRes.spoiler ? View.VISIBLE : View.GONE}"
+                android:visibility="@{kitapYorumRes.spoiler == true ? View.VISIBLE : View.GONE}"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +82,7 @@
                 style="@style/BodyText"
                 android:layout_width="match_parent"
                 android:id="@+id/yorumTextView"
-                android:visibility="@{kitapYorumRes.spoiler ? View.INVISIBLE : View.GONE}"
+                android:visibility="@{kitapYorumRes.spoiler == false ? View.VISIBLE : View.GONE}"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

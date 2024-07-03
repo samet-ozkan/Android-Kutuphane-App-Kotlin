@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:padding="20dp"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="220dp"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:id="@+id/turAdi"
-            android:layout_marginHorizontal="5dp"
-            android:background="@color/white"
-            android:layout_height="match_parent"
-            android:hint="Tür adı girin"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <LinearLayout
-        android:layout_width="220dp"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:orientation="vertical"
+        android:padding="10dp">
 
-        <Button
-            android:id="@+id/ekle"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            style="@style/KullaniciButton"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/colorPrimaryDarkKutuphane"
-            android:layout_marginHorizontal="5dp"
-            android:text="Ekle" />
+            android:layout_margin="10dp">
 
-        <Button
-            android:id="@+id/vazgec"
-            android:layout_marginHorizontal="5dp"
-            android:layout_width="wrap_content"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/colorPrimaryDarkKutuphane"
-            style="@style/KullaniciButton"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/turAdi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="5dp"
+                android:background="@color/white"
+                android:hint="Tür adı giriniz" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:text="Vazgeç" />
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ekle"
+                style="@style/KullaniciButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+                android:text="Ekle"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/vazgec"
+                style="@style/KullaniciButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/colorPrimaryDarkKutuphane"
+                android:text="Vazgeç"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</layout>

@@ -4,17 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
+import com.sametozkan.kutuphane.data.dto.response.KitapRes
+import com.sametozkan.kutuphane.data.dto.response.KullaniciRes
 import com.sametozkan.kutuphane.databinding.FragmentKutuphaneKitapIstekleriBinding
+import com.sametozkan.kutuphane.presentation.bottomsheet.KitapBottomSheet
+import com.sametozkan.kutuphane.presentation.bottomsheet.KullaniciBottomSheet
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.KutuphaneKitapIstekleriChips
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,7 +39,12 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        parentFragmentManager,
+                        context
+                    )
                 }
             }
         }
@@ -49,7 +59,12 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        parentFragmentManager,
+                        context
+                    )
                 }
             }
         }
@@ -77,8 +92,8 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
         observeIsEmpty()
     }
 
-    private fun observeIsEmpty(){
-        viewModel.isEmpty.observe(viewLifecycleOwner){
+    private fun observeIsEmpty() {
+        viewModel.isEmpty.observe(viewLifecycleOwner) {
             binding.isEmpty = it
         }
     }
@@ -116,7 +131,12 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, parentFragmentManager, context)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        parentFragmentManager,
+                        context
+                    )
                 }
             }
         }
@@ -126,6 +146,14 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
         viewModel.query.observe(viewLifecycleOwner) {
             rvAdapter.list = viewModel.filter()
         }
+    }
+
+    val isbnClickListener: (KitapRes) -> Unit = {
+        KitapBottomSheet(it).show(childFragmentManager, "Kitap")
+    }
+
+    val kullaniciIdClickListener: (KullaniciRes) -> Unit = {
+        KullaniciBottomSheet(it).show(childFragmentManager, "Kullanici")
     }
 
     private fun setupRv() {
@@ -142,17 +170,26 @@ class KutuphaneKitapIstekleriFragment : Fragment() {
                 list = viewModel.istekler
             }
             rvAdapter =
-                KutuphaneKitapIstekleriRvAdapter(list, onaylaClickListener, reddetClickListener)
+                KutuphaneKitapIstekleriRvAdapter(
+                    list,
+                    onaylaClickListener,
+                    reddetClickListener,
+                    isbnClickListener,
+                    kullaniciIdClickListener
+                )
         } else {
             rvAdapter = KutuphaneKitapIstekleriRvAdapter(
                 ArrayList(),
                 onaylaClickListener,
-                reddetClickListener
+                reddetClickListener,
+                isbnClickListener,
+                kullaniciIdClickListener
             )
         }
         binding.recyclerView.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
     }

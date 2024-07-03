@@ -15,6 +15,7 @@ import com.sametozkan.kutuphane.databinding.BottomSheetKitapYorumlarBinding
 import com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapViewModel
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 
 class KitapYorumlarBottomSheet : BottomSheetDialogFragment() {
 
@@ -51,7 +52,7 @@ class KitapYorumlarBottomSheet : BottomSheetDialogFragment() {
             sharedViewModel.yorumGonder { myResult ->
                 when (myResult) {
                     is MyResult.Success -> {
-                        Toast.makeText(context, "Yorum gönderildi", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Yorum gönderildi.", Toast.LENGTH_SHORT).show()
                         refreshComments()
                         binding.yorumEditText.setText("")
                     }
@@ -94,6 +95,7 @@ class KitapYorumlarBottomSheet : BottomSheetDialogFragment() {
         binding.yorumlarRv.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
     }

@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
+import com.sametozkan.kutuphane.data.dto.response.KitapRes
+import com.sametozkan.kutuphane.data.dto.response.KullaniciRes
 import com.sametozkan.kutuphane.databinding.ItemKutuphaneKitapIstekleriBinding
 import com.sametozkan.kutuphane.databinding.ItemKutuphaneTeslimDurumuBinding
 
@@ -18,17 +20,26 @@ class KutuphaneTeslimDurumuRvAdapter :
 
     val teslimEdildiClickListener: (KitapKullaniciRes) -> Unit
 
+    val isbnClickListener: (KitapRes) -> Unit
+
+    val kullaniciIdClickListener: (KullaniciRes) -> Unit
+
 
     constructor(
         list: List<KitapKullaniciRes>, onaylaClickListener: (KitapKullaniciRes) -> Unit,
+        isbnClickListener: (KitapRes) -> Unit, kullaniciIdClickListener : (KullaniciRes) -> Unit
     ) {
         this.list = list
         this.teslimEdildiClickListener = onaylaClickListener
+        this.isbnClickListener = isbnClickListener
+        this.kullaniciIdClickListener = kullaniciIdClickListener
     }
 
     class ViewHolder(
         private val binding: ItemKutuphaneTeslimDurumuBinding,
         private val teslimEdildiClickListener: (KitapKullaniciRes) -> Unit,
+        private val isbnClickListener: (KitapRes) -> Unit,
+        private val kullaniciIdClickListener: (KullaniciRes) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -36,6 +47,12 @@ class KutuphaneTeslimDurumuRvAdapter :
             binding.kitapKullaniciRes = kitapKullaniciRes
             binding.teslimEdildiButton.setOnClickListener {
                 teslimEdildiClickListener(kitapKullaniciRes)
+            }
+            binding.kitapItem.isbnTextView.setOnClickListener {
+                isbnClickListener(kitapKullaniciRes.kitap)
+            }
+            binding.kullaniciId.setOnClickListener {
+                kullaniciIdClickListener(kitapKullaniciRes.kullanici)
             }
         }
     }
@@ -46,7 +63,7 @@ class KutuphaneTeslimDurumuRvAdapter :
             parent,
             false
         )
-        return ViewHolder(binding, teslimEdildiClickListener)
+        return ViewHolder(binding, teslimEdildiClickListener, isbnClickListener, kullaniciIdClickListener)
     }
 
     override fun getItemCount(): Int {

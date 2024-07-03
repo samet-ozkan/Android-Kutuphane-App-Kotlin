@@ -30,20 +30,6 @@ class KullaniciProfilFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupCikisYapButton()
-    }
-
-    private fun setupCikisYapButton(){
-        binding.cikisYapButton.setOnClickListener {
-            sharedViewModel.logout()
-            val intent = Intent(context, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-        }
-    }
-
     private fun setupKullanici() {
         sharedViewModel.fetchKullanici { myResult ->
             when (myResult) {

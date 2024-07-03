@@ -1,5 +1,6 @@
 package com.sametozkan.kutuphane.presentation.kullanici.kitap
 
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -40,6 +41,7 @@ class KitapViewModel @Inject constructor(
     val kutuphane = MutableLiveData<KutuphaneRes>()
     val kitap = MutableLiveData<KitapRes>()
     val yorum = MutableLiveData<String>()
+    val spoiler = ObservableBoolean(false)
 
     fun fetchKutuphane(onResult: (MyResult<KutuphaneRes>) -> Unit) {
         kutuphaneId?.let {
@@ -114,7 +116,8 @@ class KitapViewModel @Inject constructor(
                                 KitapYorumReq(
                                     yorum,
                                     kullanici_id,
-                                    kutuphane_id
+                                    kutuphane_id,
+                                    spoiler.get()
                                 )
                             )
                         }.await()

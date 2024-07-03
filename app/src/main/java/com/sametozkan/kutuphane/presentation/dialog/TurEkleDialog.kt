@@ -10,14 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
-import com.sametozkan.kutuphane.databinding.DialogErrorBinding
 import com.sametozkan.kutuphane.databinding.DialogSuccessBinding
+import com.sametozkan.kutuphane.databinding.DialogTurEkleBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SuccessDialog(private val successMessage: String, private val onDismissListener : (SuccessDialog) -> Unit ) : DialogFragment() {
+class TurEkleDialog(private val onEkleClickListener : (String) -> Unit) : DialogFragment() {
 
-    private lateinit var binding: DialogSuccessBinding
+    private lateinit var binding: DialogTurEkleBinding
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState)
@@ -29,9 +29,8 @@ class SuccessDialog(private val successMessage: String, private val onDismissLis
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DialogSuccessBinding.inflate(inflater, container, false)
+        binding = DialogTurEkleBinding.inflate(inflater, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        binding.message = successMessage
         return binding.root
     }
 
@@ -49,12 +48,20 @@ class SuccessDialog(private val successMessage: String, private val onDismissLis
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTamamButton()
+        setupEkleButton()
+        setupVazgecButton()
     }
 
-    private fun setTamamButton(){
-        binding.tamamButton.setOnClickListener {
-            onDismissListener(this)
+    private fun setupVazgecButton(){
+        binding.vazgec.setOnClickListener {
+            dismiss()
+        }
+    }
+
+    private fun setupEkleButton(){
+        binding.ekle.setOnClickListener {
+            onEkleClickListener(binding.turAdi.text.toString())
+            dismiss()
         }
     }
 }

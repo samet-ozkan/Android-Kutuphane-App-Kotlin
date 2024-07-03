@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sametozkan.kutuphane.data.dto.response.KitapRes
 import com.sametozkan.kutuphane.databinding.ActivityKitaplarBinding
+import com.sametozkan.kutuphane.presentation.bottomsheet.KitapBottomSheet
 import com.sametozkan.kutuphane.presentation.kullanici.kitap.KitapActivity
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.LoadingManager
 import com.sametozkan.kutuphane.util.MyResult
+import com.sametozkan.kutuphane.util.VerticalSpaceItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -44,14 +46,14 @@ class KitaplarActivity : AppCompatActivity() {
         setupBackButton()
     }
 
-    private fun setupBackButton(){
+    private fun setupBackButton() {
         binding.backButton.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }
     }
 
-    private fun observeLoading(){
-        LoadingManager.loading.observe(this){
+    private fun observeLoading() {
+        LoadingManager.loading.observe(this) {
             binding.isLoading = it
         }
     }
@@ -62,7 +64,10 @@ class KitaplarActivity : AppCompatActivity() {
                 rvAdapter.list = viewModel.kitaplar
             } else {
                 val filteredList =
-                    viewModel.kitaplar.filter { it.adi.contains(query, ignoreCase = true) }
+                    viewModel.kitaplar.filter {
+                        it.adi.contains(query, ignoreCase = true)
+                                || it.isbn.toString().contains(query)
+                    }
                 rvAdapter.list = filteredList
             }
         }
@@ -78,7 +83,12 @@ class KitaplarActivity : AppCompatActivity() {
                 }
 
                 is MyResult.Error -> {
-                    ErrorUtil.showErrorDialog(myResult.responseCode, myResult.exception, supportFragmentManager, this)
+                    ErrorUtil.showErrorDialog(
+                        myResult.responseCode,
+                        myResult.exception,
+                        supportFragmentManager,
+                        this
+                    )
                 }
             }
         }
@@ -109,21 +119,26 @@ class KitaplarActivity : AppCompatActivity() {
         })
     }
 
+    val isbnClickListener: (KitapRes) -> Unit = { kitapRes ->
+        KitapBottomSheet(kitapRes).show(supportFragmentManager, "Kitap")
+    }
+
     private fun setupRv() {
         if (viewModel.kitaplar.isNotEmpty()) {
             lateinit var list: List<KitapRes>
             viewModel.query.value?.let { query ->
-                list = viewModel.kitaplar.filter { it.adi.contains(query, ignoreCase = true) }
+                list = viewModel.kitaplar.filter { it.adi.contains(query, ignoreCase = true) || it.isbn.toString().contains(query) }
             } ?: kotlin.run {
                 list = viewModel.kitaplar
             }
-            rvAdapter = KitaplarRvAdapter(list, kitapClickListener)
+            rvAdapter = KitaplarRvAdapter(list, kitapClickListener, isbnClickListener)
         } else {
-            rvAdapter = KitaplarRvAdapter(ArrayList(), kitapClickListener)
+            rvAdapter = KitaplarRvAdapter(ArrayList(), kitapClickListener, isbnClickListener)
         }
         binding.kitaplarRv.apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(VerticalSpaceItemDecoration(20))
             setHasFixedSize(true)
         }
     }

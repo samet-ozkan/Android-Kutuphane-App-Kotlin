@@ -18,20 +18,19 @@
         android:background="@color/colorLightGray"
         android:orientation="vertical">
 
-        <SearchView
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:background="@color/white"
-            android:iconifiedByDefault="false"
-            android:queryHint="Kullanıcı ID veya tam ad giriniz." />
+            android:queryHint="Kullanıcı ID veya tam ad giriniz" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/bekleyenChip"
@@ -62,6 +61,11 @@
 
         </com.google.android.material.chip.ChipGroup>
 
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="wrap_content"
+            android:layout_height="2dp"
+            android:layout_marginVertical="10dp" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -70,9 +74,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
+                android:layout_centerInParent="true"
                 android:layout_height="match_parent"
-                android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
-                />
+                android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}" />
 
             <include
                 layout="@layout/include_liste_bos"

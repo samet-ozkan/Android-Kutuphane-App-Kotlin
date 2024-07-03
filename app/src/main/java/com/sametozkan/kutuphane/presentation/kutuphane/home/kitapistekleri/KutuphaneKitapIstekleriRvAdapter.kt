@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes
+import com.sametozkan.kutuphane.data.dto.response.KitapRes
+import com.sametozkan.kutuphane.data.dto.response.KullaniciRes
 import com.sametozkan.kutuphane.databinding.ItemKutuphaneKitapIstekleriBinding
 
 class KutuphaneKitapIstekleriRvAdapter :
@@ -15,23 +17,30 @@ class KutuphaneKitapIstekleriRvAdapter :
             notifyDataSetChanged()
         }
 
-    val onaylaClickListener: (KitapKullaniciRes) -> Unit
-    val reddetClickListener: (KitapKullaniciRes) -> Unit
+    private val onaylaClickListener: (KitapKullaniciRes) -> Unit
+    private val reddetClickListener: (KitapKullaniciRes) -> Unit
+    private val isbnClickListener: (KitapRes) -> Unit
+    private val kullaniciIdClickListener : (KullaniciRes) -> Unit
 
 
     constructor(
         list: List<KitapKullaniciRes>, onaylaClickListener: (KitapKullaniciRes) -> Unit,
-        reddetClickListener: (KitapKullaniciRes) -> Unit
+        reddetClickListener: (KitapKullaniciRes) -> Unit, isbnClickListener: (KitapRes) -> Unit,
+        kullaniciIdClickListener : (KullaniciRes) -> Unit
     ) {
         this.list = list
         this.onaylaClickListener = onaylaClickListener
         this.reddetClickListener = reddetClickListener
+        this.isbnClickListener = isbnClickListener
+        this.kullaniciIdClickListener = kullaniciIdClickListener
     }
 
     class ViewHolder(
         private val binding: ItemKutuphaneKitapIstekleriBinding,
         private val onaylaClickListener: (KitapKullaniciRes) -> Unit,
-        private val reddetClickListener: (KitapKullaniciRes) -> Unit
+        private val reddetClickListener: (KitapKullaniciRes) -> Unit,
+        private val isbnClickListener: (KitapRes) -> Unit,
+        private val kullaniciIdClickListener : (KullaniciRes) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -43,6 +52,12 @@ class KutuphaneKitapIstekleriRvAdapter :
             binding.reddetButton.setOnClickListener {
                 reddetClickListener(kitapKullaniciRes)
             }
+            binding.kitapItem.isbnTextView.setOnClickListener {
+                isbnClickListener(kitapKullaniciRes.kitap)
+            }
+            binding.kullaniciId.setOnClickListener {
+                kullaniciIdClickListener(kitapKullaniciRes.kullanici)
+            }
         }
     }
 
@@ -52,7 +67,7 @@ class KutuphaneKitapIstekleriRvAdapter :
             parent,
             false
         )
-        return ViewHolder(binding, onaylaClickListener, reddetClickListener)
+        return ViewHolder(binding, onaylaClickListener, reddetClickListener, isbnClickListener, kullaniciIdClickListener)
     }
 
     override fun getItemCount(): Int {

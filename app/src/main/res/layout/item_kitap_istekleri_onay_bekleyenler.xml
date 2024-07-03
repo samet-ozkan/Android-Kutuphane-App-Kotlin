@@ -5,33 +5,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.graphics.Color" />
+
         <variable
             name="kitapKullaniciRes"
             type="com.sametozkan.kutuphane.data.dto.response.KitapKullaniciRes" />
+
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/rounded_corners"
+        android:background="@drawable/background_kitap_istekleri"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:id="@+id/kutuphaneAdiTv"
-            style="@style/CaptionText"
-            android:layout_margin="10dp"
-            android:text="@{kitapKullaniciRes.kutuphane.adi}"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
-            tools:text="İstanbul Halk Kütüphanesi" />
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/CaptionText"
+                android:layout_gravity="center"
+                android:text="@{kitapKullaniciRes.kutuphane.adi}"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                tools:text="İstanbul Halk Kütüphanesi" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:src="@drawable/baseline_forward_24"
+                app:tint="@color/white"/>
+
+        </LinearLayout>
 
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             layout="@layout/item_kitap"
+            android:id="@+id/kitapItem"
+            app:kitapRes="@{kitapKullaniciRes.kitap}"
+            app:linkColor="@{@color/colorPrimaryDark}"
             bind:kitapRes="@{kitapKullaniciRes.kitap}" />
 
         <LinearLayout
@@ -43,9 +65,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 style="@style/CaptionText"
                 android:textStyle="bold"
                 android:text="İstek tarihi:"
@@ -54,8 +75,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="5dp"
+                android:gravity="center|left"
                 style="@style/CaptionText"
                 tools:text="17/02/2024 12:48"
                 android:text="@{kitapKullaniciRes.createdTime}"/>

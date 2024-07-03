@@ -24,6 +24,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_centerInParent="true"
+                android:layout_margin="10dp"
                 android:layout_height="match_parent"
                 android:visibility="@{isEmpty ? View.GONE : View.VISIBLE}"
                 />
