@@ -53,9 +53,10 @@ class KutuphaneKaydolActivity : AppCompatActivity() {
     }
 
     private fun startLoginActivity(){
-        val intent = Intent(this, KutuphaneGirisActivity::class.java)
+        /*val intent = Intent(this, KutuphaneGirisActivity::class.java)
         startActivity(intent)
-        finish()
+        finish()*/
+        onBackPressedDispatcher.onBackPressed()
     }
 
     private fun setupKaydolButton(){

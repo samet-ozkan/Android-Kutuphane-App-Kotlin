@@ -136,7 +136,7 @@ class KitapOlusturFragment : Fragment() {
                         SuccessDialog("Kitap başarıyla oluşturuldu ve kütüphaneniz ile ilişkilendirildi.") { successDialog ->
                             successDialog.dismiss()
                             requireActivity().finish()
-                        }
+                        }.show(childFragmentManager, "Success")
                     }
 
                     is MyResult.Error -> {

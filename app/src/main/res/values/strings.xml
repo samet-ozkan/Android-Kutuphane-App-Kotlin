@@ -10,4 +10,5 @@
     <string name="error_conflict">Girdiğiniz veri sistemde mevcut kurallarla çakışıyor. Lütfen girdiğiniz bilgileri kontrol edin ve tekrar deneyin.</string>
     <string name="registration_success_message">Kayıt işlemi başarıyla tamamlandı!</string>
     <string name="nothing_here">Burada hiçbir şey yok.</string>
+    <string name="kitap_not_found_in_database">Kitap veritabanında bulunamadı. Kitap oluşturmak ister misiniz?</string>
 </resources>

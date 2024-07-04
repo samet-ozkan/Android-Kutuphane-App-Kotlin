@@ -79,11 +79,13 @@ class KutuphaneTeslimDurumuViewModel @Inject constructor(
             list = list.filter { kitapKullaniciRes ->
                 kitapKullaniciRes.alimTarihi?.let { alimTarihi ->
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-                        val localDate = DateUtil.stringToLocalDateTime(alimTarihi) as LocalDateTime
+                        var localDate = DateUtil.stringToLocalDateTime(alimTarihi) as LocalDateTime
+                        localDate = localDate.plusDays(kitapKullaniciRes.kutuphane.teslimSuresi.toLong())
                         localDate.isBefore(LocalDateTime.now())
                     }
                     else{
-                        val localDate = DateUtil.stringToLocalDateTime(alimTarihi) as org.threeten.bp.LocalDateTime
+                        var localDate = DateUtil.stringToLocalDateTime(alimTarihi) as org.threeten.bp.LocalDateTime
+                        localDate = localDate.plusDays(kitapKullaniciRes.kutuphane.teslimSuresi.toLong())
                         localDate.isBefore(org.threeten.bp.LocalDateTime.now())
                     }
                 } ?: kotlin.run {

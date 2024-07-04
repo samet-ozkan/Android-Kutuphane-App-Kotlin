@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.sametozkan.kutuphane.R
 import com.sametozkan.kutuphane.databinding.FragmentKitapEkleBinding
+import com.sametozkan.kutuphane.presentation.dialog.ConfirmationDialog
 import com.sametozkan.kutuphane.util.ErrorUtil
 import com.sametozkan.kutuphane.util.KutuphaneFragments
 import com.sametozkan.kutuphane.util.MyResult
@@ -55,7 +57,9 @@ class KitapEkleFragment : Fragment() {
                     }
                     is MyResult.Error -> {
                         if(result.responseCode == 404){
-                            sharedViewModel.changeFragment.postValue(KutuphaneFragments.KITAP_OLUSTUR)
+                            ConfirmationDialog(getString(R.string.kitap_not_found_in_database)){
+                                sharedViewModel.changeFragment.postValue(KutuphaneFragments.KITAP_OLUSTUR)
+                            }.show(childFragmentManager, "Confirmation")
                         }
                     }
                 }

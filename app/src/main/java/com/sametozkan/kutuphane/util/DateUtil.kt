@@ -9,9 +9,15 @@ import java.time.format.DateTimeFormatter
 object DateUtil {
 
     private val formatter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        DateTimeFormatter.ofPattern("dd-MM-yyyy")
     } else {
-        org.threeten.bp.format.DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        org.threeten.bp.format.DateTimeFormatter.ofPattern("dd-MM-yyyy")
+    }
+
+    private val dateTimeFormatter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+    } else {
+        org.threeten.bp.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
     }
 
     fun stringToLocalDate(dateString: String): Any {
@@ -23,16 +29,10 @@ object DateUtil {
     }
 
     fun stringToLocalDateTime(dateString: String): Any {
-        val formatter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
-        } else {
-            org.threeten.bp.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
-        }
-
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            LocalDateTime.parse(dateString, formatter as DateTimeFormatter)
+            LocalDateTime.parse(dateString, dateTimeFormatter as DateTimeFormatter)
         } else {
-            org.threeten.bp.LocalDateTime.parse(dateString, formatter as org.threeten.bp.format.DateTimeFormatter?)
+            org.threeten.bp.LocalDateTime.parse(dateString, dateTimeFormatter as org.threeten.bp.format.DateTimeFormatter?)
         }
     }
 

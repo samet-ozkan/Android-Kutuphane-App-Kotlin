@@ -70,7 +70,7 @@ class KutuphaneTeslimDurumuFragment : Fragment() {
     private fun setupZamaniGecmisCheckbox(){
         binding.zamaniGecmisCheckbox.addOnCheckedStateChangedListener { checkBox, state ->
             viewModel.zamaniGecmisCheckbox.set(state == MaterialCheckBox.STATE_CHECKED)
-            viewModel.filter()
+            rvAdapter.list = viewModel.filter()
         }
     }
 

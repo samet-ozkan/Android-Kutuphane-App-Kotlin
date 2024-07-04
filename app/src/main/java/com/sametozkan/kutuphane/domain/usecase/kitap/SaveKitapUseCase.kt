@@ -13,7 +13,7 @@ class SaveKitapUseCase @Inject constructor(private val kitapRepository: KitapRep
     suspend operator fun invoke(
         kitapReq: KitapReq,
     ): MyResult<Long> {
-        LoadingManager.startLoading()
+        //LoadingManager.startLoading()
         return try {
             val response = kitapRepository.save(kitapReq)
             if (response.isSuccessful) {
@@ -29,7 +29,7 @@ class SaveKitapUseCase @Inject constructor(private val kitapRepository: KitapRep
         } catch (e: Exception) {
             MyResult.Error(e, null)
         } finally {
-            LoadingManager.stopLoading()
+            //LoadingManager.stopLoading()
         }
     }
 }

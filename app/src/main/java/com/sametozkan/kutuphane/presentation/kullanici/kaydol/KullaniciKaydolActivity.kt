@@ -41,9 +41,10 @@ class KullaniciKaydolActivity : AppCompatActivity() {
     }
 
     private fun startLoginActivity() {
-        val intent = Intent(this, KullaniciGirisActivity::class.java)
+        /*val intent = Intent(this, KullaniciGirisActivity::class.java)
         startActivity(intent)
-        finish()
+        finish()*/
+        onBackPressedDispatcher.onBackPressed()
     }
 
     private fun setupKaydolButton() {

@@ -76,7 +76,7 @@
                         style="@style/CaptionText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="İstek tarihi:"
+                        android:text="Alım tarihi:"
                         android:textStyle="bold" />
 
                     <TextView
@@ -84,7 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingHorizontal="5dp"
-                        android:text="@{kitapKullaniciRes.createdTime}"
+                        android:text="@{kitapKullaniciRes.alimTarihi}"
                         tools:text="17/02/2024 12:48" />
 
                 </LinearLayout>

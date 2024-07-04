@@ -10,7 +10,7 @@ import javax.inject.Inject
 class SaveKitapKutuphaneUseCase @Inject constructor(private val kitapKutuphaneRepository: KitapKutuphaneRepository) {
 
     suspend operator fun invoke(kitapKutuphaneReq: KitapKutuphaneReq): MyResult<Unit> {
-        LoadingManager.startLoading()
+        //LoadingManager.startLoading()
         return try {
             val response = kitapKutuphaneRepository.save(kitapKutuphaneReq)
             if (response.isSuccessful) {
@@ -21,7 +21,7 @@ class SaveKitapKutuphaneUseCase @Inject constructor(private val kitapKutuphaneRe
         } catch (e: Exception) {
             MyResult.Error(e, null)
         } finally {
-            LoadingManager.stopLoading()
+            //LoadingManager.stopLoading()
         }
     }
 }
