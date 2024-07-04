@@ -1,5 +1,7 @@
-# Android-Notepad-App-Kotlin
+# Android-Kutuphane-App-Kotlin
 Kotlin (MVVM - Clean Architecture) Android kutuphane uygulaması.
+
+__REST API:__ [https://github.com/samet-ozkan/Kutuphane-Spring-Boot-REST-API](https://github.com/samet-ozkan/Kutuphane-Spring-Boot-REST-API)
 
 ---
 ## Kütüphane Özellikleri
@@ -24,7 +26,7 @@ Kotlin (MVVM - Clean Architecture) Android kutuphane uygulaması.
 ---
 ## Uygulama Videosu
 
-https://github.com/samet-ozkan/Android-Kutuphane-App-Kotlin/assets/55306181/7b429e34-e3d3-499d-868b-bb749a846efb
+https://github.com/samet-ozkan/Android-Kutuphane-App-Kotlin/assets/55306181/463ac3f1-0529-4db3-bf5a-f61aac09708b
 
 ---
 ## Kullanılan Teknolojiler
